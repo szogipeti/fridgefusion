@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Recipe;
 
 class RecipeController extends Controller
 {
@@ -13,7 +14,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        //
+        return Recipe::all();
     }
 
     /**
@@ -24,7 +25,8 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validated();
+        return Recipe::create($validated);
     }
 
     /**
@@ -35,7 +37,7 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        //
+        return Recipe::findOrfail($id);
     }
 
     /**
@@ -47,7 +49,11 @@ class RecipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validated();
+        $recipe = Recipe::findOrFail($id);
+        $recipe->update($validated);
+        return $recipe;
+
     }
 
     /**
@@ -58,6 +64,6 @@ class RecipeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Recipe::findOrfail($id)->delete();
     }
 }
