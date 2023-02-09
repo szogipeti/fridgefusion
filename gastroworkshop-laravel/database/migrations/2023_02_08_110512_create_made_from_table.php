@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('measures', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('made_from', function (Blueprint $table) {
+            $table->foreignId('recipe_id')->constrained('recipes');
+            $table->foreignId('ingredientMeasure_id')->constrained('ingredient_measures');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('measures');
+        Schema::dropIfExists('made_from');
     }
 };
