@@ -19,8 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/recipes/index', [RecipeController::class, 'index'])->name('recipes.index');
-Route::get('/recipes/show/{id}', [RecipeController::class, 'show'])->whereNumber('id')->name('recipes.show');
+Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
+Route::get('/recipes/{id}', [RecipeController::class, 'show'])->whereNumber('id')->name('recipes.show');
 Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store');
 Route::put('/recipes/{id}', [RecipeController::class, 'update'])->whereNumber('id')->name('recipes.update');
 Route::delete('/recipes/{id}', [RecipeController::class, 'destroy'])->whereNumber('id')->name('recipes.destroy');

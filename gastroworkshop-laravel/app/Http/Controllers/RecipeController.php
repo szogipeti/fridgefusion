@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RecipeResource;
 use Illuminate\Http\Request;
 use App\Models\Recipe;
+use App\Http\Requests\RecipeRequest;
 
 class RecipeController extends Controller
 {
@@ -14,7 +16,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        return Recipe::all();
+        return RecipeResource::collection(Recipe::all());
     }
 
     /**
@@ -23,10 +25,10 @@ class RecipeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RecipeRequest $request)
     {
         $validated = $request->validated();
-        return Recipe::create($validated);
+        return new RecipeResource(Recipe::create($validated));
     }
 
     /**
@@ -37,7 +39,7 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        return Recipe::findOrfail($id);
+        return new RecipeResource(Recipe::findOrfail($id));
     }
 
     /**
@@ -47,13 +49,12 @@ class RecipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RecipeRequest $request, $id)
     {
         $validated = $request->validated();
         $recipe = Recipe::findOrFail($id);
         $recipe->update($validated);
-        return $recipe;
-
+        return new RecipeResource($recipe);
     }
 
     /**
