@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ingredient_measures', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantity');
+            $table->float('quantity');
             $table->foreignId('ingredient_id')->constrained('ingredients');
             $table->foreignId('measure_id')->constrained('measures');
             $table->timestamps();
