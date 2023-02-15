@@ -9,7 +9,7 @@ class Recipe extends Model
 {
     protected $fillable = ['name', 'method', 'category', 'publisher', 'image'];
 
-    public function ingredientMeasures(){
-        return $this->belongsToMany(IngredientMeasure::class);
+    public function ingredients(){
+        return $this->belongsToMany(Ingredient::class, 'made_from')->withPivot('quantity', 'measure_id');
     }
 }

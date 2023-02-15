@@ -39,6 +39,8 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
+        $recipe = Recipe::findOrFail($id);
+        dd($recipe->ingredients);
         return new RecipeResource(Recipe::findOrfail($id));
     }
 

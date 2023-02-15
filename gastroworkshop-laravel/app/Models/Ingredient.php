@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ingredient extends Model
 {
-    public function ingredientMeasure(){
-        return $this->belongsTo(IngredientMeasure::class, 'ingredient_id', 'id');
+    public function recipes(){
+        return $this->belongsToMany(Recipe::class, 'made_from');
     }
 }
