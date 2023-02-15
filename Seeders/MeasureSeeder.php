@@ -30,6 +30,8 @@ class CsapattagSeeder extends Seeder
 			['id' => '12','name' => 'kilogram'],
 			['id' => '13','name' => 'liter'],
 			['id' => '14','name' => 'milliliter']
+			['id' => '15','name' => 'to taste']
+			['id' => '16','name' => 'pinch']
             ]);
     }
 }
