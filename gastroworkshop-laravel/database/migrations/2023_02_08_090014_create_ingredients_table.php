@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('name', 25);
             $table->string('category', 25);
-            $table->boolean('integer');
             $table->timestamps();
         });
     }
