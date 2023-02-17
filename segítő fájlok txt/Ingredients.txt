@@ -505,3 +505,4 @@ Cheesecake
     2 large eggs, at room temperature
     1 teaspoon Pure Vanilla Extract
 
+,'total_time' => 35,'serving' => null

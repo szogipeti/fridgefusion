@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\IngredientResource;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 
 class IngredientController extends Controller
@@ -13,7 +15,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        //
+        return IngredientResource::collection(Recipe::all());
     }
 
     /**
@@ -24,7 +26,8 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validated();
+        return new IngredientResource(Recipe::create($validated));
     }
 
     /**
@@ -35,7 +38,8 @@ class IngredientController extends Controller
      */
     public function show($id)
     {
-        //
+        $ingredient = Ingredient::findOrFail($id);
+        return new IngredientResource(Ingredient::findOrfail($id));
     }
 
     /**
@@ -47,7 +51,10 @@ class IngredientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validated();
+        $ingredient = Recipe::findOrFail($id);
+        $ingredient->update($validated);
+        return new IngredientResource($ingredient);
     }
 
     /**
@@ -58,6 +65,6 @@ class IngredientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Ingredient::findOrfail($id)->delete();
     }
 }
