@@ -1,2 +1,11 @@
 $body-bg: #FFFFE0;
+nav{
+    background-color: #0D8F87;
+    color: white;
+    font-family: "Juice ITC";
+}
+nav img{
+    width: 40px;
+    height: 40px;
+}
 @import "../node_modules/bootstrap/scss/bootstrap";
