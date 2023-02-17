@@ -9,7 +9,6 @@
     @vite(['resources/css/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    @include('layouts.menu')
     @yield("content")
 </body>
 </html>
