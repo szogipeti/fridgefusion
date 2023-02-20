@@ -1,34 +1,148 @@
 <template>
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Fridge Fusion</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Seasonal recipes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Weekly recipes</a>
-                    </li>
-                </ul>
-                <a class="nav-link d-flex align-items-center" href="#">
-                    <p class="mx-1 my-auto">Your profile</p>
-                    <img class="mx-1" src="/img/profile-icon.png" alt="">
-                </a>
-            </div>
+    <nav class="nav">
+        <a href="#" class="nav-brand">Fridge Fusion</a>
+        <ul class="nav-menu" v-bind:class="{active: menuActive}">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Seasonal recipes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Weekly recipes</a>
+            </li>
+        </ul>
+        <a href="#" class="d-flex align-items-center ms-auto ms-md-0">
+            <p class="mx-1 my-auto text-white">Your profile</p>
+            <img class="mx-1" src="/img/profile-icon.png" alt="">
+        </a>
+        <div class="hamburger mx-2" v-bind:class="{active: menuActive}" @click="toggleMenu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
     </nav>
 </template>
 
-<script>
-export default {
-    name: "NavBar"
+<script setup>
+import {ref} from "vue";
+
+const menuActive = ref(false);
+const toggleMenu = function(){
+    menuActive.value = !menuActive.value;
 }
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Julee&display=swap');
+nav{
+    background-color: #0D8F87;
+    font-family: 'Julee', cursive;
+}
+nav img{
+    width: 40px;
+    height: 40px;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
 
+.hamburger{
+    display: none;
+}
+
+.bar{
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.25rem;
+}
+
+.nav-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item{
+    margin: 0 10px;
+}
+
+.nav-item:hover{
+    background-color: #09645f;
+    transition: 0.3s
+}
+
+.nav-link, .nav-link:link, .nav-link:visited, .nav-link:hover, .nav-link:active{
+    color: white;
+}
+
+.nav-brand{
+    font-size: 2rem;
+    font-weight: 500;
+    color: white;
+}
+
+@media only screen and (max-width: 768px){
+    .nav-menu{
+        position: fixed;
+        left: -100%;
+        top: calc(40px + 1.5rem);
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+        background-color: #0D8F8766;
+    }
+
+    .nav-menu.active{
+        left: 0;
+    }
+
+    .nav-item{
+        width: 100%;
+    }
+
+    .nav-link, .nav-link:link, .nav-link:visited, .nav-link:active{
+        color: black;
+    }
+
+    .nav-item:hover{
+        background-color: #56b1ab;
+        transition: 0.3s
+    }
+
+    .hamburger{
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
 </style>
