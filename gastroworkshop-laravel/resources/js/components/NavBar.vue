@@ -83,11 +83,6 @@ a{
     margin: 0 10px;
 }
 
-.nav-item:hover{
-    background-color: #09645f;
-    transition: 0.3s
-}
-
 .nav-link, .nav-link:link, .nav-link:visited, .nav-link:hover, .nav-link:active{
     color: white;
 }
@@ -96,6 +91,7 @@ a{
     font-size: 2rem;
     font-weight: 500;
     color: white;
+    margin: 0 10px;
 }
 
 @media only screen and (max-width: 768px){
@@ -106,13 +102,17 @@ a{
         flex-direction: column;
         width: 100%;
         text-align: center;
-        transition: 0.3s;
+        transition: left 0.3s;
         box-shadow: 0 10px 27px rgba(0,0,0,0.05);
-        background-color: #0D8F8766;
+        background-color: white
     }
 
     .nav-menu.active{
         left: 0;
+        box-shadow: 0 0 0 max(100vh, 100vw) rgba(0, 0, 0, .3);
+        -moz-transition: box-shadow 200ms;
+        -webkit-transition: box-shadow 200ms;
+        transition: box-shadow 200ms, left 200ms;
     }
 
     .nav-item{
