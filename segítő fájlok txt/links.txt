@@ -39,3 +39,5 @@
 38https://www.simplyrecipes.com/recipes/blueberry_pie/
 39https://www.bbcgoodfood.com/recipes/carrot-cake
 40https://www.kingarthurbaking.com/recipes/easy-cheesecake-recipe
+
+navbar: https://dev.to/devggaurav/let-s-build-a-responsive-navbar-and-hamburger-menu-using-html-css-and-javascript-4gci

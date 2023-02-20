@@ -1,12 +1,14 @@
 <template>
     <nav-bar />
-    <h1 class="">Helló, Vite és Vue meg Laravel!</h1>
+    <router-view />
 </template>
 
 <script>
+    import { RouterView } from 'vue-router';
     import NavBar from "./components/NavBar.vue"
     export default{
         components:{
+            RouterView,
             NavBar
         }
     }
