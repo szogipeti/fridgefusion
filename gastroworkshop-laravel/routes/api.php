@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\IngredientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,8 @@ Route::post('/recipes', [RecipeController::class, 'store'])->name('recipes.store
 Route::put('/recipes/{id}', [RecipeController::class, 'update'])->whereNumber('id')->name('recipes.update');
 Route::delete('/recipes/{id}', [RecipeController::class, 'destroy'])->whereNumber('id')->name('recipes.destroy');
 
+Route::get('/ingredients', [IngredientController::class, 'index'])->name('ingredients.index');
+Route::get('/ingredients/{id}', [IngredientController::class, 'show'])->whereNumber('id')->name('ingredients.show');
+Route::post('/ingredients', [IngredientController::class, 'store'])->name('ingredients.store');
+Route::put('/ingredients/{id}', [IngredientController::class, 'update'])->whereNumber('id')->name('ingredients.update');
+Route::delete('/ingredients/{id}', [IngredientController::class, 'destroy'])->whereNumber('id')->name('ingredients.destroy');

@@ -15,7 +15,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        return IngredientResource::collection(Recipe::all());
+        return IngredientResource::collection(Ingredient::all());
     }
 
     /**
@@ -27,7 +27,7 @@ class IngredientController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validated();
-        return new IngredientResource(Recipe::create($validated));
+        return new IngredientResource(Ingredient::create($validated));
     }
 
     /**
@@ -52,7 +52,7 @@ class IngredientController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validated();
-        $ingredient = Recipe::findOrFail($id);
+        $ingredient = Ingredient::findOrFail($id);
         $ingredient->update($validated);
         return new IngredientResource($ingredient);
     }
