@@ -1,36 +1,51 @@
 <template>
     <footer>
         <div class="container">
-            <div class="row">
+            <div class="row my-3">
                 <div class="col">
-                    <h5>About us</h5>
+                    <h5 class="mb-2">About us</h5>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur imperdiet placerat erat eu
+                        feugiat. Integer porta, quam ac dignissim venenatis, diam metus pulvinar augue, eu interdum
+                        mauris ante sit amet massa. Curabitur sagittis dolor id neque tincidunt mattis. Curabitur quis
+                        nulla tempus, vehicula massa ut, convallis purus. Mauris pulvinar ac sem sit amet semper. Class
+                        aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin in
+                        mattis neque, efficitur pellentesque velit.</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row quick-links-container w-75 mx-auto my-3">
                 <div class="col">
-                    <h5>Quick links</h5>
-                </div>
-                <div class="col">
-                    <h5>Quick links</h5>
+                    <h5 class="mb-2">Quick links</h5>
+                    <div class="row">
+                        <div class="col">
+                            <ul>
+                                <li><a href="">Lorem ipsum</a></li>
+                                <li><a href="">Nam vehicula</a></li>
+                                <li><a href="">Pellentesque</a></li>
+                            </ul>
+                        </div>
+                        <div class="col">
+                            <li><a href="">Lorem ipsum</a></li>
+                            <li><a href="">Nam vehicula</a></li>
+                            <li><a href="">Pellentesque</a></li>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row social-media my-3">
                 <div class="col">
-                    <ul>
-                        <li>
-                            <s-facebook
-                                :window-features="windowFeatures"
-                                :share-options="shareOptions"
-                                :use-native-behavior="useNativeBehavior"
-                                @popup-close="onClose"
-                                @popup-open="onOpen"
-                                @popup-block="onBlock"
-                                @popup-focus="onFocus"
-                            ></s-facebook>
-                        </li>
-                        <li></li>
-                        <li><a href=""><i class="fab fa-linkedin"></i></a></li>
-                        <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                    <ul class="d-flex justify-content-between align-items-center mx-auto">
+                        <li><a href="">
+                            <font-awesome-icon class="fa-inverse" icon="fa-brands fa-facebook-f"/>
+                        </a></li>
+                        <li><a href="">
+                            <font-awesome-icon class="fa-inverse" icon="fa-brands fa-twitter"/>
+                        </a></li>
+                        <li><a href="">
+                            <font-awesome-icon class="fa-inverse" icon="fa-brands fa-linkedin"/>
+                        </a></li>
+                        <li><a href="">
+                            <font-awesome-icon class="fa-inverse" icon="fa-brands fa-instagram"/>
+                        </a></li>
                     </ul>
                 </div>
             </div>
@@ -38,45 +53,48 @@
     </footer>
 </template>
 
-<script>
-import { SFacebook } from 'vue-socials'
+<script setup>
 
-export default {
-    name: 'SFacebookSharing',
-
-    components: { SFacebook },
-
-    data() {
-        return {
-            windowFeatures: {},
-            shareOptions: {
-                url: 'https://github.com/',
-                quote: 'Quote',
-                hashtag: '#Github',
-            },
-            useNativeBehavior: false,
-        }
-    },
-
-    methods: {
-        onClose() {},
-        onOpen() {},
-        onBlock() {},
-        onFocus() {},
-    }
-};
 </script>
 
 <style scoped>
-    footer{
-        background-color: #C74545;
+footer {
+    background-color: #C74545;
+    color: white;
+    font-size: 0.85rem;
+    padding: 10px 0px 25px 0px;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.social-media a{
+    font-size: 1.5rem;
+}
+
+.social-media ul{
+    width: 25%;
+}
+
+a:link, a:visited, a:hover, a:active {
+    color: white;
+}
+
+.quick-links-container{
+    border-bottom: 1px solid white;
+}
+@media only screen and (max-width: 768px){
+    .social-media a{
+        font-size: 1rem;
     }
-    li{
-        list-style: none;
+
+    .social-media ul{
+        width: 50%;
     }
-    a {
-        text-decoration: none;
-        width: 100px;
-        height: 100px;
-    }
+}
 </style>

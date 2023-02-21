@@ -1,7 +1,11 @@
 <template>
-    <nav-bar />
-    <router-view />
-    <recipe-footer />
+    <div class="flex-wrapper">
+        <main>
+            <nav-bar />
+            <router-view />
+        </main>
+        <recipe-footer />
+    </div>
 </template>
 
 <script>
@@ -16,3 +20,12 @@
         }
     }
 </script>
+
+<style scoped>
+.flex-wrapper{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+</style>
