@@ -34,7 +34,9 @@ class MeasureSeeder extends Seeder
             ['id' => 17,'name' => 'piece'],
             ['id' => 18,'name' => 'handful'],
             ['id' => 19,'name' => 'dash'],
-            ['id' => 20,'name' => 'slice']
+            ['id' => 20,'name' => 'slice'],
+            ['id' => 21,'name' => 'pack'],
+            ['id' => 22,'name' => 'sprig'],
         ]);
     }
 }

@@ -191,7 +191,8 @@ class IngredientSeeder extends Seeder
 			['id' => 173,'name' => 'Cracker crumbs','category' => 'Bakery'],
             ['id' => 174,'name' => 'Lemon', 'category' => 'Fruit'],
             ['id' => 175,'name' => 'Chicken stock', 'category' => 'Liquid'],
-            ['id' => 176,'name' => 'Vinegar', 'category' => 'Vinegar']
+            ['id' => 176,'name' => 'Vinegar', 'category' => 'Vinegar'],
+			['id' => 177,'name' => 'Italian seasoning','category' => 'Seasoning']
             ]);
     }
 }
