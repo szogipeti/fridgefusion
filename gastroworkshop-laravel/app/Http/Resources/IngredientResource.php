@@ -14,11 +14,15 @@ class IngredientResource extends JsonResource
      */
     public function toArray($request)
     {
-        $method = explode(';', $this->method);
+        $validMeasures = [];
+        foreach ($this->validmeasures as $measure){
+            $validMeasures[] = $measure['id'];
+        }
         return [
             'id' => $this->id,
             'name' => $this->name,
             'category' => $this->category,
+            'validMeasures' => $validMeasures
         ];
     }
 }

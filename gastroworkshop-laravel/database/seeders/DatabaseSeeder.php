@@ -14,6 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([RecipeSeeder::class, IngredientSeeder::class, MeasureSeeder::class, MadeFromSeeder::class]);
+        $this->call([
+            RecipeSeeder::class,
+            CategorySeeder::class,
+            IngredientSeeder::class,
+            MeasureSeeder::class,
+            MadeFromSeeder::class,
+            ValidMeasureSeeder::class
+        ]);
     }
 }
