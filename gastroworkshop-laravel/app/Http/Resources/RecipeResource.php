@@ -15,6 +15,15 @@ class RecipeResource extends JsonResource
     public function toArray($request)
     {
         $method = explode(';', $this->method);
+        $ingredients = [];
+        foreach ($this->ingredients as $ingredient){
+            $ingredients[] = [
+                'ingredient_id' => $ingredient->pivot->ingredient_id,
+                'measure_id' => $ingredient->pivot->measure_id,
+                'quantity' => $ingredient->pivot->quantity
+            ];
+        }
+
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -23,7 +32,8 @@ class RecipeResource extends JsonResource
             'publisher' => $this->publisher,
             'image' => $this->image,
             'total_time' => $this->total_time,
-            'serving' => $this->serving
+            'serving' => $this->serving,
+            'ingredients' => $ingredients
         ];
     }
 }

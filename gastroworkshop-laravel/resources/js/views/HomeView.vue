@@ -2,11 +2,11 @@
     <category-nav-bar />
     <div class="container">
         <div class="row">
-            <div class="col-4">
+            <div class="col-5">
                 <h4>Your ingredients so far</h4>
                 <ingredient-box :ingredients="ownedIngredients" />
             </div>
-            <div class="col-8">
+            <div class="col-7">
 
             </div>
         </div>
