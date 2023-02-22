@@ -31,3 +31,5 @@ Route::get('/ingredients/{id}', [IngredientController::class, 'show'])->whereNum
 Route::post('/ingredients', [IngredientController::class, 'store'])->name('ingredients.store');
 Route::put('/ingredients/{id}', [IngredientController::class, 'update'])->whereNumber('id')->name('ingredients.update');
 Route::delete('/ingredients/{id}', [IngredientController::class, 'destroy'])->whereNumber('id')->name('ingredients.destroy');
+Route::post('/login',[\App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
+Route::post('/regist',[\App\Http\Controllers\AuthController::class,'regist'])->name('auth.login');

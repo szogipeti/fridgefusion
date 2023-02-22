@@ -27,8 +27,8 @@ const userData = reactive({
 
 const error = ref(null);
 
-async function login(){
-    const response = await http.post('login', userData);
+async function register(){
+    const response = await http.post('regist', userData);
     if(response.status !== 200){
         error.value = response.statusText
     }else{
@@ -36,26 +36,4 @@ async function login(){
         router.push({name: 'index'});
     }
 }
-import axios from 'axios';
-
-const token = localStorage.getItem('token');
-const bearer = token===null?null:`Bearer ${token}`;
-
-export const http = axios.create({
-    baseURL: 'http://localhost:8881/api',
-    headers:{
-        Authorization: bearer
-    }
-})
-export const router = createRouter({
-    history: createWebHashHistory(),
-    routes: {
-        name: 'register',
-        path: '/register',
-        component: () => import("../pages/auth/RegisterPage.vue"),
-        meta: {
-            requiresAuth: false,
-        },
-    }
-})
 </script>

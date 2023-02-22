@@ -5,11 +5,27 @@ const routes = [
         path: '/',
         name: 'home',
         component: HomeView
+    },
+    {
+        name: 'register',
+        path: '/register',
+        component: () => import("@/views/Register.vue"),
+        meta: {
+            requiresAuth: false,
+        }
+    },
+    {
+        name: 'Login',
+        path: '/login',
+        component: () => import("@/views/Login.vue"),
+        meta: {
+            requiresAuth: false,
+        }
     }
 ]
 
 const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
+    history: createWebHasHistory(import.meta.env.BASE_URL),
     routes
 });
 

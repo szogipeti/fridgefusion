@@ -17,8 +17,6 @@
 import {reactive,ref} from 'vue';
 import {http} from '../../utils/http'
 import {useRouter} from "vue-router";
-import NavBar from "./components/NavBar.vue";
-import RecipeFooter from "./components/RecipeFooter.vue";
 
 const router = useRouter();
 
@@ -38,26 +36,4 @@ async function login(){
         router.push({name: 'index'});
     }
 }
-import axios from 'axios';
-
-const token = localStorage.getItem('token');
-const bearer = token===null?null:`Bearer ${token}`;
-
-export const http = axios.create({
-    baseURL: 'http://localhost:8881/api',
-    headers:{
-        Authorization: bearer
-    }
-})
-export const router = createRouter({
-    history: createWebHashHistory(),
-    routes: [{
-        name: 'register',
-        path: '/register',
-        component: () => import("@/views/Register.vue"),
-        meta: {
-            requiresAuth: false,
-        },
-    }]
-})
 </script>
