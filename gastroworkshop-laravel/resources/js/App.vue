@@ -16,7 +16,7 @@
         components:{
             RecipeFooter,
             RouterView,
-            NavBar
+            NavBar,
         }
     }
 </script>
