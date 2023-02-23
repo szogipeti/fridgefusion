@@ -191,7 +191,8 @@ class IngredientSeeder extends Seeder
             ['id' => 174,'name' => 'Lemon', 'category_id' => 11],
             ['id' => 175,'name' => 'Chicken stock', 'category_id' => 12],
             ['id' => 176,'name' => 'Vinegar', 'category_id' => 8],
-			['id' => 177,'name' => 'Italian seasoning','category_id' => 23]
+			['id' => 177,'name' => 'Italian seasoning','category_id' => 23],
+			['id' => 178,'name' => 'Orange','category_id' => 11]
             ]);
     }
 }

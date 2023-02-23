@@ -380,6 +380,126 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 30, 'ingredient_id' => 128, 'measure_id' => 1, 'quantity' => 3.5],
             ['recipe_id' => 30, 'ingredient_id' => 137, 'measure_id' => 2, 'quantity' => 2],
             ['recipe_id' => 30, 'ingredient_id' => 138, 'measure_id' => 2, 'quantity' => 0.5],
+
+            #Apple Pie
+            ['recipe_id' => 31, 'ingredient_id' => 139, 'measure_id' => 12, 'quantity' => 1],
+            ['recipe_id' => 31, 'ingredient_id' => 140, 'measure_id' => 11, 'quantity' => 140],
+            ['recipe_id' => 31, 'ingredient_id' => 141, 'measure_id' => 2, 'quantity' => 0.5],
+            ['recipe_id' => 31, 'ingredient_id' => 70, 'measure_id' => 1, 'quantity' => 3],
+            ['recipe_id' => 31, 'ingredient_id' => 36, 'measure_id' => 11, 'quantity' => 225],
+            ['recipe_id' => 31, 'ingredient_id' => 140, 'measure_id' => 11, 'quantity' => 50],
+            ['recipe_id' => 31, 'ingredient_id' => 23, 'measure_id' => 17, 'quantity' => 2],
+            ['recipe_id' => 31, 'ingredient_id' => 70, 'measure_id' => 11, 'quantity' => 350],
+
+            #Chocolate Cake
+            ['recipe_id' => 32, 'ingredient_id' => 84, 'measure_id' => 5, 'quantity' => 3],
+            ['recipe_id' => 32, 'ingredient_id' => 51, 'measure_id' => 5, 'quantity' => 3],
+            ['recipe_id' => 32, 'ingredient_id' => 142, 'measure_id' => 5, 'quantity' => 1.5],
+            ['recipe_id' => 32, 'ingredient_id' => 143, 'measure_id' => 1, 'quantity' => 1],
+            ['recipe_id' => 32, 'ingredient_id' => 144, 'measure_id' => 2, 'quantity' => 1.5],
+            ['recipe_id' => 32, 'ingredient_id' => 9, 'measure_id' => 2, 'quantity' => 1.5],
+            ['recipe_id' => 32, 'ingredient_id' => 23, 'measure_id' => 17, 'quantity' => 4],
+            ['recipe_id' => 32, 'ingredient_id' => 145, 'measure_id' => 5, 'quantity' => 1.5],
+            ['recipe_id' => 32, 'ingredient_id' => 44, 'measure_id' => 5, 'quantity' => 1.5],
+            ['recipe_id' => 32, 'ingredient_id' => 33, 'measure_id' => 5, 'quantity' => 0.5],
+            ['recipe_id' => 32, 'ingredient_id' => 147, 'measure_id' => 2, 'quantity' => 2],
+
+            #Strawberry Shortcake
+            ['recipe_id' => 33, 'ingredient_id' => 148, 'measure_id' => 11, 'quantity' => 700],
+            ['recipe_id' => 33, 'ingredient_id' => 51, 'measure_id' => 1, 'quantity' => 3],
+            ['recipe_id' => 33, 'ingredient_id' => 70, 'measure_id' => 11, 'quantity' => 300],
+            ['recipe_id' => 33, 'ingredient_id' => 144, 'measure_id' => 2, 'quantity' => 2],
+            ['recipe_id' => 33, 'ingredient_id' => 143, 'measure_id' => 2, 'quantity' => 0.25],
+            ['recipe_id' => 33, 'ingredient_id' => 51, 'measure_id' => 1, 'quantity' => 2],
+            ['recipe_id' => 33, 'ingredient_id' => 9, 'measure_id' => 2, 'quantity' => 0.75],
+            ['recipe_id' => 33, 'ingredient_id' => 91, 'measure_id' => 14, 'quantity' => 360],
+            ['recipe_id' => 33, 'ingredient_id' => 91, 'measure_id' => 14, 'quantity' => 360],
+            ['recipe_id' => 33, 'ingredient_id' => 51, 'measure_id' => 1, 'quantity' => 5],
+            ['recipe_id' => 33, 'ingredient_id' => 147, 'measure_id' => 2, 'quantity' => 1.5],
+            ['recipe_id' => 33, 'ingredient_id' => 49, 'measure_id' => 2, 'quantity' => 1],
+
+            #Brownies
+            ['recipe_id' => 34, 'ingredient_id' => 51, 'measure_id' => 5, 'quantity' => 1.5],
+            ['recipe_id' => 34, 'ingredient_id' => 84, 'measure_id' => 5, 'quantity' => 0.75],
+            ['recipe_id' => 34, 'ingredient_id' => 150, 'measure_id' => 5, 'quantity' => 0.6],
+            ['recipe_id' => 34, 'ingredient_id' => 171, 'measure_id' => 5, 'quantity' => 0.5],
+            ['recipe_id' => 34, 'ingredient_id' => 155, 'measure_id' => 5, 'quantity' => 0.5],
+            ['recipe_id' => 34, 'ingredient_id' => 46, 'measure_id' => 2, 'quantity' => 0.75],
+            ['recipe_id' => 34, 'ingredient_id' => 23, 'measure_id' => 17, 'quantity' => 2],
+            ['recipe_id' => 34, 'ingredient_id' => 19, 'measure_id' => 5, 'quantity' => 0.5],
+            ['recipe_id' => 34, 'ingredient_id' => 44, 'measure_id' => 1, 'quantity' => 2],
+            ['recipe_id' => 34, 'ingredient_id' => 153, 'measure_id' => 2, 'quantity' => 0.5],
+
+            #Banana Bread
+            ['recipe_id' => 35, 'ingredient_id' => 154, 'measure_id' => 5, 'quantity' => 1.5],
+            ['recipe_id' => 35, 'ingredient_id' => 36, 'measure_id' => 11, 'quantity' => 76],
+            ['recipe_id' => 35, 'ingredient_id' => 143, 'measure_id' => 2, 'quantity' => 0.5],
+            ['recipe_id' => 35, 'ingredient_id' => 9, 'measure_id' => 16, 'quantity' => 1],
+            ['recipe_id' => 35, 'ingredient_id' => 51, 'measure_id' => 11, 'quantity' => 150],
+            ['recipe_id' => 35, 'ingredient_id' => 23, 'measure_id' => 17, 'quantity' => 1],
+            ['recipe_id' => 35, 'ingredient_id' => 147, 'measure_id' => 2, 'quantity' => 1],
+            ['recipe_id' => 35, 'ingredient_id' => 84, 'measure_id' => 11, 'quantity' => 1.5],
+
+            #Chocolate Chip Cookies
+            ['recipe_id' => 36, 'ingredient_id' => 36, 'measure_id' => 5, 'quantity' => 1],
+            ['recipe_id' => 36, 'ingredient_id' => 51, 'measure_id' => 5, 'quantity' => 1],
+            ['recipe_id' => 36, 'ingredient_id' => 159, 'measure_id' => 5, 'quantity' => 1],
+            ['recipe_id' => 36, 'ingredient_id' => 147, 'measure_id' => 2, 'quantity' => 2],
+            ['recipe_id' => 36, 'ingredient_id' => 23, 'measure_id' => 17, 'quantity' => 2],
+            ['recipe_id' => 36, 'ingredient_id' => 84, 'measure_id' => 5, 'quantity' => 3],
+            ['recipe_id' => 36, 'ingredient_id' => 143, 'measure_id' => 2, 'quantity' => 1],
+            ['recipe_id' => 36, 'ingredient_id' => 144, 'measure_id' => 2, 'quantity' => 0.5],
+            ['recipe_id' => 36, 'ingredient_id' => 46, 'measure_id' => 2, 'quantity' => 1],
+            ['recipe_id' => 36, 'ingredient_id' => 155, 'measure_id' => 5, 'quantity' => 2],
+
+            #Pecan Pie
+            ['recipe_id' => 37, 'ingredient_id' => 156, 'measure_id' => 17, 'quantity' => 1],
+            ['recipe_id' => 37, 'ingredient_id' => 157, 'measure_id' => 11, 'quantity' => 210],
+            ['recipe_id' => 37, 'ingredient_id' => 23, 'measure_id' => 17, 'quantity' => 3],
+            ['recipe_id' => 37, 'ingredient_id' => 158, 'measure_id' => 5, 'quantity' => 1],
+            ['recipe_id' => 37, 'ingredient_id' => 159, 'measure_id' => 5, 'quantity' => 0.5],
+            ['recipe_id' => 37, 'ingredient_id' => 160, 'measure_id' => 1, 'quantity' => 1],
+            ['recipe_id' => 37, 'ingredient_id' => 64, 'measure_id' => 1, 'quantity' => 4],
+            ['recipe_id' => 37, 'ingredient_id' => 9, 'measure_id' => 2, 'quantity' => 0.5],
+            ['recipe_id' => 37, 'ingredient_id' => 147, 'measure_id' => 2, 'quantity' => 2],
+
+            #Blueberry Pie
+            ['recipe_id' => 38, 'ingredient_id' => 161, 'measure_id' => 5, 'quantity' => 6],
+            ['recipe_id' => 38, 'ingredient_id' => 49, 'measure_id' => 2, 'quantity' => 1],
+            ['recipe_id' => 38, 'ingredient_id' => 45, 'measure_id' => 1, 'quantity' => 1],
+            ['recipe_id' => 38, 'ingredient_id' => 84, 'measure_id' => 11, 'quantity' => 30],
+            ['recipe_id' => 38, 'ingredient_id' => 51, 'measure_id' => 11, 'quantity' => 100],
+            ['recipe_id' => 38, 'ingredient_id' => 141, 'measure_id' => 2, 'quantity' => 0.5],
+            ['recipe_id' => 38, 'ingredient_id' => 23, 'measure_id' => 17, 'quantity' => 1],
+            ['recipe_id' => 38, 'ingredient_id' => 164, 'measure_id' => 1, 'quantity' => 1],
+
+            #Carrot Cake
+            ['recipe_id' => 39, 'ingredient_id' => 33, 'measure_id' => 14, 'quantity' => 230],
+            ['recipe_id' => 39, 'ingredient_id' => 165, 'measure_id' => 11, 'quantity' => 100],
+            ['recipe_id' => 39, 'ingredient_id' => 23, 'measure_id' => 17, 'quantity' => 4],
+            ['recipe_id' => 39, 'ingredient_id' => 147, 'measure_id' => 2, 'quantity' => 1.5],
+            ['recipe_id' => 39, 'ingredient_id' => 178, 'measure_id' => 17, 'quantity' => 0.5],
+            ['recipe_id' => 39, 'ingredient_id' => 166, 'measure_id' => 11, 'quantity' => 265],
+            ['recipe_id' => 39, 'ingredient_id' => 167, 'measure_id' => 11, 'quantity' => 335],
+            ['recipe_id' => 39, 'ingredient_id' => 141, 'measure_id' => 2, 'quantity' => 2.5],
+            ['recipe_id' => 39, 'ingredient_id' => 168, 'measure_id' => 17, 'quantity' => 0.25],
+            ['recipe_id' => 39, 'ingredient_id' => 59, 'measure_id' => 11, 'quantity' => 265],
+            ['recipe_id' => 39, 'ingredient_id' => 169, 'measure_id' => 11, 'quantity' => 100],
+            ['recipe_id' => 39, 'ingredient_id' => 170, 'measure_id' => 11, 'quantity' => 100],
+            ['recipe_id' => 39, 'ingredient_id' => 36, 'measure_id' => 11, 'quantity' => 100],
+            ['recipe_id' => 39, 'ingredient_id' => 171, 'measure_id' => 11, 'quantity' => 300],
+            ['recipe_id' => 39, 'ingredient_id' => 172, 'measure_id' => 11, 'quantity' => 100],
+
+            #Cheesecake
+            ['recipe_id' => 40, 'ingredient_id' => 173, 'measure_id' => 11, 'quantity' => 128],
+            ['recipe_id' => 40, 'ingredient_id' => 171, 'measure_id' => 11, 'quantity' => 28],
+            ['recipe_id' => 40, 'ingredient_id' => 36, 'measure_id' => 11, 'quantity' => 74],
+            ['recipe_id' => 40, 'ingredient_id' => 9, 'measure_id' => 2, 'quantity' => 0.125],
+            ['recipe_id' => 40, 'ingredient_id' => 1, 'measure_id' => 11, 'quantity' => 452],
+            ['recipe_id' => 40, 'ingredient_id' => 51, 'measure_id' => 11, 'quantity' => 152],
+            ['recipe_id' => 40, 'ingredient_id' => 23, 'measure_id' => 17, 'quantity' => 2],
+            ['recipe_id' => 40, 'ingredient_id' => 147, 'measure_id' => 2, 'quantity' => 1],
+
         ]);
     }
 }
