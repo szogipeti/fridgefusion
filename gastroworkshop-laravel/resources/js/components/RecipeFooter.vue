@@ -4,12 +4,7 @@
             <div class="row my-3">
                 <div class="col">
                     <h5 class="mb-2">About us</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur imperdiet placerat erat eu
-                        feugiat. Integer porta, quam ac dignissim venenatis, diam metus pulvinar augue, eu interdum
-                        mauris ante sit amet massa. Curabitur sagittis dolor id neque tincidunt mattis. Curabitur quis
-                        nulla tempus, vehicula massa ut, convallis purus. Mauris pulvinar ac sem sit amet semper. Class
-                        aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin in
-                        mattis neque, efficitur pellentesque velit.</p>
+                    <p>Welcome to FridgeFusion, the perfect solution for all your meal planning needs! Our team of three has designed a platform that allows you to search for recipes based on the ingredients you have on hand. No more endless scrolling through recipe websites or running to the grocery store for a missing ingredient - FridgeFusion is here to simplify your life..</p>
                 </div>
             </div>
             <div class="row quick-links-container w-75 mx-auto my-3">

@@ -1,26 +1,42 @@
 <template>
     <div class="bg-info bg-opacity-50 m-auto mt-5 w-50 p-3 rounded">
-        <form @submit.prevent="login">
+        <Form @submit.prevent="register" :validation-schema="Schema">
+            <div class="form-group">
+                <label for="username">username</label>
+                <Field type="string" name="username" class="form-control"/>
+                <error-message name="username"></error-message>
+            </div>
             <div class="form-group">
                 <label for="email">e-mail:</label>
-                <input type="email" id="email" class="form-control" v-model="userData.email">
+                <Field type="email" name="email" class="form-control"/>
+                <error-message name="email"></error-message>
             </div>
             <div class="form-group mt-2">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control" v-model="userData.password">
+                <Field type="password" name="password" class="form-control"/>
+                <error-message name="password"></error-message>
             </div>
-            <input type="submit" value="Login" class="btn btn-primary mt-3">
-        </form>
+            <input type="submit" value="Regist" class="btn btn-primary mt-3">
+        </Form>
     </div>
 </template>
 <script setup>
 import {reactive,ref} from 'vue';
-import {http} from '../../utils/http'
+import {http} from '../utils/http'
 import {useRouter} from "vue-router";
+import {Form,Field,ErrorMessage} from 'vee-validate';
+import * as yup from "yup";
 
 const router = useRouter();
 
+const Schema = yup.object({
+    username: yup.string().min(6).max(100).required(),
+    email : yup.string().email().min(6).max(100).required(),
+    password : yup.string().min(6).max(100).required(),
+});
+
 const userData = reactive({
+    username: '',
     email: '',
     password: ''
 });
@@ -28,7 +44,7 @@ const userData = reactive({
 const error = ref(null);
 
 async function register(){
-    const response = await http.post('regist', userData);
+    const response = await http.post('register', userData);
     if(response.status !== 200){
         error.value = response.statusText
     }else{

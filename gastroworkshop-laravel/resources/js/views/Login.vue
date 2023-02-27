@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-info bg-opacity-50 m-auto mt-5 w-50 p-3 rounded">
+    <div id="login" class=" m-auto mt-5 w-50 p-3 rounded">
         <Form @submit.prevent="login" :validation-schema="Schema">
             <div class="form-group">
                 <label for="email">e-mail:</label>
@@ -20,17 +20,16 @@ import {reactive,ref} from 'vue';
 import {http} from '@/utils/http'
 import {useRouter} from "vue-router";
 import {Form,Field,ErrorMessage} from 'vee-validate';
-import yup from "yup"
+import * as yup from "yup"
 
 const router = useRouter();
 
 const Schema = yup.object({
-    email : yup.required().string().email().min(6).max(100),
-    password : yup.required().min(6).max(100),
+    email : yup.string().email().min(6).max(100).required(),
+    password : yup.string().min(6).max(100).required(),
 });
 
 const error = ref(null);
-
 async function login(values){
     console.log(values)
     const response = await http.post('login', userData);
