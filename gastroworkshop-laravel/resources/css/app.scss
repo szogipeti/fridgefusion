@@ -1,5 +1,5 @@
-@import "../node_modules/bootstrap/scss/bootstrap";
-$body-bg: #FFFFE0;
+@import '../../node_modules/vue-select/dist/vue-select.css';
+
 *{
     margin: 0;
     padding: 0;
@@ -9,6 +9,10 @@ body{
     font-size: 14pt;
 }
 
+
 #login{
     background-color: #C8C588;
 }
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+

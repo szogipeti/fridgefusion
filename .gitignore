@@ -9,8 +9,9 @@ bootstrap/compiled.php
 app/storage/
 
 # Laravel 5 & Lumen specific
-public/storage
-public/hot
+/gastroworkshop-laravel/public/img
+/gastroworkshop-laravel/public/storage
+
 
 # Laravel 5 & Lumen specific with changed public path
 public_html/storage
