@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\MeasureResource;
+use App\Models\Measure;
 
 class MeasureController extends Controller
 {
@@ -13,7 +15,7 @@ class MeasureController extends Controller
      */
     public function index()
     {
-        //
+        return MeasureResource::collection(Measure::all());
     }
 
     /**
@@ -24,7 +26,8 @@ class MeasureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validated();
+        return new MeasureResource(Measure::create($validated));
     }
 
     /**
@@ -35,7 +38,7 @@ class MeasureController extends Controller
      */
     public function show($id)
     {
-        //
+        return new MeasureResource(Measure::findOrfail($id));
     }
 
     /**
@@ -47,7 +50,10 @@ class MeasureController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validated();
+        $measure = Measure::findOrFail($id);
+        $measure->update($validated);
+        return new MeasureResource($measure);
     }
 
     /**
@@ -58,6 +64,6 @@ class MeasureController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Measure::findOrfail($id)->delete();
     }
 }
