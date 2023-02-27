@@ -33,11 +33,11 @@ Route::post('/ingredients', [IngredientController::class, 'store'])->name('ingre
 Route::put('/ingredients/{id}', [IngredientController::class, 'update'])->whereNumber('id')->name('ingredients.update');
 Route::delete('/ingredients/{id}', [IngredientController::class, 'destroy'])->whereNumber('id')->name('ingredients.destroy');
 
-Route::get('/measures', [IngredientController::class, 'index'])->name('measures.index');
-Route::get('/measures/{id}', [IngredientController::class, 'show'])->whereNumber('id')->name('measures.show');
-Route::post('/measures', [IngredientController::class, 'store'])->name('measures.store');
-Route::put('/measures/{id}', [IngredientController::class, 'update'])->whereNumber('id')->name('measures.update');
-Route::delete('/measures/{id}', [IngredientController::class, 'destroy'])->whereNumber('id')->name('measures.destroy');
+Route::get('/measures', [MeasureController::class, 'index'])->name('measures.index');
+Route::get('/measures/{id}', [MeasureController::class, 'show'])->whereNumber('id')->name('measures.show');
+Route::post('/measures', [MeasureController::class, 'store'])->name('measures.store');
+Route::put('/measures/{id}', [MeasureController::class, 'update'])->whereNumber('id')->name('measures.update');
+Route::delete('/measures/{id}', [MeasureController::class, 'destroy'])->whereNumber('id')->name('measures.destroy');
 
 Route::post('/login',[\App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
 Route::post('/register',[\App\Http\Controllers\AuthController::class,'register'])->name('auth.register');
