@@ -5,6 +5,7 @@ import {router} from "./router/index.js"
 import "bootstrap/scss/bootstrap.scss"
 import "bootstrap/js/dist/collapse.js"
 import "../css/app.scss"
+
 const app = createApp(App);
 
 import { library } from "@fortawesome/fontawesome-svg-core"
