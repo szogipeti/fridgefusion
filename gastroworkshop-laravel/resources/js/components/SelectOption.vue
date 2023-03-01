@@ -30,4 +30,14 @@ label{
     position: relative;
     display: block;
 }
+
+.select-box .option{
+    padding: 12px 24px;
+    cursor: pointer;
+}
+
+.select-box .option:hover{
+    background: #414b57;
+}
+
 </style>

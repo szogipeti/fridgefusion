@@ -88,7 +88,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding: 5px;
+    padding: 0 5px 5px 5px;
 
     order: 0;
 }
@@ -109,7 +109,7 @@ export default {
 }
 
 
-.select-box .option, selected{
+selected{
     padding: 12px 24px;
     cursor: pointer;
 }

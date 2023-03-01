@@ -2,22 +2,22 @@
     <div class="ingredient-box container">
         <div class="row new-ingredient">
             <div class="input col-12 col-md-6 p-0">
-                <search-select @setSelectedInput="this.setSelectedIngredient" :items="ingredients.sort(this.sortByName)" :category="'ingredient'" :default-label="'Select Ingredient'" />
-            </div>
-            <div class="input col-12 col-md-6 p-0 form-floating">
-                <label for="quantity" class="py-2">Quantity</label>
-                <input placeholder="Quantity" class="form-control" type="number" name="quantity" id="quantity"
-                       v-model="quantity">
-            </div>
-            <div class="input col-12 col-md-6 p-0 form-floating">
-                <label for="measure" class="py-2">Measure</label>
-                <select class="form-control" name="measure" id="measure" v-model="selectedMeasure">
-                    <option v-for="measure in validMeasures.sort(this.sortByName)"
-                            :key="measure.id" v-bind:value="measure.id">{{ measure.name }}
-                    </option>
-                </select>
+                <label for="ingredient" class="form-label">Ingredient</label>
+                <search-select @setSelectedInput="this.setSelectedIngredient" :items="ingredients.sort(this.sortByName)"
+                               :category="'ingredient'" :default-label="'Select Ingredient'" />
             </div>
             <div class="input col-12 col-md-6 p-0">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input placeholder="Quantity" type="number" name="quantity" id="quantity" class="form-control"
+                       v-model="quantity">
+            </div>
+            <div class="input col-12 col-md-6 p-0">
+                <label for="measure" class="form-label">Measure</label>
+                <search-select @setSelectedInput="this.setSelectedMeasure"
+                               :items="validMeasures"
+                               :category="'measure'" :default-label="'Select Measure'"/>
+            </div>
+            <div class="col-12 col-md-6 p-0">
                 <button class="btn btn-secondary w-100" @click="addIngredient">Add ingredient</button>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <div class="col">
                 <ul>
                     <li v-for="ingredient in ownedIngredients" :key="ingredient.id">
-                        {{this.createIngredientText(ingredient)}}
+                        {{ this.createIngredientText(ingredient) }}
                     </li>
                 </ul>
             </div>
@@ -35,8 +35,9 @@
 
 <script>
 import SearchSelect from "./SearchSelect.vue";
-export default{
-    components:{
+
+export default {
+    components: {
         SearchSelect,
     },
     data() {
@@ -58,7 +59,7 @@ export default{
         },
         async getValidMeasures() {
             this.validMeasures = [];
-            for (const validMeasure of this.ingredients.find(item => item.id === this.selectedIngredient)["validMeasures"]) {
+            for (const validMeasure of this.ingredients.find(item => item.id === this.selectedIngredient.id)["validMeasures"]) {
                 this.validMeasures.push(this.measures.find(item => item.id === validMeasure));
             }
         },
@@ -67,16 +68,17 @@ export default{
             const resp = await axios.get("api/measures");
             this.measures = resp.data.data;
         },
-        setSelectedIngredient(selectedId){
+        setSelectedIngredient(selectedId) {
             this.selectedIngredient = this.ingredients.find(item => item.id == selectedId);
+            this.getValidMeasures();
         },
-        setSelectedMeasure(selectedId){
+        setSelectedMeasure(selectedId) {
             this.selectedMeasure = this.measures.find(item => item.id == selectedId);
         },
         addIngredient() {
-            const ingredientName = this.ingredients.find(item => item.id === this.selectedIngredient)["name"];
-            const measureName = this.measures.find(item => item.id === this.selectedMeasure)["name"]
-            if(measureName !== "to taste" && this.quantity == 0){
+            const ingredientName = this.selectedIngredient.name;
+            const measureName = this.selectedMeasure.name;
+            if (measureName !== "to taste" && this.quantity == 0) {
                 window.alert("Cannot add ingredient with zero quantity unless it's to taste")
                 return;
             }
@@ -95,9 +97,6 @@ export default{
             } else {
                 return 0
             }
-        },
-        selectedIngredientChanged() {
-            this.getValidMeasures();
         },
         createIngredientText(ingredient) {
             let ingredientText = ""
@@ -124,11 +123,10 @@ export default{
     width: 100%;
     min-height: 400px;
     margin-bottom: 20px;
-    font-size: .75rem;
     overflow: auto;
 }
 
-.select-box, button{
+.select-box, button {
     height: 40px;
     border-radius: 0;
 }
@@ -140,5 +138,19 @@ button {
 
 .new-ingredient {
     border-bottom: 1px solid black;
+}
+
+label{
+    padding-left: 5px;
+    margin: 0;
+}
+
+.form-control, .form-control:focus{
+    border: none;
+    box-shadow: none;
+}
+
+.input{
+    border: 1px solid #CCC;
 }
 </style>
