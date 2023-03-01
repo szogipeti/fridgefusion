@@ -38,7 +38,7 @@ const toggleMenu = function(){
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Julee&display=swap');
 nav{
-    background-color: #0D8F87;
+    background-color: #117972;
     font-family: 'Julee', cursive;
 }
 nav img{
