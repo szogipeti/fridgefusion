@@ -21,14 +21,11 @@ export default ({ mode }) => {
                  },
              }),
         ],
-        resolve:{
-            alias:{
-                'vue-socials': 'vue-socials/dist/vue-socials.es.js'
-            }
-        },
         server: {
+            port:  process.env.VITE_PORT,
+            host:  process.env.VITE_HOST,
             hmr:{
-                host: 'localhost',
+                host:  process.env.VITE_HOST
             }
         }
     });

@@ -25,10 +25,13 @@ class RecipeRequest extends FormRequest
     {
         return [
             'name' => 'required|max:50',
-            'method' => 'required|max:5000',
+            'method' => 'required|array',
             'category' => 'required|max:25',
             'publisher' => 'required|max:50',
-            'image' => 'required|max:25'
+            'image' => 'required|max:25',
+            'total_time' => 'integer',
+            'serving' => 'integer',
+            'ingredients' => 'required|array'
         ];
     }
 }
