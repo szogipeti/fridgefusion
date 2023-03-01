@@ -12,10 +12,12 @@
                 <a class="nav-link" href="#">Weekly recipes</a>
             </li>
         </ul>
-        <a href="#" class="d-flex align-items-center ms-auto ms-md-0">
+        <div class="d-flex align-items-center ms-auto ms-md-0">
+                <router-link to="/login" class="nav-link">Login</router-link>
             <p class="mx-1 my-auto text-white">Your profile</p>
             <img class="mx-1" src="/img/profile-icon.png" alt="">
-        </a>
+
+        </div>
         <div class="hamburger mx-2" v-bind:class="{active: menuActive}" @click="toggleMenu">
             <span class="bar"></span>
             <span class="bar"></span>
