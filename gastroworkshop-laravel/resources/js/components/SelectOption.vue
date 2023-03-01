@@ -1,5 +1,5 @@
 <template>
-<div class="option" @click="$emit('setSelected', this.label, this.id)">
+<div :style="{ display: this.display}" class="option" @click="$emit('setSelected', this.label, this.id)">
     <input type="radio" v-bind:name="category" v-bind:id="id">
     <label v-bind:for="id">{{label}}</label>
 </div>
@@ -11,11 +11,22 @@ export default {
     props:{
         id: String,
         label: String,
-        category: String
+        category: String,
+        display: String
+    },
+    methods:{
+        updateComponents(){
+            this.$forceUpdate();
+        }
     },
     emits:[
         'setSelected'
-    ]
+    ],
+    watch:{
+        display(newDisplay, oldDisplay){
+            this.updateComponents();
+        }
+    }
 }
 </script>
 
@@ -28,7 +39,6 @@ label{
 }
 .option{
     position: relative;
-    display: block;
 }
 
 .select-box .option{
