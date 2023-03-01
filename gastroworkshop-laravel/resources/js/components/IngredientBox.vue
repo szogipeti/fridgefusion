@@ -2,10 +2,7 @@
     <div class="ingredient-box container">
         <div class="row new-ingredient">
             <div class="input col-12 col-md-6 p-0">
-                <select data-live-search="true" class="form-control" name="ingredient" id="ingredient" v-bind:value="this.selectedIngredient">
-                    <option value="" disabled selected>Ingredient</option>
-                    <option v-for="ingredient in ingredients" :key="ingredient.id" value="{{ingredient.id}}">{{ingredient.name}}</option>
-                </select>
+                <search-select @setSelectedInput="this.setSelectedIngredient" :items="ingredients" :category="'ingredient'" :default-label="'Select Ingredient'" />
                 <!--<v-select class="form-control" placeholder="Ingredient" id="ingredient" v-bind="this.selectedIngredient" label="name" :options="ingredients" />-->
             </div>
             <div class="input col-12 col-md-6 p-0">
@@ -14,7 +11,7 @@
             <div class="input col-12 col-md-6 p-0">
                 <select data-live-search="true" class="form-control" name="ingredient" id="ingredient" v-bind:value="this.selectedMeasure">
                     <option value="" disabled selected>Measure</option>
-                    <option v-for="measure in measures.filter((x) => {return x.name === this.selectedIngredient})" :key="measure.id" value="{{measure.id}}">{{measure.name}}</option>
+                    <option v-for="measure in measures.filter((x) => {return x.name === this.selectedIngredient.name})" :key="measure.id" value="{{measure.id}}">{{measure.name}}</option>
                 </select>
                 <!--<v-select class="form-control" placeholder="Measure" id="measure" label="name" :options="measures.filter((x) => {return x.name === this.selectedIngredient})" />-->
             </div>
@@ -36,8 +33,10 @@
 
 <script>
 import vSelect from 'vue-select';
+import SearchSelect from "./SearchSelect.vue";
 export default{
     components:{
+        SearchSelect,
         vSelect
     },
     data(){
@@ -62,6 +61,12 @@ export default{
             const resp = await axios.get("api/measures");
             this.measures = resp.data.data;
         },
+        setSelectedIngredient(selectedId){
+            this.selectedIngredient = this.ingredients.find(item => item.id == selectedId);
+        },
+        setSelectedMeasure(selectedId){
+            this.selectedMeasure = this.measures.find(item => item.id == selectedId);
+        }
     },
     mounted(){
         this.getAllIngredient();
@@ -79,7 +84,7 @@ export default{
     margin-bottom: 20px;
     font-size: .75rem;
 }
-.form-control, button{
+.select-box, button{
     height: 40px;
     border-radius: 0;
 }

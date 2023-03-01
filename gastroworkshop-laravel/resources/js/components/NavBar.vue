@@ -113,6 +113,7 @@ a{
         -moz-transition: box-shadow 200ms;
         -webkit-transition: box-shadow 200ms;
         transition: box-shadow 200ms, left 200ms;
+        position: sticky;
     }
 
     .nav-item{
