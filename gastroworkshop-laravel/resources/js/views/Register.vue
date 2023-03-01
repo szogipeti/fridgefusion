@@ -1,6 +1,6 @@
 <template>
     <div class="bg-info bg-opacity-50 m-auto mt-5 w-50 p-3 rounded">
-        <Form @submit.prevent="register" :validation-schema="Schema">
+        <Form @submit="register" :validation-schema="Schema">
             <div class="form-group">
                 <label for="username">username</label>
                 <Field type="string" name="username" class="form-control"/>
@@ -14,6 +14,11 @@
             <div class="form-group mt-2">
                 <label for="password">Password:</label>
                 <Field type="password" name="password" class="form-control"/>
+                <error-message name="password"></error-message>
+            </div>
+            <div class="form-group mt-2">
+                <label for="password_confirmation">Password Confirmation</label>
+                <Field type="password" name="password_confirmation" class="form-control"/>
                 <error-message name="password"></error-message>
             </div>
             <input type="submit" value="Regist" class="btn btn-primary mt-3">
@@ -33,23 +38,17 @@ const Schema = yup.object({
     username: yup.string().min(6).max(100).required(),
     email : yup.string().email().min(6).max(100).required(),
     password : yup.string().min(6).max(100).required(),
-});
-
-const userData = reactive({
-    username: '',
-    email: '',
-    password: ''
+    password_confirmation : yup.string().min(6).max(100).required()
 });
 
 const error = ref(null);
 
-async function register(){
+async function register(userData){
     const response = await http.post('register', userData);
-    if(response.status !== 200){
+    if(response.status !== 201){
         error.value = response.statusText
     }else{
-        localStorage.setItem('token',response.data.data.token);
-        router.push({name: 'index'});
+        router.push({name: 'login'});
     }
 }
 </script>

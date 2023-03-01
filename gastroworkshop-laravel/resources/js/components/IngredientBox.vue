@@ -2,28 +2,30 @@
     <div class="ingredient-box container">
         <div class="row new-ingredient">
             <div class="input col-12 col-md-6 p-0">
-                <search-select @setSelectedInput="this.setSelectedIngredient" :items="ingredients" :category="'ingredient'" :default-label="'Select Ingredient'" />
-                <!--<v-select class="form-control" placeholder="Ingredient" id="ingredient" v-bind="this.selectedIngredient" label="name" :options="ingredients" />-->
+                <search-select @setSelectedInput="this.setSelectedIngredient" :items="ingredients.sort(this.sortByName)" :category="'ingredient'" :default-label="'Select Ingredient'" />
             </div>
-            <div class="input col-12 col-md-6 p-0">
-                <input placeholder="Quantity" class="form-control" type="number" name="quantity" id="quantity">
+            <div class="input col-12 col-md-6 p-0 form-floating">
+                <label for="quantity" class="py-2">Quantity</label>
+                <input placeholder="Quantity" class="form-control" type="number" name="quantity" id="quantity"
+                       v-model="quantity">
             </div>
-            <div class="input col-12 col-md-6 p-0">
-                <select data-live-search="true" class="form-control" name="ingredient" id="ingredient" v-bind:value="this.selectedMeasure">
-                    <option value="" disabled selected>Measure</option>
-                    <option v-for="measure in measures.filter((x) => {return x.name === this.selectedIngredient.name})" :key="measure.id" value="{{measure.id}}">{{measure.name}}</option>
+            <div class="input col-12 col-md-6 p-0 form-floating">
+                <label for="measure" class="py-2">Measure</label>
+                <select class="form-control" name="measure" id="measure" v-model="selectedMeasure">
+                    <option v-for="measure in validMeasures.sort(this.sortByName)"
+                            :key="measure.id" v-bind:value="measure.id">{{ measure.name }}
+                    </option>
                 </select>
-                <!--<v-select class="form-control" placeholder="Measure" id="measure" label="name" :options="measures.filter((x) => {return x.name === this.selectedIngredient})" />-->
             </div>
             <div class="input col-12 col-md-6 p-0">
-                <button class="btn btn-secondary w-100">Add ingredient</button>
+                <button class="btn btn-secondary w-100" @click="addIngredient">Add ingredient</button>
             </div>
         </div>
-        <div class="row">
+        <div class="row py-3">
             <div class="col">
                 <ul>
                     <li v-for="ingredient in ownedIngredients" :key="ingredient.id">
-                        {{ingredient.name}} - {{ingredient.quantity===null?ingredient.measure:ingredient.quantity + " " + ingredient.measure + "(s)"}}
+                        {{this.createIngredientText(ingredient)}}
                     </li>
                 </ul>
             </div>
@@ -32,31 +34,35 @@
 </template>
 
 <script>
-import vSelect from 'vue-select';
 import SearchSelect from "./SearchSelect.vue";
 export default{
     components:{
         SearchSelect,
-        vSelect
     },
-    data(){
-        return{
+    data() {
+        return {
             ingredients: [],
+            ownedIngredients: [],
             measures: [],
+            validMeasures: [],
+            quantity: 0,
             selectedIngredient: null,
             selectedMeasure: null
         }
     },
-    props:{
-        ownedIngredients: Array
-    },
-    methods:{
-        async getAllIngredient(){
+    methods: {
+        async getAllIngredient() {
             this.ingredients = [];
             const resp = await axios.get("api/ingredients");
             this.ingredients = resp.data.data;
         },
-        async getAllMeasures(){
+        async getValidMeasures() {
+            this.validMeasures = [];
+            for (const validMeasure of this.ingredients.find(item => item.id === this.selectedIngredient)["validMeasures"]) {
+                this.validMeasures.push(this.measures.find(item => item.id === validMeasure));
+            }
+        },
+        async getAllMeasures() {
             this.measures = [];
             const resp = await axios.get("api/measures");
             this.measures = resp.data.data;
@@ -66,29 +72,73 @@ export default{
         },
         setSelectedMeasure(selectedId){
             this.selectedMeasure = this.measures.find(item => item.id == selectedId);
+        },
+        addIngredient() {
+            const ingredientName = this.ingredients.find(item => item.id === this.selectedIngredient)["name"];
+            const measureName = this.measures.find(item => item.id === this.selectedMeasure)["name"]
+            if(measureName !== "to taste" && this.quantity == 0){
+                window.alert("Cannot add ingredient with zero quantity unless it's to taste")
+                return;
+            }
+            const ingredient = {
+                name: ingredientName,
+                measure: measureName,
+                quantity: this.quantity
+            };
+            this.ownedIngredients.push(ingredient);
+        },
+        sortByName(a, b) {
+            if (a.name > b.name) {
+                return 1
+            } else if (a.name < b.name) {
+                return -1
+            } else {
+                return 0
+            }
+        },
+        selectedIngredientChanged() {
+            this.getValidMeasures();
+        },
+        createIngredientText(ingredient) {
+            let ingredientText = ""
+            if (ingredient.measure === "to taste") {
+                ingredientText = ingredient.name + " - " + ingredient.measure;
+            } else {
+                ingredientText = ingredient.name + " - " + ingredient.quantity + " " + ingredient.measure + "(s)"
+            }
+            return ingredientText;
         }
     },
-    mounted(){
+    mounted() {
         this.getAllIngredient();
         this.getAllMeasures();
+        this.ownedIngredients = [];
     }
 }
 </script>
 
 <style scoped>
-.ingredient-box{
+.ingredient-box {
     background-color: white;
     border: 1px solid black;
     width: 100%;
-    height: 400px;
+    min-height: 400px;
     margin-bottom: 20px;
     font-size: .75rem;
+    overflow: auto;
 }
+
 .select-box, button{
     height: 40px;
     border-radius: 0;
 }
-.new-ingredient{
+
+button {
+    height: 100%;
+    border-radius: 0;
+}
+
+.new-ingredient {
     border-bottom: 1px solid black;
 }
 </style>

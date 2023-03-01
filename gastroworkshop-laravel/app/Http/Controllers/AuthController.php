@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegistRequest;
 use App\Http\Resources\AuthResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -43,7 +45,7 @@ class AuthController extends Controller
         //
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $data = $request->only('email','password');
         if (Auth::attempt($data)){
@@ -52,7 +54,7 @@ class AuthController extends Controller
     }
 
 
-    public function register(Request $request):JsonResponse
+    public function register(RegistRequest $request):JsonResponse
     {
         $data = $request->validated();
         $data["password"] = Hash::make($data["password"]);

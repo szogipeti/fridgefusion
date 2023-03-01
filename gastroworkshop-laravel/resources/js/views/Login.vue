@@ -1,6 +1,6 @@
 <template>
     <div id="login" class=" m-auto mt-5 w-50 p-3 rounded">
-        <Form @submit.prevent="login" :validation-schema="Schema">
+        <Form @submit="login" :validation-schema="Schema">
             <div class="form-group">
                 <label for="email">e-mail:</label>
                 <Field type="email" name="email" class="form-control"/>
@@ -30,14 +30,13 @@ const Schema = yup.object({
 });
 
 const error = ref(null);
-async function login(values){
-    console.log(values)
+async function login(userData){
     const response = await http.post('login', userData);
     if(response.status !== 200){
         error.value = response.statusText
     }else{
-        localStorage.setItem('token',response.data.data.token);
-        router.push({name: 'index'});
+        localStorage.setItem('token',response.data.token);
+        router.push({name: 'home'});
     }
 }
 </script>
