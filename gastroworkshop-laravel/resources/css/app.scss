@@ -14,5 +14,33 @@ body{
     background-color: #C8C588;
 }
 
+.paginate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prev, .next, .page-item{
+    list-style: none;
+    background: #117972;
+    color: white;
+    padding: 10px;
+    border: 1px solid white;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prev:hover, .next:hover, .page-item:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.paginate .active{
+    background: #0a4944;
+}
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
 

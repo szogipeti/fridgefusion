@@ -18,7 +18,7 @@
                                :category="'measure'" :default-label="'Select Measure'"/>
             </div>
             <div class="col-12 col-md-6 p-0">
-                <button class="btn btn-secondary w-100" @click="addIngredient">Add ingredient</button>
+                <button class="btn w-100" @click="addIngredient">Add ingredient</button>
             </div>
         </div>
         <div class="row py-3">
@@ -40,11 +40,13 @@ export default {
     components: {
         SearchSelect,
     },
+    props:{
+        ownedIngredients: Array,
+        ingredients: Array,
+        measures: Array
+    },
     data() {
         return {
-            ingredients: [],
-            ownedIngredients: [],
-            measures: [],
             validMeasures: [],
             quantity: 0,
             selectedIngredient: null,
@@ -52,22 +54,14 @@ export default {
         }
     },
     methods: {
-        async getAllIngredient() {
-            this.ingredients = [];
-            const resp = await axios.get("api/ingredients");
-            this.ingredients = resp.data.data;
-        },
-        async getValidMeasures() {
+
+        getValidMeasures() {
             this.validMeasures = [];
             for (const validMeasure of this.ingredients.find(item => item.id === this.selectedIngredient.id)["validMeasures"]) {
                 this.validMeasures.push(this.measures.find(item => item.id === validMeasure));
             }
         },
-        async getAllMeasures() {
-            this.measures = [];
-            const resp = await axios.get("api/measures");
-            this.measures = resp.data.data;
-        },
+
         setSelectedIngredient(selectedId) {
             this.selectedIngredient = this.ingredients.find(item => item.id == selectedId);
             this.getValidMeasures();
@@ -76,18 +70,7 @@ export default {
             this.selectedMeasure = this.measures.find(item => item.id == selectedId);
         },
         addIngredient() {
-            const ingredientName = this.selectedIngredient.name;
-            const measureName = this.selectedMeasure.name;
-            if (measureName !== "to taste" && this.quantity <= 0) {
-                window.alert(this.quantity + " " + measureName + " is not a valid measure!")
-                return;
-            }
-            const ingredient = {
-                name: ingredientName,
-                measure: measureName,
-                quantity: this.quantity
-            };
-            this.ownedIngredients.push(ingredient);
+            this.$emit('addIngredient', this.selectedIngredient, this.selectedMeasure, this.quantity)
         },
         sortByName(a, b) {
             if (a.name > b.name) {
@@ -100,19 +83,17 @@ export default {
         },
         createIngredientText(ingredient) {
             let ingredientText = ""
-            if (ingredient.measure === "to taste") {
-                ingredientText = ingredient.name + " - " + ingredient.measure;
+            if (ingredient.measure.name === "to taste") {
+                ingredientText = ingredient.ingredient.name + " - " + ingredient.measure.name;
             } else {
-                ingredientText = ingredient.name + " - " + ingredient.quantity + " " + ingredient.measure + "(s)"
+                ingredientText = ingredient.ingredient.name + " - " + ingredient.quantity + " " + ingredient.measure.name + "(s)"
             }
             return ingredientText;
         }
     },
-    mounted() {
-        this.getAllIngredient();
-        this.getAllMeasures();
-        this.ownedIngredients = [];
-    }
+    emits:[
+        'addIngredient'
+    ],
 }
 </script>
 
@@ -131,9 +112,11 @@ export default {
     border-radius: 0;
 }
 
-button {
+button.btn, button.btn:link, button.btn:visited, button.btn:hover, button.btn:active {
     height: 100%;
     border-radius: 0;
+    color: white;
+    background: #117972;
 }
 
 .new-ingredient {
