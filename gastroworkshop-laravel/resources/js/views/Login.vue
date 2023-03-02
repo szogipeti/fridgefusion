@@ -12,6 +12,9 @@
                 <error-message name="password"></error-message>
             </div>
             <input type="submit" value="Login" class="btn btn-primary mt-3">
+            <label>Don't have an account yet?</label>
+            <router-link to="/register"> <label>Regist here</label></router-link>
+
         </Form>
     </div>
 </template>
