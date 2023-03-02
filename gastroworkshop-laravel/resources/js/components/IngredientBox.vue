@@ -78,8 +78,8 @@ export default {
         addIngredient() {
             const ingredientName = this.selectedIngredient.name;
             const measureName = this.selectedMeasure.name;
-            if (measureName !== "to taste" && this.quantity == 0) {
-                window.alert("Cannot add ingredient with zero quantity unless it's to taste")
+            if (measureName !== "to taste" && this.quantity <= 0) {
+                window.alert(this.quantity + " " + measureName + " is not a valid measure!")
                 return;
             }
             const ingredient = {

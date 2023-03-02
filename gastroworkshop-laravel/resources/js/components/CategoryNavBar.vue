@@ -25,8 +25,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Julee&display=swap');
 
 nav{
-    background-color: #0D8F87;
-    border-top: black 1px solid;
+    background-color: #117972;
+    border-top: #0a4944 1px solid;
     font-family: 'Julee', cursive;
 }
 
