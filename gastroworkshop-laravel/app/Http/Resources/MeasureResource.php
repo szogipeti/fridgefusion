@@ -14,10 +14,11 @@ class MeasureResource extends JsonResource
      */
     public function toArray($request)
     {
-        $method = explode(';', $this->method);
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'standard_measure_id' => $this->standard_measure_id,
+            'conversion_rate' => $this->conversion_rate
         ];
     }
 }
