@@ -5,6 +5,7 @@ import {router} from "./router/index.js"
 import "bootstrap/scss/bootstrap.scss"
 import "bootstrap/js/dist/collapse.js"
 import "../css/app.scss"
+import vueClickOutsideElement from 'vue-click-outside-element'
 
 const app = createApp(App);
 
@@ -16,4 +17,5 @@ import { faChevronDown, faChevronUp, faX} from "@fortawesome/free-solid-svg-icon
 library.add(faTwitter, faFacebookF, faInstagram, faLinkedin, faChevronDown, faChevronUp, faX)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(router)
+app.use(vueClickOutsideElement)
 app.mount("#app");

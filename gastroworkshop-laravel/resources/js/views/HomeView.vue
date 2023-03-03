@@ -2,6 +2,11 @@
     <category-nav-bar/>
     <div class="container">
         <div class="row">
+            <div class="col offset-lg-5">
+                <h1>Recipes for you</h1>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-12 col-lg-5">
                 <h4>Your ingredients so far</h4>
                 <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :owned-ingredients="ownedIngredients"

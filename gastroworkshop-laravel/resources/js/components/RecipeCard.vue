@@ -2,7 +2,7 @@
     <div class="col-12 col-md-6">
         <a href="">
             <div class="card">
-                <img v-bind:src="'/img/' + image" class="card-img-top img-fluid" alt="...">
+                <img v-bind:src="'/img/' + image" alt="...">
                 <div class="card-body">
                     <h6 class="card-subtitle">{{publisher}}</h6>
                     <h5 class="card-title">{{name}}</h5>
@@ -41,8 +41,7 @@ a:hover .card-title{
 
 .card{
     height: 250px;
-    width: 18rem;
-    margin: 20px auto;
+    margin: 20px 10px;
     display: flex;
     justify-content: space-around;
     border: none;
@@ -53,11 +52,10 @@ a:hover .card-title{
     font-weight: bold;
 }
 
-img.card-img-top.img-fluid{
+img{
     height: 200px;
     object-fit: cover;
     object-position: center;
-    width: 100%;
     border-radius: 0;
 }
 

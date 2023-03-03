@@ -1,7 +1,7 @@
 <template>
 
 
-<div class="select-box">
+<div v-click-outside-element="close" class="select-box">
     <div class="selected" @click="toggleActive">
         {{selected===""?defaultLabel:selected}}
         <font-awesome-icon class="icon-btn" v-if="!active" icon="fa-solid fa-chevron-down" />
@@ -68,6 +68,11 @@ export default {
             this.selected = "";
             this.selectedId = null;
             this.$emit('setSelectedInput')
+        },
+        close(){
+            if(this.active){
+                this.toggleActive();
+            }
         }
     },
     watch:{
