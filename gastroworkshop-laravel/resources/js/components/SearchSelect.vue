@@ -1,11 +1,11 @@
 <template>
 
 
-<div class="select-box">
+<div v-click-outside-element="close" class="select-box">
     <div class="selected" @click="toggleActive">
         {{selected===""?defaultLabel:selected}}
-        <font-awesome-icon v-if="!active" icon="fa-solid fa-chevron-down" />
-        <font-awesome-icon v-else icon="fa-solid fa-chevron-up" />
+        <font-awesome-icon class="icon-btn" v-if="!active" icon="fa-solid fa-chevron-down" />
+        <font-awesome-icon class="icon-btn" v-else icon="fa-solid fa-chevron-up" />
     </div>
     <div class="options-container" v-bind:class="active?'active':''">
         <select-option @setSelected="setSelected" v-for="item in items" :key="item.id" :id="category + '-' + item.id" :label="item.name" :category="category" :display="item.display??'block'" />
@@ -68,6 +68,11 @@ export default {
             this.selected = "";
             this.selectedId = null;
             this.$emit('setSelectedInput')
+        },
+        close(){
+            if(this.active){
+                this.toggleActive();
+            }
         }
     },
     watch:{
