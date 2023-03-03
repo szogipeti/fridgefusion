@@ -112,7 +112,7 @@ export default {
 
 <style scoped>
 .ingredient-box {
-    background-color: white;
+    background-color: #ebebbc;
     border: 1px solid black;
     width: 100%;
     min-height: 400px;
@@ -134,6 +134,7 @@ button.btn, button.btn:link, button.btn:visited, button.btn:hover, button.btn:ac
 
 .new-ingredient {
     border-bottom: 1px solid black;
+    background-color: white;
 }
 
 label {
@@ -159,6 +160,7 @@ label {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #8cb09e;
 }
 
 .ingredient-item p{

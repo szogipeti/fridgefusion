@@ -1,19 +1,20 @@
 <template>
     <category-nav-bar/>
     <div class="container">
+
         <div class="row">
-            <div class="col offset-lg-5">
-                <h1>Recipes for you</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-lg-5">
+            <div class="col-12 col-lg-5 ingredient-container">
                 <h4>Your ingredients so far</h4>
                 <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :owned-ingredients="ownedIngredients"
                                 :ingredients="ingredients" :measures="measures"/>
             </div>
             <div class="col-12 col-lg-7">
                 <div class="recipe-container">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <h1>Recipes for you</h1>
+                        </div>
+                    </div>
                     <div class="row">
                         <recipe-card
                             v-for="recipe in recipes.slice((currentPage - 1) * recipePerPage, currentPage * recipePerPage)"
@@ -199,3 +200,11 @@ onMounted(() => {
     getAllMeasure()
 })
 </script>
+
+<style scoped>
+@media only screen and (min-width: 992px){
+    .ingredient-container{
+        margin-top: 100px;
+    }
+}
+</style>
