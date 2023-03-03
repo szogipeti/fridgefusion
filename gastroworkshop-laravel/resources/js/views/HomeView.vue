@@ -1,7 +1,7 @@
 <template>
     <category-nav-bar/>
     <div class="container">
-        <div class="row">
+        <div class="row my-3">
             <div class="col offset-lg-5">
                 <h1>Recipes for you</h1>
             </div>
