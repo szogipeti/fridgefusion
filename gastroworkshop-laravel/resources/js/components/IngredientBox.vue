@@ -69,7 +69,7 @@ export default {
         },
         setSelectedMeasure(selectedId = -1) {
             if(selectedId === -1){
-                this.selectedMeasure = null;
+                this.selectedMeasure = {};
             }
             this.selectedMeasure = this.measures.find(item => item.id == selectedId);
         },

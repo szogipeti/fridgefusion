@@ -70,16 +70,37 @@ async function getAllMeasure() {
 }
 
 function addIngredient(selectedIngredient, selectedMeasure, quantity) {
+    if(selectedIngredient == null || selectedIngredient == undefined){
+        window.alert("Ingredient has not been set!")
+        return;
+    }
+    if(selectedMeasure == null || selectedMeasure == undefined){
+        window.alert("Measure has not been set!")
+        return;
+    }
     if (selectedMeasure.name !== "to taste" && quantity <= 0) {
         window.alert(quantity + " " + selectedMeasure.name + " is not a valid measure!")
         return;
     }
+
     const ingredient = {
         ingredient: selectedIngredient,
         measure: selectedMeasure,
         quantity: quantity
     };
-    ownedIngredients.push(ingredient);
+    let exists = false;
+    for(const index in ownedIngredients){
+        console.log(index)
+        console.table(ownedIngredients)
+        if(ownedIngredients[index].ingredient["id"] === selectedIngredient["id"]){
+            ownedIngredients[index] = ingredient;
+            exists = true;
+            break;
+        }
+    }
+    if(!exists){
+        ownedIngredients.push(ingredient);
+    }
     orderRecipes();
 }
 
