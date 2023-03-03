@@ -2,12 +2,12 @@
     <category-nav-bar/>
     <div class="container">
         <div class="row">
-            <div class="col-5">
+            <div class="col-12 col-lg-5">
                 <h4>Your ingredients so far</h4>
-                <ingredient-box @addIngredient="addIngredient" :owned-ingredients="ownedIngredients"
+                <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :owned-ingredients="ownedIngredients"
                                 :ingredients="ingredients" :measures="measures"/>
             </div>
-            <div class="col-7">
+            <div class="col-12 col-lg-7">
                 <div class="recipe-container">
                     <div class="row">
                         <recipe-card
@@ -53,6 +53,7 @@ async function getAllRecipe() {
         recipes.push(recipe);
     }
     pageCount.value = Math.ceil(recipes.length / recipePerPage.value)
+    orderRecipes();
 }
 
 async function getAllIngredient() {
@@ -70,19 +71,9 @@ async function getAllMeasure() {
 }
 
 function addIngredient(selectedIngredient, selectedMeasure, quantity) {
-    if(selectedIngredient == null || selectedIngredient == undefined){
-        window.alert("Ingredient has not been set!")
+    if(!validateData(selectedIngredient, selectedMeasure, quantity)){
         return;
     }
-    if(selectedMeasure == null || selectedMeasure == undefined){
-        window.alert("Measure has not been set!")
-        return;
-    }
-    if (selectedMeasure.name !== "to taste" && quantity <= 0) {
-        window.alert(quantity + " " + selectedMeasure.name + " is not a valid measure!")
-        return;
-    }
-
     const ingredient = {
         ingredient: selectedIngredient,
         measure: selectedMeasure,
@@ -90,8 +81,6 @@ function addIngredient(selectedIngredient, selectedMeasure, quantity) {
     };
     let exists = false;
     for(const index in ownedIngredients){
-        console.log(index)
-        console.table(ownedIngredients)
         if(ownedIngredients[index].ingredient["id"] === selectedIngredient["id"]){
             ownedIngredients[index] = ingredient;
             exists = true;
@@ -104,21 +93,60 @@ function addIngredient(selectedIngredient, selectedMeasure, quantity) {
     orderRecipes();
 }
 
-function orderRecipes() {
-    for (const ownedIngredient of ownedIngredients.sort((a, b) => sortByStandardValue(a, b))) {
-        recipes.sort((a, b) => {
-            const containsA = containsIngredient(a["ingredients"], ownedIngredient);
-            const containsB = containsIngredient(b["ingredients"], ownedIngredient);
-
-            if (containsB && !containsA) {
-                return 1
-            }
-            if (containsA && !containsB) {
-                return -1;
-            }
-            return 0;
-        })
+function validateData(selectedIngredient, selectedMeasure, quantity){
+    if(selectedIngredient == null || selectedIngredient == undefined){
+        window.alert("Ingredient has not been set!")
+        return false;
     }
+    if(selectedMeasure == null || selectedMeasure == undefined){
+        window.alert("Measure has not been set!")
+        return false;
+    }
+    if (selectedMeasure.name !== "to taste" && quantity <= 0) {
+        window.alert(quantity + " " + selectedMeasure.name + " is not a valid measure!")
+        return false;
+    }
+    return true;
+}
+
+function deleteIngredient(ingredientId){
+    console.log(ingredientId)
+    const index = ownedIngredients.findIndex(item => item["ingredient"]["id"] === ingredientId)
+    console.log(index)
+    ownedIngredients.splice(index, 1)
+    orderRecipes();
+}
+
+function orderRecipes() {
+    if(ownedIngredients.length === 0){
+        recipes.sort((a, b) => sortByName(a, b));
+    }
+    for (const ownedIngredient of ownedIngredients.sort((a, b) => sortByStandardValue(a, b))) {
+        recipes.sort((a, b) => sortByContainedIngredients(a, b, ownedIngredient))
+    }
+}
+
+function sortByName(a, b){
+    if(a.name < b.name){
+        return -1;
+    }
+    if(a.name > b.name){
+        return 1;
+    }
+    return 0;
+}
+
+function sortByContainedIngredients(a, b, ownedIngredient){
+    const containsA = containsIngredient(a["ingredients"], ownedIngredient);
+    const containsB = containsIngredient(b["ingredients"], ownedIngredient);
+
+    if (containsB && !containsA) {
+        return 1
+    }
+    if (containsA && !containsB) {
+        return -1;
+    }
+    return 0;
 }
 
 function sortByStandardValue(a, b) {

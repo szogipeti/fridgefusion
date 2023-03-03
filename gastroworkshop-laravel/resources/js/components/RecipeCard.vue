@@ -1,5 +1,5 @@
 <template>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
         <a href="">
             <div class="card">
                 <img v-bind:src="'/img/' + image" class="card-img-top img-fluid" alt="...">
