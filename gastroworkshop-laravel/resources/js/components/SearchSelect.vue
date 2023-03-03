@@ -29,7 +29,7 @@ export default {
             active: false,
             selected: "",
             selectedId: Number,
-            searchTerm: ""
+            searchTerm: "",
         }
     },
     props:{
@@ -63,6 +63,11 @@ export default {
         },
         focusInput(){
             this.$refs.search.focus();
+        },
+        resetSelected(){
+            this.selected = "";
+            this.selectedId = null;
+            this.$emit('setSelectedInput')
         }
     },
     watch:{

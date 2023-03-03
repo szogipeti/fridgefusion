@@ -13,9 +13,9 @@
             </div>
             <div class="input col-12 col-md-6 p-0">
                 <label for="measure" class="form-label">Measure</label>
-                <search-select @setSelectedInput="this.setSelectedMeasure"
+                <search-select ref="measureSelect" @setSelectedInput="this.setSelectedMeasure"
                                :items="validMeasures"
-                               :category="'measure'" :default-label="'Select Measure'"/>
+                               :category="'measure'" :default-label="'Select Measure'" />
             </div>
             <div class="col-12 col-md-6 p-0">
                 <button class="btn w-100" @click="addIngredient">Add ingredient</button>
@@ -50,11 +50,11 @@ export default {
             validMeasures: [],
             quantity: 0,
             selectedIngredient: null,
-            selectedMeasure: null
+            selectedMeasure: null,
+            resetSelected: false
         }
     },
     methods: {
-
         getValidMeasures() {
             this.validMeasures = [];
             for (const validMeasure of this.ingredients.find(item => item.id === this.selectedIngredient.id)["validMeasures"]) {
@@ -65,8 +65,12 @@ export default {
         setSelectedIngredient(selectedId) {
             this.selectedIngredient = this.ingredients.find(item => item.id == selectedId);
             this.getValidMeasures();
+            this.resetSelected = true;
         },
-        setSelectedMeasure(selectedId) {
+        setSelectedMeasure(selectedId = -1) {
+            if(selectedId === -1){
+                this.selectedMeasure = null;
+            }
             this.selectedMeasure = this.measures.find(item => item.id == selectedId);
         },
         addIngredient() {
@@ -89,6 +93,11 @@ export default {
                 ingredientText = ingredient.ingredient.name + " - " + ingredient.quantity + " " + ingredient.measure.name + "(s)"
             }
             return ingredientText;
+        }
+    },
+    watch:{
+        selectedIngredient(){
+            this.$refs.measureSelect.resetSelected();
         }
     },
     emits:[
