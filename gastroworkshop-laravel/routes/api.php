@@ -41,3 +41,4 @@ Route::delete('/measures/{id}', [MeasureController::class, 'destroy'])->whereNum
 
 Route::post('/login',[\App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
 Route::post('/register',[\App\Http\Controllers\AuthController::class,'register'])->name('auth.register');
+Route::get('/profile',[\App\Http\Controllers\AuthController::class,'users'])->name('auth.users');
