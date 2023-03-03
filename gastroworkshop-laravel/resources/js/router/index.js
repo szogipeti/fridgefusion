@@ -2,6 +2,7 @@ import {createRouter, createWebHashHistory} from 'vue-router'
 import HomeView from "../views/HomeView.vue";
 import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
+import Profile from "../views/Profile.vue";
 
 const routes = [
     {
@@ -26,6 +27,14 @@ const routes = [
         component: Login,
         meta: {
             requiresAuth: false,
+        }
+    },
+    {
+        name: 'profile',
+        path: '/profile',
+        component: Profile,
+        meta: {
+            requiresAuth: true,
         }
     }
 ]
