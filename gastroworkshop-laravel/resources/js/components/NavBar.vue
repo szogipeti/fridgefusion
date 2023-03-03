@@ -14,7 +14,7 @@
         </ul>
         <div class="d-flex align-items-center ms-auto ms-md-0">
                 <router-link to="/login" class="nav-link">Login</router-link>
-            <router-link to="/login">
+            <router-link to="/profile">
             <p class="mx-1 my-auto mr-2 text-white">Your profile</p>
             <img class="mx-1" src="/img/profile-icon.png" alt="">
             </router-link>
