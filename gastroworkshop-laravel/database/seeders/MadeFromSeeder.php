@@ -17,15 +17,15 @@ class MadeFromSeeder extends Seeder
     {
         DB::table('made_from')->insert([
             #Spinach and Artichoke Dip
-            ['recipe_id' => 1, 'ingredient_id' => 1, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 1, 'ingredient_id' => 2, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 1, 'ingredient_id' => 3, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 1, 'ingredient_id' => 7, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 1, 'ingredient_id' => 37, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 1, 'ingredient_id' => 4, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 1, 'ingredient_id' => 8, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 1, 'ingredient_id' => 6, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 1, 'ingredient_id' => 5, 'measure_id' => 15, 'quantity' => null],
+            ['recipe_id' => 1, 'ingredient_id' => 1, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 1, 'ingredient_id' => 2, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 1, 'ingredient_id' => 3, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 1, 'ingredient_id' => 7, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 1, 'ingredient_id' => 37, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 1, 'ingredient_id' => 4, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 1, 'ingredient_id' => 8, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 1, 'ingredient_id' => 6, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 1, 'ingredient_id' => 5, 'measure_id' => 15, 'quantity' => 0],
 
             #Stuffed mushrooms
             ['recipe_id' => 2, 'ingredient_id' => 10, 'measure_id' => 17, 'quantity' => 5],
@@ -43,7 +43,7 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 3, 'ingredient_id' => 17, 'measure_id' => 17, 'quantity' => 0.25],
             ['recipe_id' => 3, 'ingredient_id' => 20, 'measure_id' => 5, 'quantity' => 2],
             ['recipe_id' => 3, 'ingredient_id' => 21, 'measure_id' => 1, 'quantity' => 1],
-            ['recipe_id' => 3, 'ingredient_id' => 18, 'measure_id' => 2, 'quantity' => null],
+            ['recipe_id' => 3, 'ingredient_id' => 18, 'measure_id' => 2, 'quantity' => 0],
             ['recipe_id' => 3, 'ingredient_id' => 22, 'measure_id' => 16, 'quantity' => 1],
 
             #Deviled Eggs
@@ -52,22 +52,22 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 4, 'ingredient_id' => 27, 'measure_id' => 2, 'quantity' => 1],
             ['recipe_id' => 4, 'ingredient_id' => 24, 'measure_id' => 2, 'quantity' => 1],
             ['recipe_id' => 4, 'ingredient_id' => 9, 'measure_id' => 2, 'quantity' => 0.125],
-            ['recipe_id' => 4, 'ingredient_id' => 25, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 4, 'ingredient_id' => 26, 'measure_id' => 15, 'quantity' => null],
+            ['recipe_id' => 4, 'ingredient_id' => 25, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 4, 'ingredient_id' => 26, 'measure_id' => 15, 'quantity' => 0],
 
             #Baked Brie
             ['recipe_id' => 5, 'ingredient_id' => 28, 'measure_id' => 11, 'quantity' => 370],
             ['recipe_id' => 5, 'ingredient_id' => 29, 'measure_id' => 2, 'quantity' => 0.5],
             ['recipe_id' => 5, 'ingredient_id' => 30, 'measure_id' => 2, 'quantity' => 0.5],
             ['recipe_id' => 5, 'ingredient_id' => 31, 'measure_id' => 1, 'quantity' => 2],
-            ['recipe_id' => 5, 'ingredient_id' => 46, 'measure_id' => 15, 'quantity' => null],
+            ['recipe_id' => 5, 'ingredient_id' => 46, 'measure_id' => 15, 'quantity' => 0],
 
             #Buffalo Wings
             ['recipe_id' => 6, 'ingredient_id' => 32, 'measure_id' => 11, 'quantity' => 900],
             ['recipe_id' => 6, 'ingredient_id' => 33, 'measure_id' => 1, 'quantity' => 2],
             ['recipe_id' => 6, 'ingredient_id' => 34, 'measure_id' => 2, 'quantity' => 1],
-            ['recipe_id' => 6, 'ingredient_id' => 21, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 6, 'ingredient_id' => 25, 'measure_id' => 15, 'quantity' => null],
+            ['recipe_id' => 6, 'ingredient_id' => 21, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 6, 'ingredient_id' => 25, 'measure_id' => 15, 'quantity' => 0],
             ['recipe_id' => 6, 'ingredient_id' => 35, 'measure_id' => 5, 'quantity' => 0.25],
             ['recipe_id' => 6, 'ingredient_id' => 31, 'measure_id' => 1, 'quantity' => 2],
             ['recipe_id' => 6, 'ingredient_id' => 36, 'measure_id' => 1, 'quantity' => 4],
@@ -112,9 +112,9 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 10, 'ingredient_id' => 20, 'measure_id' => 5, 'quantity' => 2],
             ['recipe_id' => 10, 'ingredient_id' => 16, 'measure_id' => 17, 'quantity' => 3],
             ['recipe_id' => 10, 'ingredient_id' => 4, 'measure_id' => 11, 'quantity' => 340],
-            ['recipe_id' => 10, 'ingredient_id' => 17, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 10, 'ingredient_id' => 48, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 10, 'ingredient_id' => 21, 'measure_id' => 15, 'quantity' => null],
+            ['recipe_id' => 10, 'ingredient_id' => 17, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 10, 'ingredient_id' => 48, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 10, 'ingredient_id' => 21, 'measure_id' => 15, 'quantity' => 0],
 
             #Tomato soup
             ['recipe_id' => 11, 'ingredient_id' => 16, 'measure_id' => 12, 'quantity' => 1],
@@ -135,7 +135,7 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 12, 'ingredient_id' => 7, 'measure_id' => 17, 'quantity' => 3],
             ['recipe_id' => 12, 'ingredient_id' => 175, 'measure_id' => 5, 'quantity' => 8],
             ['recipe_id' => 12, 'ingredient_id' => 62, 'measure_id' => 17, 'quantity' => 2],
-            ['recipe_id' => 12, 'ingredient_id' => 21, 'measure_id' => 15, 'quantity' => null],
+            ['recipe_id' => 12, 'ingredient_id' => 21, 'measure_id' => 15, 'quantity' => 0],
             ['recipe_id' => 12, 'ingredient_id' => 66, 'measure_id' => 12, 'quantity' => 1.1],
             ['recipe_id' => 12, 'ingredient_id' => 67, 'measure_id' => 5, 'quantity' => 2.5],
             ['recipe_id' => 12, 'ingredient_id' => 52, 'measure_id' => 1, 'quantity' => 2],
@@ -170,8 +170,8 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 14, 'ingredient_id' => 62, 'measure_id' => 17, 'quantity' => 1],
             ['recipe_id' => 14, 'ingredient_id' => 81, 'measure_id' => 11, 'quantity' => 70],
             ['recipe_id' => 14, 'ingredient_id' => 82, 'measure_id' => 11, 'quantity' => 100],
-            ['recipe_id' => 14, 'ingredient_id' => 17, 'measure_id' => 18, 'quantity' => null],
-            ['recipe_id' => 14, 'ingredient_id' => 37, 'measure_id' => 15, 'quantity' => null],
+            ['recipe_id' => 14, 'ingredient_id' => 17, 'measure_id' => 18, 'quantity' => 0],
+            ['recipe_id' => 14, 'ingredient_id' => 37, 'measure_id' => 15, 'quantity' => 0],
 
             #Cream of Broccoli Soup
             ['recipe_id' => 15, 'ingredient_id' => 64, 'measure_id' => 5, 'quantity' => 0.25],
@@ -180,8 +180,8 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 15, 'ingredient_id' => 85, 'measure_id' => 5, 'quantity' => 4],
             ['recipe_id' => 15, 'ingredient_id' => 86, 'measure_id' => 11, 'quantity' => 450],
             ['recipe_id' => 15, 'ingredient_id' => 87, 'measure_id' => 5, 'quantity' => 0.25],
-            ['recipe_id' => 15, 'ingredient_id' => 88, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 15, 'ingredient_id' => 79, 'measure_id' => 15, 'quantity' => null],
+            ['recipe_id' => 15, 'ingredient_id' => 88, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 15, 'ingredient_id' => 79, 'measure_id' => 15, 'quantity' => 0],
 
             #Clam Chowder
             ['recipe_id' => 16, 'ingredient_id' => 89, 'measure_id' => 5, 'quantity' => 2],
@@ -194,7 +194,7 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 16, 'ingredient_id' => 91, 'measure_id' => 13, 'quantity' => 1],
             ['recipe_id' => 16, 'ingredient_id' => 92, 'measure_id' => 1, 'quantity' => 2],
             ['recipe_id' => 16, 'ingredient_id' => 9, 'measure_id' => 2, 'quantity' => 1.5],
-            ['recipe_id' => 16, 'ingredient_id' => 25, 'measure_id' => 15, 'quantity' => null],
+            ['recipe_id' => 16, 'ingredient_id' => 25, 'measure_id' => 15, 'quantity' => 0],
 
             #Split Pea Soup
             ['recipe_id' => 17, 'ingredient_id' => 93, 'measure_id' => 5, 'quantity' => 0.5],
@@ -213,8 +213,8 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 18, 'ingredient_id' => 92, 'measure_id' => 1, 'quantity' => 2],
             ['recipe_id' => 18, 'ingredient_id' => 44, 'measure_id' => 5, 'quantity' => 0.5],
             ['recipe_id' => 18, 'ingredient_id' => 19, 'measure_id' => 5, 'quantity' => 0.33],
-            ['recipe_id' => 18, 'ingredient_id' => 21, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 18, 'ingredient_id' => 79, 'measure_id' => 15, 'quantity' => null],
+            ['recipe_id' => 18, 'ingredient_id' => 21, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 18, 'ingredient_id' => 79, 'measure_id' => 15, 'quantity' => 0],
             ['recipe_id' => 18, 'ingredient_id' => 98, 'measure_id' => 20, 'quantity' => 2],
             ['recipe_id' => 18, 'ingredient_id' => 17, 'measure_id' => 1, 'quantity' => 2],
 
@@ -232,8 +232,8 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 19, 'ingredient_id' => 16, 'measure_id' => 11, 'quantity' => 410],
             ['recipe_id' => 19, 'ingredient_id' => 5, 'measure_id' => 5, 'quantity' => 0.5],
             ['recipe_id' => 19, 'ingredient_id' => 176, 'measure_id' => 2, 'quantity' => 2],
-            ['recipe_id' => 19, 'ingredient_id' => 9, 'measure_id' => 15, 'quantity' => null],
-            ['recipe_id' => 19, 'ingredient_id' => 79, 'measure_id' => 15, 'quantity' => null],
+            ['recipe_id' => 19, 'ingredient_id' => 9, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 19, 'ingredient_id' => 79, 'measure_id' => 15, 'quantity' => 0],
 
             #Beef Stew
             ['recipe_id' => 20, 'ingredient_id' => 84, 'measure_id' => 5, 'quantity' => 0.25],
@@ -273,8 +273,8 @@ class MadeFromSeeder extends Seeder
 
             #Chicken Parmesan
             ['recipe_id' => 22, 'ingredient_id' => 66, 'measure_id' => 17, 'quantity' => 4],
-            ['recipe_id' => 22, 'ingredient_id' => 9, 'measure_id' => 15, 'quantity' => NULL],
-            ['recipe_id' => 22, 'ingredient_id' => 79, 'measure_id' => 15, 'quantity' => NULL],
+            ['recipe_id' => 22, 'ingredient_id' => 9, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 22, 'ingredient_id' => 79, 'measure_id' => 15, 'quantity' => 0],
             ['recipe_id' => 22, 'ingredient_id' => 23, 'measure_id' => 17, 'quantity' => 2],
             ['recipe_id' => 22, 'ingredient_id' => 13, 'measure_id' => 5, 'quantity' => 1],
             ['recipe_id' => 22, 'ingredient_id' => 37, 'measure_id' => 5, 'quantity' => 0.75],
@@ -288,8 +288,8 @@ class MadeFromSeeder extends Seeder
 
             #Pork Chops
             ['recipe_id' => 23, 'ingredient_id' => 113, 'measure_id' => 17, 'quantity' => 4],
-            ['recipe_id' => 23, 'ingredient_id' => 9, 'measure_id' => 15, 'quantity' => NULL],
-            ['recipe_id' => 23, 'ingredient_id' => 8, 'measure_id' => 15, 'quantity' => NULL],
+            ['recipe_id' => 23, 'ingredient_id' => 9, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 23, 'ingredient_id' => 8, 'measure_id' => 15, 'quantity' => 0],
             ['recipe_id' => 23, 'ingredient_id' => 34, 'measure_id' => 2, 'quantity' => 1],
             ['recipe_id' => 23, 'ingredient_id' => 48, 'measure_id' => 1, 'quantity' => 2],
             ['recipe_id' => 23, 'ingredient_id' => 64, 'measure_id' => 1, 'quantity' => 1],
@@ -330,7 +330,7 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 26, 'ingredient_id' => 71, 'measure_id' => 5, 'quantity' => 0.5],
             ['recipe_id' => 26, 'ingredient_id' => 21, 'measure_id' => 2, 'quantity' => 0.75],
             ['recipe_id' => 26, 'ingredient_id' => 18, 'measure_id' => 2, 'quantity' => 0.3],
-            ['recipe_id' => 26, 'ingredient_id' => 79, 'measure_id' => 15, 'quantity' => NULL],
+            ['recipe_id' => 26, 'ingredient_id' => 79, 'measure_id' => 15, 'quantity' => 0],
             ['recipe_id' => 26, 'ingredient_id' => 53, 'measure_id' => 11, 'quantity' => 800],
             ['recipe_id' => 26, 'ingredient_id' => 52, 'measure_id' => 5, 'quantity' => 0.3],
 
@@ -357,14 +357,14 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 29, 'ingredient_id' => 40, 'measure_id' => 17, 'quantity' => 1],
             ['recipe_id' => 29, 'ingredient_id' => 30, 'measure_id' => 22, 'quantity' => 2],
             ['recipe_id' => 29, 'ingredient_id' => 130, 'measure_id' => 17, 'quantity' => 6],
-            ['recipe_id' => 29, 'ingredient_id' => 48, 'measure_id' => 15, 'quantity' => NULL],
+            ['recipe_id' => 29, 'ingredient_id' => 48, 'measure_id' => 15, 'quantity' => 0],
             ['recipe_id' => 29, 'ingredient_id' => 131, 'measure_id' => 11, 'quantity' => 500],
             ['recipe_id' => 29, 'ingredient_id' => 102, 'measure_id' => 14, 'quantity' => 200],
             ['recipe_id' => 29, 'ingredient_id' => 132, 'measure_id' => 11, 'quantity' => 280],
             ['recipe_id' => 29, 'ingredient_id' => 133, 'measure_id' => 11, 'quantity' => 800],
             ['recipe_id' => 29, 'ingredient_id' => 134, 'measure_id' => 11, 'quantity' => 500],
-            ['recipe_id' => 29, 'ingredient_id' => 37, 'measure_id' => 15, 'quantity' => NULL],
-            ['recipe_id' => 29, 'ingredient_id' => 19, 'measure_id' => 15, 'quantity' => NULL],
+            ['recipe_id' => 29, 'ingredient_id' => 37, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 29, 'ingredient_id' => 19, 'measure_id' => 15, 'quantity' => 0],
 
             #Fried Rice
             ['recipe_id' => 30, 'ingredient_id' => 36, 'measure_id' => 1, 'quantity' => 3],
@@ -373,8 +373,8 @@ class MadeFromSeeder extends Seeder
             ['recipe_id' => 30, 'ingredient_id' => 40, 'measure_id' => 17, 'quantity' => 1],
             ['recipe_id' => 30, 'ingredient_id' => 135, 'measure_id' => 5, 'quantity' => 0.5],
             ['recipe_id' => 30, 'ingredient_id' => 7, 'measure_id' => 17, 'quantity' => 3],
-            ['recipe_id' => 30, 'ingredient_id' => 9, 'measure_id' => 15, 'quantity' => NULL],
-            ['recipe_id' => 30, 'ingredient_id' => 8, 'measure_id' => 15, 'quantity' => NULL],
+            ['recipe_id' => 30, 'ingredient_id' => 9, 'measure_id' => 15, 'quantity' => 0],
+            ['recipe_id' => 30, 'ingredient_id' => 8, 'measure_id' => 15, 'quantity' => 0],
             ['recipe_id' => 30, 'ingredient_id' => 136, 'measure_id' => 5, 'quantity' => 4],
             ['recipe_id' => 30, 'ingredient_id' => 127, 'measure_id' => 17, 'quantity' => 3],
             ['recipe_id' => 30, 'ingredient_id' => 128, 'measure_id' => 1, 'quantity' => 3.5],

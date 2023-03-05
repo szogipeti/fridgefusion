@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('measures', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 25);
             $table->integer('standard_measure_id');
             $table->double('conversion_rate');
             $table->timestamps();
