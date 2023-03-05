@@ -1,30 +1,32 @@
 <template>
     <div>
-       <Form>
-        <h1>Profile</h1>
-        <p>Username: {{ userData.username }}</p>
-        <p>Email: {{ userData.email }}</p>
-        <p>Password: {{ userData.password}}</p>
-        <label for="new_recipe">Make new Recipe</label>
-        <Field type="recipe" name="email" class="form-control"/>
-       </Form>
+        <Form>
+            <h1>Profile</h1>
+            <p>Username: {{ response.username }}</p>
+            <p>Email: {{ response.email }}</p>
+            <label for="new_recipe">Make new Recipe</label>
+            <Field type="recipe" name="email" class="form-control"/>
+        </Form>
     </div>
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { Form, Field, ErrorMessage } from 'vee-validate';
-import * as yup from 'yup';
-import axios, {Axios} from 'axios';
+import {onMounted, reactive,} from 'vue';
+import {useRouter} from 'vue-router';
+import {Form, Field} from 'vee-validate';
+import {http} from "../utils/http";
 
 const router = useRouter();
-    async function getUserData(){
-    const  response = await http.get("users");
-    userData.username = response.data.username;
-    userData.email = response.data.email;
-    userData.password = response.data.password;
+const response = reactive({});
+
+async function getUserData() {
+    const userdata = await http.get("profile",{headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    for (const key in userdata.data) {
+        response[key] = userdata.data[key]
+    }
+    console.log(userdata.data)
 }
 
-getUserData();
+onMounted(()=>getUserData())
+
 </script>

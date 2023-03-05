@@ -34,8 +34,10 @@ class AuthController extends Controller
 
 
     }
-    public  function users()
+    public function users()
     {
-        return Auth::user();
+        return response()->json(Auth::user(),200);
+
+
     }
 }
