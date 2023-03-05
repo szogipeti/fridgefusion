@@ -15,10 +15,10 @@
 ```bash
 php artisan migrate --seed
 ```
-	- If you want to re-run it
-	```bash
-	php artisan migrate:fresh --seed
-	```
+*If you want to re-run it*
+```bash
+php artisan migrate:fresh --seed
+```
 	
 - Install Vue project dependencies
 
