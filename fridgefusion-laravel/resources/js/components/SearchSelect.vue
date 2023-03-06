@@ -1,7 +1,7 @@
 <template>
 <div v-click-outside-element="close" class="select-box">
     <div class="selected" @click="toggleActive">
-        {{selected===""?defaultLabel:selected}}
+        <p>{{selected===""?defaultLabel:selected}}</p>
         <font-awesome-icon class="icon-btn" v-if="!active" icon="fa-solid fa-chevron-down" />
         <font-awesome-icon class="icon-btn" v-else icon="fa-solid fa-chevron-up" />
     </div>
@@ -173,5 +173,9 @@ selected{
 .select-box .options-container.active ~ .search-box input{
     opacity: 1;
     pointer-events: auto;
+}
+
+p{
+    margin: 0;
 }
 </style>
