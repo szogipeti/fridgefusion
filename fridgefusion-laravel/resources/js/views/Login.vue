@@ -2,7 +2,7 @@
     <div id="login" class=" m-auto mt-5 w-50 p-3 rounded">
         <Form @submit="login" :validation-schema="Schema">
             <div class="form-group">
-                <label for="email">e-mail:</label>
+                <label for="email">E-mail:</label>
                 <Field type="email" name="email" class="form-control"/>
                 <error-message name="email"></error-message>
             </div>
@@ -12,8 +12,8 @@
                 <error-message name="password"></error-message>
             </div>
             <input type="submit" value="Login" class="btn btn-primary mt-3">
-            <label>Don't have an account yet?</label>
-            <router-link to="/register"> <label>Regist here</label></router-link>
+            <label id="label-text">Don't have an account yet?</label>
+            <router-link to="/register"> <label id="label-reg">Register here</label></router-link>
 
         </Form>
     </div>
