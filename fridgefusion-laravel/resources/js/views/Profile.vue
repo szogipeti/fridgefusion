@@ -6,6 +6,7 @@
             <p>Email: {{ response.email }}</p>
             <label for="new_recipe">Make new Recipe</label>
             <Field type="recipe" name="email" class="form-control"/>
+            <button @click="logout">Logout</button>
         </Form>
     </div>
 </template>
@@ -19,6 +20,12 @@ import {http} from "../utils/http";
 const router = useRouter();
 const response = reactive({});
 
+const logout = () => {
+    localStorage.removeItem('token');
+    router.push('/login');
+}
+defineExpose({logout});
+
 async function getUserData() {
     const userdata = await http.get("profile",{headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
     for (const key in userdata.data) {
@@ -27,6 +34,8 @@ async function getUserData() {
     console.log(userdata.data)
 }
 
-onMounted(()=>getUserData())
 
+
+
+onMounted(()=>getUserData())
 </script>
