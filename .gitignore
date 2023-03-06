@@ -26,3 +26,8 @@ Homestead.json
 
 #jetBrains
 .idea/
+
+# C# project
+bin/
+obj/
+.vs/
