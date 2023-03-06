@@ -38,7 +38,6 @@
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Julee&display=swap');
 nav{
     background-color: #117972;
     font-family: 'Julee', cursive;

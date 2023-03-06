@@ -19,7 +19,7 @@
                         <recipe-card
                             v-for="recipe in recipes.slice((currentPage - 1) * recipePerPage, currentPage * recipePerPage)"
                             :key="recipe.id" :name="recipe.name"
-                            :image="recipe.image" :publisher="recipe.publisher"/>
+                            :image="recipe.image" :publisher="recipe.publisher" :id="recipe.id"/>
                     </div>
                 </div>
                 <paginate
