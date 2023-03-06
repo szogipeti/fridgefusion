@@ -42,3 +42,4 @@ Route::delete('/measures/{id}', [MeasureController::class, 'destroy'])->whereNum
 Route::post('/login',[\App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
 Route::post('/register',[\App\Http\Controllers\AuthController::class,'register'])->name('auth.register');
 Route::middleware(["auth:sanctum"])->get('/profile',[\App\Http\Controllers\AuthController::class,'users'])->name('auth.users');
+Route::middleware(["auth:sanctum"])->post('/logout',[\App\Http\Controllers\AuthController::class,'logout'])->name('auth.logout');
