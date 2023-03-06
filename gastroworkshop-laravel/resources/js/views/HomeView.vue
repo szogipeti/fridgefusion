@@ -1,8 +1,10 @@
 <template>
     <category-nav-bar/>
     <div class="container">
-
-        <div class="row">
+        <div class="clip-container main" v-if="!recipesLoaded || !ingredientsLoaded || !measuresLoaded">
+            <clip-loader :size="'100px'" :color="'#117972'"/>
+        </div>
+        <div v-else class="row">
             <div class="col-12 col-lg-5 ingredient-container">
                 <h4>Your ingredients so far</h4>
                 <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :owned-ingredients="ownedIngredients"
@@ -19,7 +21,7 @@
                         <recipe-card
                             v-for="recipe in recipes.slice((currentPage - 1) * recipePerPage, currentPage * recipePerPage)"
                             :key="recipe.id" :name="recipe.name"
-                            :image="recipe.image" :publisher="recipe.publisher"/>
+                            :image="recipe.image" :publisher="recipe.publisher" :id="recipe.id"/>
                     </div>
                 </div>
                 <paginate
@@ -44,6 +46,7 @@ import {onMounted, reactive, ref} from "vue";
 import IngredientBox from "../components/IngredientBox.vue";
 import RecipeCard from "../components/RecipeCard.vue";
 import Paginate from "vuejs-paginate-next";
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 
 const recipes = reactive([]);
 const ownedIngredients = reactive([]);
@@ -53,6 +56,10 @@ const recipePerPage = ref(12);
 const pageCount = ref(0);
 const currentPage = ref(1);
 
+const recipesLoaded = ref(false);
+const ingredientsLoaded = ref(false);
+const measuresLoaded = ref(false);
+
 async function getAllRecipe() {
     const resp = await axios.get('api/recipes');
     for (const recipe of resp.data.data) {
@@ -60,6 +67,7 @@ async function getAllRecipe() {
     }
     pageCount.value = Math.ceil(recipes.length / recipePerPage.value)
     orderRecipes();
+    recipesLoaded.value = true;
 }
 
 async function getAllIngredient() {
@@ -67,6 +75,7 @@ async function getAllIngredient() {
     for (const ingredient of resp.data.data) {
         ingredients.push(ingredient);
     }
+    ingredientsLoaded.value = true;
 }
 
 async function getAllMeasure() {
@@ -74,6 +83,7 @@ async function getAllMeasure() {
     for (const measure of resp.data.data) {
         measures.push(measure);
     }
+    measuresLoaded.value = true;
 }
 
 function addIngredient(selectedIngredient, selectedMeasure, quantity) {
@@ -116,9 +126,7 @@ function validateData(selectedIngredient, selectedMeasure, quantity){
 }
 
 function deleteIngredient(ingredientId){
-    console.log(ingredientId)
     const index = ownedIngredients.findIndex(item => item["ingredient"]["id"] === ingredientId)
-    console.log(index)
     ownedIngredients.splice(index, 1)
     orderRecipes();
 }

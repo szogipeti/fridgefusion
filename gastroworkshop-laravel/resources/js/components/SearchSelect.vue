@@ -1,6 +1,4 @@
 <template>
-
-
 <div v-click-outside-element="close" class="select-box">
     <div class="selected" @click="toggleActive">
         {{selected===""?defaultLabel:selected}}
@@ -14,7 +12,6 @@
         <input ref="search" type="text" placeholder="Start Typing..." v-model="searchTerm">
     </div>
 </div>
-
 </template>
 
 <script>

@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import Register from "../views/Register.vue";
 import Login from "../views/Login.vue";
 import Profile from "../views/Profile.vue";
+import RecipeView from "../views/RecipeView.vue";
 
 const routes = [
     {
@@ -35,6 +36,14 @@ const routes = [
         component: Profile,
         meta: {
             requiresAuth: true,
+        }
+    },
+    {
+        name: 'recipe',
+        path: '/recipes/:id',
+        component: RecipeView,
+        meta: {
+            requiresAuth: false
         }
     }
 ]
