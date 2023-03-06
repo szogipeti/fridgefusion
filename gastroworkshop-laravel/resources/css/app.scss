@@ -48,5 +48,15 @@ body{
     cursor: pointer;
 }
 
+.clip-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clip-container.main{
+    height: 449px;
+}
+
 @import "../../node_modules/bootstrap/scss/bootstrap";
 

@@ -1,5 +1,8 @@
 <template>
-<div class="container p-3">
+<div class="clip-container main" v-if="!recipeLoaded">
+    <clip-loader :size="'100px'" :color="'#117972'"/>
+</div>
+<div v-else class="container p-3">
     <div class="row">
         <div class="col-12 col-lg-6 my-3 d-flex flex-column align-items-center justify-content-center">
             <h1 class="text-center recipe-title">{{recipe.name}}</h1>
@@ -39,7 +42,10 @@
     <div class="row">
         <div class="col-12 col-lg-6 my-3">
             <h3>Ingredients</h3>
-            <ul>
+            <div class="clip-container mt-5" v-if="!ingredientsLoaded">
+                <clip-loader :size="'40px'" :color="'#117972'"/>
+            </div>
+            <ul v-else>
                 <li v-for="ingredient in ingredients" :key="ingredient">{{createIngredientText(ingredient)}}</li>
             </ul>
         </div>
@@ -56,10 +62,16 @@
 <script setup>
 import {http} from '@/utils/http';
 import {useRoute} from 'vue-router';
-import {onMounted, reactive} from "vue";
+import {ref, onMounted, reactive} from "vue";
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
+
+
 const route = useRoute();
 const recipe = reactive({})
 const ingredients = reactive([])
+const recipeLoaded = ref(false);
+const ingredientsLoaded = ref(false);
+
 const getRecipe = async function(){
     const resp = (await http.get('/recipes/' +  route.params['id'])).data.data;
     recipe.id = resp["id"];
@@ -72,18 +84,19 @@ const getRecipe = async function(){
     recipe.total_time = resp["total_time"];
     recipe.serving = resp["serving"];
 
+    recipeLoaded.value = true;
+
     for (const ingredient of resp["ingredients"]){
-        console.log(ingredient)
         const ingredientDetails = (await getIngredient(ingredient["ingredient_id"]));
         const measureDetails = (await getMeasure(ingredient["measure_id"]));
-        console.log(ingredientDetails);
-        console.log(measureDetails);
         ingredients.push({
             'ingredient': ingredientDetails,
             'measure': measureDetails,
             'quantity': ingredient.quantity
         })
     }
+
+    ingredientsLoaded.value = true;
 }
 
 const getIngredient = async function(id){
