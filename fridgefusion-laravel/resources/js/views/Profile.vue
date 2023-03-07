@@ -5,8 +5,9 @@
             <h1>Profile</h1>
             <p>Username: {{ response.username }}</p>
             <p>Email: {{ response.email }}</p>
-            <label for="new_recipe">Make new Recipe</label>
-            <Field type="recipe" name="email" class="form-control"/>
+            <router-link to="/newrecipe">
+                <button>Make new recipe</button>
+            </router-link>
             <button @click="logout">Logout</button>
         </Form>
     </div>

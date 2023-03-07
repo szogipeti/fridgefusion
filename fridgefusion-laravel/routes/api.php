@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(RecipeController::class)->group(function (){
     Route::get('/recipes', 'index')->name('recipes.index');
     Route::get('/recipes/{id}', 'show')->whereNumber('id')->name('recipes.show');
-    Route::post('/recipes', 'store')->name('recipes.store');
+    Route::middleware(["auth:sanctum"])->post('/recipes', 'store')->name('recipes.store');
     Route::put('/recipes/{id}', 'update')->whereNumber('id')->name('recipes.update');
     Route::delete('/recipes/{id}', 'destroy')->whereNumber('id')->name('recipes.destroy');
 });
