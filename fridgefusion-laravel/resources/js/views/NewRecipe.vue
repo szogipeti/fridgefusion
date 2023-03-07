@@ -14,7 +14,7 @@
                 <error-message name="ingredient"></error-message>
             </div>
             <div class="form-group">
-
+                <label>Please use ";" between every step and do not use number for the Steps. the applictaion will auotomaticly put the instructions into a ordered list</label>
                 <textarea name="instructions" placeholder="Instructions" v-model="instructions" class="form-control"></textarea>
                 <error-message name="instructions"></error-message>
             </div>
