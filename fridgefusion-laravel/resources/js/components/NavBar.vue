@@ -4,8 +4,8 @@
             <router-link class="navbar-brand text-white" :to="{ name: 'home'}">Fridge Fusion</router-link>
             <div class="order-lg-1 d-flex justify-content-end align-items-center">
                 <div class="d-flex align-items-center ms-auto ms-md-0">
-                    <router-link to="/login" class="nav-link">Login</router-link>
-                    <router-link to="/profile" class="d-flex justify-content-end align-items-center">
+                    <router-link v-if="!isLoggedIn" to="/login" class="nav-link">Login</router-link>
+                    <router-link v-else to="/profile" class="d-flex justify-content-end align-items-center">
                         <p class="mx-1 my-auto mr-2 text-white">Your profile</p>
                         <img class="mx-1" src="/img/profile-icon.png" alt="">
                     </router-link>
@@ -36,8 +36,14 @@
     </nav>
 </template>
 
-<script setup>
-
+<script>
+export default{
+    computed:{
+        isLoggedIn(){
+            return localStorage.getItem('token') !== null;
+        }
+    }
+}
 </script>
 
 <style scoped>

@@ -22,7 +22,7 @@ const response = reactive({});
 
 const logout = () => {
     localStorage.removeItem('token');
-    router.push('/login');
+    router.push('/login').then(() => router.go());
 }
 defineExpose({logout});
 

@@ -39,7 +39,7 @@ async function login(userData){
         error.value = response.statusText
     }else{
         localStorage.setItem('token',response.data.token);
-        router.push({name: 'home'});
+        router.push({name: 'home'}).then(() => {router.go()});
     }
 }
 </script>
