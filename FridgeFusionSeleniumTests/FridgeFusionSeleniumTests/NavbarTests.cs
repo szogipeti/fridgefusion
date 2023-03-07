@@ -38,7 +38,7 @@ public class NavbarTests
     }
 
     [TestMethod]
-    public void TestFilterWithOwnedIngredients()
+    public void TestFilterWithOwnedIngredient()
     {
         chromeDriver.FindElement(By.CssSelector(".selected")).Click();
         Thread.Sleep(200);
