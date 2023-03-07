@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-info bg-opacity-50 m-auto mt-5 w-50 p-3 rounded">
+    <div id="regdiv" class="bg-opacity-50 mx-auto p-3 rounded">
         <Form @submit="register" :validation-schema="Schema">
             <div class="form-group">
                 <label for="username">Username:</label>
@@ -52,3 +52,21 @@ async function register(userData){
     }
 }
 </script>
+
+<style scoped>
+@media screen and (max-width: 719px){
+#regdiv{
+    width: 280px;
+}
+}
+@media screen and (min-width: 720px){
+#regdiv{
+    width: 700px;
+}
+}
+#regdiv{
+    margin-top: 30px;
+    margin-bottom: 40px;
+    background-color: #18afa5;
+}
+</style>
