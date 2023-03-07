@@ -679,11 +679,6 @@ class ValidMeasureSeeder extends Seeder
             [ 'measure_id' => 13, 'ingredient_id' => 114],
             [ 'measure_id' => 14, 'ingredient_id' => 114],
 
-            [ 'measure_id' => 11, 'ingredient_id' => 115],
-            [ 'measure_id' => 12, 'ingredient_id' => 115],
-            [ 'measure_id' => 17, 'ingredient_id' => 115],
-            [ 'measure_id' => 15, 'ingredient_id' => 115],
-
             [ 'measure_id' => 11, 'ingredient_id' => 116],
             [ 'measure_id' => 12, 'ingredient_id' => 116],
             [ 'measure_id' => 15, 'ingredient_id' => 116],

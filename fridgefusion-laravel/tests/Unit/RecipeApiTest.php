@@ -35,7 +35,7 @@ class RecipeApiTest extends TestCase
         $response
             ->assertJson(fn (AssertableJson $json) =>
                 $json
-                    ->has('data', 40)
+                    ->has('data', $recipes->count())
                     ->has('data.0', fn(AssertableJson $json) =>
                         $json
                             ->where('id', 1)
@@ -93,7 +93,7 @@ class RecipeApiTest extends TestCase
                 [
                     "ingredient_id" => 1,
                     "measure_id" => 15,
-                    "quantity" => null
+                    "quantity" => 0
                 ]
             ]
         ];
