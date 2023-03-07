@@ -41,7 +41,7 @@
 <script setup>
 import axios from "axios";
 import {onMounted, reactive, ref, computed} from "vue";
-import {useRoute, onBeforeRouteUpdate} from 'vue-router';
+import {useRoute} from 'vue-router';
 import IngredientBox from "../components/IngredientBox.vue";
 import RecipeCard from "../components/RecipeCard.vue";
 import Paginate from "vuejs-paginate-next";
