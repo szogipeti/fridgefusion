@@ -15,9 +15,17 @@
 ```bash
 php artisan migrate --seed
 ```
+
 *If you want to re-run it*
+
 ```bash
 php artisan migrate:fresh --seed
+```
+
+- Create link for images
+
+```bash
+php artisan storage:link
 ```
 	
 - Install Vue project dependencies
