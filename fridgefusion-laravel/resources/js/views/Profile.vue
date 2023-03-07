@@ -1,6 +1,7 @@
 <template>
     <div>
         <Form>
+            <font-awesome-icon icon="fa-solid fa-circle-user" />
             <h1>Profile</h1>
             <p>Username: {{ response.username }}</p>
             <p>Email: {{ response.email }}</p>
@@ -16,6 +17,7 @@ import {onMounted, reactive,} from 'vue';
 import {useRouter} from 'vue-router';
 import {Form, Field} from 'vee-validate';
 import {http} from "../utils/http";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 const router = useRouter();
 const response = reactive({});
@@ -39,3 +41,10 @@ async function getUserData() {
 
 onMounted(()=>getUserData())
 </script>
+
+<style scoped>
+.fa-circle-user{
+    width: 100px;
+    height: 100px;
+}
+</style>
