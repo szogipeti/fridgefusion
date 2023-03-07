@@ -2,12 +2,12 @@
     <div class="bg-info bg-opacity-50 m-auto mt-5 w-50 p-3 rounded">
         <Form @submit="register" :validation-schema="Schema">
             <div class="form-group">
-                <label for="username">username</label>
+                <label for="username">Username:</label>
                 <Field type="string" name="username" class="form-control"/>
                 <error-message name="username"></error-message>
             </div>
             <div class="form-group">
-                <label for="email">e-mail:</label>
+                <label for="email">E-mail:</label>
                 <Field type="email" name="email" class="form-control"/>
                 <error-message name="email"></error-message>
             </div>
@@ -17,11 +17,11 @@
                 <error-message name="password"></error-message>
             </div>
             <div class="form-group mt-2">
-                <label for="password_confirmation">Password Confirmation</label>
+                <label for="password_confirmation">Confirm Password:</label>
                 <Field type="password" name="password_confirmation" class="form-control"/>
                 <error-message name="password"></error-message>
             </div>
-            <input type="submit" value="Regist" class="btn btn-primary mt-3">
+            <input type="submit" value="Register" class="btn btn-primary mt-3">
         </Form>
     </div>
 </template>
