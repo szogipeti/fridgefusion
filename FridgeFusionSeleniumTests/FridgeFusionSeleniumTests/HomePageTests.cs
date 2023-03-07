@@ -179,6 +179,24 @@ public class HomePageTests
         Assert.AreEqual("Apple Pie",
             chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .card-title")).Text);
     }
+
+    [TestMethod]
+    public void TestOrderWithMatchingIngredients()
+    {
+        AddIngredientToTaste();
+        
+        chromeDriver.FindElement(By.CssSelector(".selected")).Click();
+        Thread.Sleep(200);
+        chromeDriver.FindElement(By.CssSelector(".search-box input")).SendKeys("blue");
+        chromeDriver.FindElement(By.Id("ingredient-161-option")).Click(); ;
+        SelectToTasteMeasure();
+        chromeDriver.FindElement(By.CssSelector(".ingredient-box .btn")).Click();
+        
+        Assert.AreEqual("Blueberry Pie",
+            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .card-title")).Text);
+        Assert.AreEqual("Blueberry Pie",
+            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) div:nth-child(2) .card-title")).Text);
+    }
     
     [TestCleanup]
     public void Cleanup()
