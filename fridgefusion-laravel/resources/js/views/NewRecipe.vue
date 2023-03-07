@@ -41,6 +41,7 @@
 import {createApp, onMounted, reactive, ref} from 'vue';
 import IngredientBox from "../components/IngredientBox.vue";
 import axios from "axios";
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 
 const ownedIngredients = reactive([]);
 const ingredients = reactive([]);
