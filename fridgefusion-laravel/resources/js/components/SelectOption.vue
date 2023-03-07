@@ -1,5 +1,5 @@
 <template>
-<div :style="{ display: this.display}" class="option" @click="$emit('setSelected', this.label, this.id)">
+<div v-bind:id="this.id + '-option'" :style="{ display: this.display}" class="option" @click="$emit('setSelected', this.label, this.id)">
     <input type="radio" v-bind:name="category" v-bind:id="id">
     <label v-bind:for="id">{{label}}</label>
 </div>

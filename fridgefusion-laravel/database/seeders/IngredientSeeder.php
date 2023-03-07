@@ -129,7 +129,6 @@ class IngredientSeeder extends Seeder
 			['id' => 112,'name' => 'Provolone cheese','category_id' => 1],
 			['id' => 113,'name' => 'Pork chops bone in','category_id' => 5],
 			['id' => 114,'name' => 'Rice wine vinegar','category_id' => 8],
-			['id' => 115,'name' => 'Mushroom','category_id' => 3],
 			['id' => 116,'name' => 'Fillet steak','category_id' => 5],
 			['id' => 117,'name' => 'Crème fraîche','category_id' => 2],
 			['id' => 118,'name' => 'English mustard','category_id' => 2],
