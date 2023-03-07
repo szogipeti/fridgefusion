@@ -17,6 +17,13 @@ public class HomePageTests
     }
 
     [TestMethod]
+    public void TestHomePageLoad()
+    {
+        Assert.AreEqual("Recipes for you", chromeDriver.FindElement(By.CssSelector("h1:first-child")).Text);
+        Assert.AreEqual("Your ingredients so far", chromeDriver.FindElement(By.CssSelector("h4:first-child")).Text);
+    }
+    
+    [TestMethod]
     public void TestAddIngredientEmptyIngredient()
     {
         chromeDriver.FindElement(By.CssSelector(".ingredient-box .btn")).Click();
