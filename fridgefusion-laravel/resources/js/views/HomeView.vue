@@ -18,7 +18,7 @@
                     </div>
                     <div class="row">
                         <recipe-card
-                            v-for="recipe in filterRecipes.slice((currentPage - 1) * recipePerPage, currentPage * recipePerPage)"
+                            v-for="recipe in orderRecipes.slice((currentPage - 1) * recipePerPage, currentPage * recipePerPage)"
                             :key="recipe.id" :name="recipe.name"
                             :image="recipe.image" :publisher="recipe.publisher" :id="recipe.id"/>
                     </div>
@@ -53,6 +53,21 @@ const recipes = reactive([]);
 const filterRecipes = computed(() => {
     return filterByCategory(route.params['category']??'')
 })
+const orderRecipes = computed(() => {
+    return filterRecipes.value.sort((a, b) => {
+        const matchingSort = sortByMatchingIngredients(a, b);
+        if(matchingSort !== 0){
+            return matchingSort;
+        }
+        for (const ownedIngredient of ownedIngredients.sort((ingredientA, ingredientB) => sortByStandardMeasure(ingredientA, ingredientB))){
+            const containedIngredientSort = sortByContainedIngredients(a, b, ownedIngredient)
+            if(containedIngredientSort !== 0){
+                return containedIngredientSort;
+            }
+        }
+        return sortByName(a, b)
+    })
+})
 const ownedIngredients = reactive([]);
 const ingredients = reactive([]);
 const measures = reactive([]);
@@ -67,12 +82,33 @@ const recipesLoaded = ref(false);
 const ingredientsLoaded = ref(false);
 const measuresLoaded = ref(false);
 
+function sortByMatchingIngredients(recipeA, recipeB){
+    let matchingCountA = 0;
+    let matchingCountB = 0;
+    for(const ingredient of recipeA["ingredients"]){
+        if(ownedIngredients.findIndex(x => x["ingredient"]["id"] === ingredient["ingredient_id"]) !== -1){
+            matchingCountA++;
+        }
+    }
+    for(const ingredient of recipeB["ingredients"]){
+        if(ownedIngredients.findIndex(x => x["ingredient"]["id"] === ingredient["ingredient_id"]) !== -1){
+            matchingCountB++;
+        }
+    }
+    if(matchingCountA > matchingCountB){
+        return -1;
+    }
+    if(matchingCountA < matchingCountB){
+        return 1;
+    }
+    return 0;
+}
+
 async function getAllRecipe() {
     const resp = await axios.get('api/recipes');
     for (const recipe of resp.data.data) {
         recipes.push(recipe);
     }
-    orderRecipes();
     recipesLoaded.value = true;
 }
 
@@ -112,7 +148,6 @@ function addIngredient(selectedIngredient, selectedMeasure, quantity) {
     if(!exists){
         ownedIngredients.push(ingredient);
     }
-    orderRecipes();
 }
 
 function validateData(selectedIngredient, selectedMeasure, quantity){
@@ -134,16 +169,6 @@ function validateData(selectedIngredient, selectedMeasure, quantity){
 function deleteIngredient(ingredientId){
     const index = ownedIngredients.findIndex(item => item["ingredient"]["id"] === ingredientId)
     ownedIngredients.splice(index, 1)
-    orderRecipes();
-}
-
-function orderRecipes() {
-    if(ownedIngredients.length === 0){
-        recipes.sort((a, b) => sortByName(a, b));
-    }
-    for (const ownedIngredient of ownedIngredients.sort((a, b) => sortByStandardValue(a, b))) {
-        recipes.sort((a, b) => sortByContainedIngredients(a, b, ownedIngredient))
-    }
 }
 
 function sortByName(a, b){
@@ -169,7 +194,7 @@ function sortByContainedIngredients(a, b, ownedIngredient){
     return 0;
 }
 
-function sortByStandardValue(a, b) {
+function sortByStandardMeasure(a, b) {
     const measureA = a["measure"];
     const measureB = b["measure"];
     if (measureA["name"] === "to taste" && measureB["name"] !== "to taste") {
@@ -185,10 +210,10 @@ function sortByStandardValue(a, b) {
         const standardA = a["quantity"] * measureA["conversion_rate"];
         const standardB = b["quantity"] * measureB["conversion_rate"];
         if (standardA < standardB) {
-            return -1;
+            return 1;
         }
         if (standardA > standardB) {
-            return 1;
+            return -1;
         }
     }
     return 0;
