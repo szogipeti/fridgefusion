@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand text-white" href="#">Fridge Fusion</a>
+            <router-link class="navbar-brand text-white" :to="{ name: 'home'}">Fridge Fusion</router-link>
             <div class="order-lg-1 d-flex justify-content-end align-items-center">
                 <div class="d-flex align-items-center ms-auto ms-md-0">
                     <router-link to="/login" class="nav-link">Login</router-link>
@@ -17,18 +17,21 @@
             <div class="collapse navbar-collapse order-0" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <router-link class="nav-link active" aria-current="page" :to="{ name: 'home'}">Home</router-link>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Seasonal recipes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Weekly recipes</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><router-link class="dropdown-item" :to="{ name: 'home', params: { category: 'appetizer'}}">Appetizers</router-link></li>
+                            <li><router-link class="dropdown-item" :to="{ name: 'home', params: { category: 'soup'}}">Soups</router-link></li>
+                            <li><router-link class="dropdown-item" :to="{ name: 'home', params: { category: 'main_course'}}">Main courses</router-link></li>
+                            <li><router-link class="dropdown-item" :to="{ name: 'home', params: { category: 'dessert'}}">Desserts</router-link></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
-
-
         </div>
     </nav>
 </template>

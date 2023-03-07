@@ -7,7 +7,7 @@ import RecipeView from "../views/RecipeView.vue";
 
 const routes = [
     {
-        path: '/',
+        path: '/:category?',
         name: 'home',
         component: HomeView,
         meta: {

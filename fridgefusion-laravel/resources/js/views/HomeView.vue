@@ -1,5 +1,4 @@
 <template>
-    <category-nav-bar/>
     <div class="container">
         <div class="clip-container main" v-if="!recipesLoaded || !ingredientsLoaded || !measuresLoaded">
             <clip-loader :size="'100px'" :color="'#117972'"/>
@@ -19,7 +18,7 @@
                     </div>
                     <div class="row">
                         <recipe-card
-                            v-for="recipe in recipes.slice((currentPage - 1) * recipePerPage, currentPage * recipePerPage)"
+                            v-for="recipe in filterRecipes.slice((currentPage - 1) * recipePerPage, currentPage * recipePerPage)"
                             :key="recipe.id" :name="recipe.name"
                             :image="recipe.image" :publisher="recipe.publisher" :id="recipe.id"/>
                     </div>
@@ -40,20 +39,28 @@
 </template>
 
 <script setup>
-import CategoryNavBar from "../components/CategoryNavBar.vue"
 import axios from "axios";
-import {onMounted, reactive, ref} from "vue";
+import {onMounted, reactive, ref, computed} from "vue";
+import {useRoute, onBeforeRouteUpdate} from 'vue-router';
 import IngredientBox from "../components/IngredientBox.vue";
 import RecipeCard from "../components/RecipeCard.vue";
 import Paginate from "vuejs-paginate-next";
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 
+const route = useRoute();
+
 const recipes = reactive([]);
+const filterRecipes = computed(() => {
+    return filterByCategory(route.params['category']??'')
+})
 const ownedIngredients = reactive([]);
 const ingredients = reactive([]);
 const measures = reactive([]);
+
 const recipePerPage = ref(12);
-const pageCount = ref(0);
+const pageCount = computed(() => {
+    return Math.ceil(filterRecipes.value.length / recipePerPage.value)
+});
 const currentPage = ref(1);
 
 const recipesLoaded = ref(false);
@@ -65,7 +72,6 @@ async function getAllRecipe() {
     for (const recipe of resp.data.data) {
         recipes.push(recipe);
     }
-    pageCount.value = Math.ceil(recipes.length / recipePerPage.value)
     orderRecipes();
     recipesLoaded.value = true;
 }
@@ -186,6 +192,21 @@ function sortByStandardValue(a, b) {
         }
     }
     return 0;
+}
+
+function filterByCategory(category){
+    switch (category){
+        case 'appetizer':
+            return recipes.filter(x => { return x["category"] === 'Appetizer'})
+        case 'soup':
+            return recipes.filter(x => { return x["category"] === 'Soup'})
+        case 'main_course':
+            return recipes.filter(x => { return x["category"] === 'Main Dish'})
+        case 'dessert':
+            return recipes.filter(x => { return x["category"] === 'Dessert'})
+        default:
+            return recipes;
+    }
 }
 
 function containsIngredient(recipeIngredients, ownedIngredient) {

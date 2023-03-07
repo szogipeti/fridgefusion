@@ -4,6 +4,7 @@ import App from "./App.vue";
 import {router} from "./router/index.js"
 import "bootstrap/scss/bootstrap.scss"
 import "bootstrap/js/dist/collapse.js"
+import "bootstrap/js/dist/dropdown.js"
 import "../css/app.scss"
 import vueClickOutsideElement from 'vue-click-outside-element'
 

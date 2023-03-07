@@ -25,13 +25,19 @@ body{
     list-style: none;
     background: #117972;
     color: white;
-    padding: 10px;
     border: 1px solid white;
-    width: 55px;
-    height: 55px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.page-link{
+    width: 55px;
+    height: 55px;
+    padding: 25% !important;
+    text-align: center;
+    vertical-align: center;
 }
 
 .prev:hover, .next:hover, .page-item:hover{
