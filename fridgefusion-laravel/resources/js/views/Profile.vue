@@ -10,6 +10,15 @@
             </router-link>
             <button @click="logout">Logout</button>
         </Form>
+        <table>
+            <th>My recipes</th>
+            <tr>
+                <td>
+                    <!--meg kéne jeleníteni az összes recept nevét amit ez a felhasználó csinált.-->
+                </td>
+                <td><button></button></td> <!--Törlés és egy módosítás button kéne-->
+            </tr>
+        </table>
     </div>
 </template>
 
