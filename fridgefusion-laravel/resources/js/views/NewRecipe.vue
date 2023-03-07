@@ -3,37 +3,50 @@
         <clip-loader :size="'100px'" :color="'#117972'"/>
     </div>
     <div v-else class="container-fluid">
-        <form @submit="submitForm">
-            <label for="name">Name:</label>
-            <input type="text" name="name" v-model="name" class="form-control width-100"/>
-            <label for="ingredients">Ingredients:</label>
-            <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :owned-ingredients="ownedIngredients"
-                            :ingredients="ingredients" :measures="measures"/>
-            <label for="instructions">Instructions:</label>
-            <textarea name="instructions" v-model="instructions" class="form-control"></textarea>
-            <label for="category">Category:</label>
-            <select name="category" v-model="category" class="form-control">
-                <option value="appetizer">Appetizer</option>
-                <option value="soup">Soup</option>
-                <option value="main">Main Dish</option>
-                <option value="dessert">Dessert</option>
-            </select>
-            <label for="image">Image URL:</label>
-            <input type="text" name="image" v-model="image" class="form-control"/>
-            <label for="servings">Servings:</label>
-            <div id="servings">
-                <h1>{{ servings }}</h1>
-                <button @click='incServings()'>+</button>
-                <button @click='decServings()'>-</button>
+        <Form @submit="createRecipe" :validation-schema="Schema">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" name="name" v-model="name" class="form-control width-100"/>
+                <error-message name="name"></error-message>
             </div>
-            <label for="totalTime">Total Time (minutes):</label>
-            <div id="totalTime">
-                <h1>{{ totalTime }}</h1>
-                <button @click='incTotalTime()'>+</button>
-                <button @click='decTotalTime()'>-</button>
+            <div class="form-group">
+                <label for="ingredients">Ingredients:</label>
+                <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :owned-ingredients="ownedIngredients"
+                                :ingredients="ingredients" :measures="measures"/>
+                <error-message name="ingredient"></error-message>
             </div>
-            <button type="submit">Create Recipe</button>
-        </form>
+            <div class="form-group">
+                <label for="instructions">Instructions:</label>
+                <textarea name="instructions" v-model="instructions" class="form-control"></textarea>
+                <error-message name="instructions"></error-message>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select name="category" v-model="category" class="form-control">
+                    <option value="appetizer">Appetizer</option>
+                    <option value="soup">Soup</option>
+                    <option value="main">Main Dish</option>
+                    <option value="dessert">Dessert</option>
+                </select>
+                <error-message name="category"></error-message>
+            </div>
+            <div class="form-group">
+                <label for="image">Image URL:</label>
+                <input type="text" name="image" v-model="image" class="form-control"/>
+                <error-message name="image"></error-message>
+            </div>
+            <div class="form-group">
+                <label for="servings">Servings:</label>
+                <input type="number" id="servings" v-model="servings">
+                <error-message name="servings"></error-message>
+            </div>
+            <div class="form-group">
+                <label for="totalTime">Total Time (minutes):</label>
+                <input type="number" id="totalTime" v-model="totalTime">
+                <error-message name="totalTime"></error-message>
+            </div>
+            <input type="submit" value="Create Recipe">
+        </Form>
     </div>
 </template>
 
@@ -42,6 +55,17 @@ import {createApp, onMounted, reactive, ref} from 'vue';
 import IngredientBox from "../components/IngredientBox.vue";
 import axios from "axios";
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
+import {Form,Field,ErrorMessage} from 'vee-validate';
+import * as yup from "yup";
+const Schema = yup.object({
+    name: yup.string().max(50).required(),
+    ownedIngredients: yup.array().required(),
+    instructions: yup.array().required(),
+    category: yup.string().max(25).required(),
+    image: yup.string().max(25).required(),
+    servings: yup.number().required(),
+    totalTime: yup.number().required()
+});
 
 const ownedIngredients = reactive([]);
 const ingredients = reactive([]);
@@ -117,18 +141,8 @@ const deleteIngredient = function (ingredientId){
     ownedIngredients.splice(index, 1)
 }
 
-const incServings = () => {
-    servings.value++
-}
+const createRecipe = async function (){
 
-const decServings = () => {
-    if (servings.value > 1) {
-        servings.value--
-    }
-}
-
-const incTotalTime = () => {
-    totalTime.value++
 }
 
 onMounted(() => {
