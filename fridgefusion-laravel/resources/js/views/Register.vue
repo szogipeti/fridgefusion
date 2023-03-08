@@ -3,20 +3,20 @@
         <h3>Create your Fridge Fusion account</h3>
         <Form @submit="register" :validation-schema="Schema">
             <div class="form-group">
-                <Field type="string" placeholder="Username" name="username" class="form-control"/>
-                <error-message name="username"></error-message>
+                <Field type="string" placeholder="Username" name="username" class="form-control error-message-email"/>
+                <error-message class="error-message mt-3" name="username"></error-message>
             </div>
             <div class="form-group mt-3">
-                <Field type="email" placeholder="E-mail" name="email" class="form-control"/>
-                <error-message name="email"></error-message>
+                <Field type="email" placeholder="E-mail" name="email" class="form-control error-message-email"/>
+                <error-message class="error-message mt-3" name="email"></error-message>
             </div>
             <div class="form-group mt-3">
                 <Field type="password" placeholder="Password" name="password" class="form-control"/>
-                <error-message name="password"></error-message>
+                <error-message class="error-message mt-3" name="password"></error-message>
             </div>
             <div class="form-group mt-3">
                 <Field type="password" placeholder="Confirm Password" name="password_confirmation" class="form-control"/>
-                <error-message name="password"></error-message>
+                <error-message class="error-message mt-3" name="password"></error-message>
             </div>
             <input type="submit" value="Register" class="btn btn-primary mt-3">
         </Form>
@@ -69,5 +69,20 @@ async function register(userData){
 }
 h3{
     text-align: center;
+}
+.error-message{
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+}
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+.error-message-email{
+    margin-top: 10px;
 }
 </style>

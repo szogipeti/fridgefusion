@@ -141,7 +141,7 @@ const deleteIngredient = function (ingredientId){
 const createRecipe = async function (){
 
 }
-
+console.log(createRecipe());
 onMounted(() => {
     getAllMeasure();
     getAllIngredient();
