@@ -214,7 +214,7 @@ const createRecipe = async function (recipe) {
     await http.post("/recipes", recipeData, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token')}});
     await router.push({name: "profile"})
 }
-
+console.log(createRecipe());
 onMounted(() => {
     getUsername();
     getAllMeasure();
