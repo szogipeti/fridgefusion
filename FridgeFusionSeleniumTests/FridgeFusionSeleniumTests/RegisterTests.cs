@@ -27,10 +27,10 @@ namespace FridgeFusionSeleniumTests
             chromeDriver.Quit();
         }
         [TestMethod]
-        public void TestLoginwWithRealUser()
+        public void Registuser()
         {
             IWebElement usernameInput = chromeDriver.FindElement(By.Name("username"));
-            usernameInput.SendKeys("");
+            usernameInput.SendKeys("Aplle12");
 
             IWebElement emailInput = chromeDriver.FindElement(By.Name("email"));
             emailInput.SendKeys("alma@alma.hu");
@@ -38,27 +38,73 @@ namespace FridgeFusionSeleniumTests
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
             passwordInput.SendKeys("Alma123");
 
-            IWebElement passwordInput = chromeDriver.FindElement(By.Name("Confirm-password"));
-            passwordInput.SendKeys("Alma123");
+            IWebElement passwordconfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
+            passwordconfInput.SendKeys("Alma123");
 
-            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn-login"));
-            loginButton.Click();
+            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
+            registerButton.Click();
 
             Assert.AreEqual("\"http://localhost:8881/", chromeDriver.Url);
         }
         [TestMethod]
-        public void TestLoginwWithFakeUser()
+        public void TestRegisterWithBadUsername ()
         {
+            IWebElement usernameInput = chromeDriver.FindElement(By.Name("username"));
+            usernameInput.SendKeys("App");
+
             IWebElement emailInput = chromeDriver.FindElement(By.Name("email"));
-            emailInput.SendKeys("apple@alma.hu");
+            emailInput.SendKeys("alma@alma.hu");
 
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
-            passwordInput.SendKeys("Alma12345");
+            passwordInput.SendKeys("Alma123");
 
-            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn-register"));
-            loginButton.Click();
+            IWebElement passwordconfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
+            passwordconfInput.SendKeys("Alma123");
 
-            Assert.AreEqual("\"http://localhost:8881/login", chromeDriver.Url);
+            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
+            registerButton.Click();
+
+            Assert.AreEqual("\"http://localhost:8881/", chromeDriver.Url);
+        }
+        [TestMethod]
+        public void TestRegisterWithBadEmail()
+        {
+            IWebElement usernameInput = chromeDriver.FindElement(By.Name("username"));
+            usernameInput.SendKeys("Alma73");
+
+            IWebElement emailInput = chromeDriver.FindElement(By.Name("email"));
+            emailInput.SendKeys("alma22.hu");
+
+            IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
+            passwordInput.SendKeys("Alma123");
+
+            IWebElement passwordconfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
+            passwordconfInput.SendKeys("Alma123");
+
+            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
+            registerButton.Click();
+
+            Assert.AreEqual("\"http://localhost:8881/", chromeDriver.Url);
+        }
+        [TestMethod]
+        public void TestRegisterWithBadPassword()
+        {
+            IWebElement usernameInput = chromeDriver.FindElement(By.Name("username"));
+            usernameInput.SendKeys("Alma73");
+
+            IWebElement emailInput = chromeDriver.FindElement(By.Name("email"));
+            emailInput.SendKeys("alma22.hu");
+
+            IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
+            passwordInput.SendKeys("alma123");
+
+            IWebElement passwordconfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
+            passwordconfInput.SendKeys("alma123");
+
+            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
+            registerButton.Click();
+
+            Assert.AreEqual("\"http://localhost:8881/", chromeDriver.Url);
         }
     }
 }
