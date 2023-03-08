@@ -254,7 +254,7 @@ const createRecipe = async function (recipe) {
         serving: recipe.serving,
         ingredients: []
     }
-    for (const instruction of instructions){
+    for (const instruction of recipe.instructions) {
         recipeData.method.push(instruction.name);
     }
     for (const ingredient of recipe.ingredients) {
@@ -264,7 +264,7 @@ const createRecipe = async function (recipe) {
             quantity: ingredient.quantity
         })
     }
-    await axios.put("/api/recipes/" + route.params["id"], recipeData);
+    await axios.put("/api/recipes/" + route.params["id"], recipeData, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
     await router.push({name: "profile"})
 }
 
