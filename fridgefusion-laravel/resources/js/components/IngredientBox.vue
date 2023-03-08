@@ -75,14 +75,14 @@ const {
 })
 
 const getValidMeasures = function () {
+    validMeasures.length = 0;
     for (const validMeasure of props["ingredients"].find(item => item.id === selectedIngredient.id)["validMeasures"]) {
         validMeasures.push(props["measures"].find(item => item.id === validMeasure));
     }
 }
 
 const setSelectedIngredient = function (selectedId) {
-    console.log(props["ownedIngredients"])
-    console.log(selectedIngredient)
+    setSelectedMeasure();
     const ingredient = props["ingredients"].find(item => item.id == selectedId);
     selectedIngredient.id = ingredient.id;
     selectedIngredient.name = ingredient.name;
@@ -90,8 +90,6 @@ const setSelectedIngredient = function (selectedId) {
     selectedIngredient.validMeasures = ingredient.validMeasures;
     getValidMeasures();
     resetSelected.value = true;
-    console.log(props["ownedIngredients"])
-    console.log(selectedIngredient)
 }
 
 const setSelectedMeasure = function (selectedId = -1) {
