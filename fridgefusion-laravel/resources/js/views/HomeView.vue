@@ -6,7 +6,7 @@
         <div v-else class="row">
             <div class="col-12 col-lg-5 ingredient-container">
                 <h4>Your ingredients so far</h4>
-                <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :owned-ingredients="ownedIngredients"
+                <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :value="ownedIngredients"
                                 :ingredients="ingredients" :measures="measures"/>
             </div>
             <div class="col-12 col-lg-7">
@@ -133,8 +133,18 @@ function addIngredient(selectedIngredient, selectedMeasure, quantity) {
         return;
     }
     const ingredient = {
-        ingredient: selectedIngredient,
-        measure: selectedMeasure,
+        ingredient: {
+            id: selectedIngredient.id,
+            name: selectedIngredient.name,
+            category: selectedIngredient.category,
+            validMeasures: selectedIngredient.validMeasures
+        },
+        measure:{
+            id: selectedMeasure.id,
+            name: selectedMeasure.name,
+            standard_measure_id: selectedMeasure.standard_measure_id,
+            conversion_rate: selectedMeasure.conversion_rate
+        },
         quantity: quantity
     };
     let exists = false;

@@ -6,43 +6,45 @@
         <Form @submit="createRecipe" :validation-schema="Schema">
             <div class="form-group">
                 <label class="form-label" for="name">Name:</label>
-                <input type="text" name="name" v-model="name" class="form-control width-100"/>
+                <Field type="text" name="name" id="name" class="form-control width-100" v-model="name"/>
                 <error-message name="name"></error-message>
             </div>
             <div class="form-group">
                 <label class="form-label" for="ingredients">Ingredients:</label>
-                <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :owned-ingredients="ownedIngredients"
-                                :ingredients="ingredients" :measures="measures"/>
+                <ingredient-box data-vv-validate-on="none" @addIngredient="addIngredient"
+                                @deleteIngredient="deleteIngredient" :value="ownedIngredients"
+                                :ingredients="ingredients" :measures="measures" name="ingredients" id="ingredients"/>
                 <error-message name="ingredient"></error-message>
             </div>
             <div class="form-group">
                 <label class="form-label" for="instructions">Instructions:</label>
-                <step-box @addStep="addStep" @deleteStep="deleteStep" :steps="instructions" />
+                <step-box data-vv-validate-on="none" @addStep="addStep" @deleteStep="deleteStep" :value="instructions"
+                          name="instructions" id="instructions"/>
                 <error-message name="instructions"></error-message>
             </div>
             <div class="form-group">
                 <label class="form-label" for="category">Category:</label>
-                <select class="form-select" name="category" v-model="category">
+                <Field class="form-select" name="category" as="select" id="category" v-model="category">
                     <option v-bind:value="'appetizer'">Appetizer</option>
                     <option v-bind:value="'soup'">Soup</option>
                     <option v-bind:value="'main'">Main Dish</option>
                     <option v-bind:value="'dessert'">Dessert</option>
-                </select>
+                </Field>
                 <error-message name="category"></error-message>
             </div>
             <div class="form-group">
                 <label class="form-label" for="image">Image URL:</label>
-                <input class="form-control" type="text" name="image" v-model="image"/>
+                <Field class="form-control" type="text" name="image" id="image" v-model="image"/>
                 <error-message name="image"></error-message>
             </div>
             <div class="form-group">
-                <label class="form-label" for="servings">Servings:</label>
-                <input class="form-control" type="number" id="servings" v-model="servings">
+                <label class="form-label" for="serving">Servings:</label>
+                <Field class="form-control" type="number" id="serving" name="serving" v-model="serving"/>
                 <error-message name="servings"></error-message>
             </div>
             <div class="form-group">
                 <label class="form-label" for="totalTime">Total Time (minutes):</label>
-                <input class="form-control" type="number" id="totalTime" v-model="totalTime">
+                <Field class="form-control" type="number" id="totalTime" name="totalTime" v-model="totalTime"/>
                 <error-message name="totalTime"></error-message>
             </div>
             <input class="btn btn-secondary" type="submit" value="Edit Recipe">
@@ -55,20 +57,40 @@ import {createApp, onMounted, reactive, ref} from 'vue';
 import IngredientBox from "../components/IngredientBox.vue";
 import axios from "axios";
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
-import {Form,Field,ErrorMessage} from 'vee-validate';
+import {Form, Field, ErrorMessage} from 'vee-validate';
 import * as yup from "yup";
-import {useRoute} from 'vue-router';
+import {useRoute, useRouter} from 'vue-router';
 import StepBox from "../components/StepBox.vue";
+import {http} from "../utils/http";
 
 const route = useRoute();
+const router = useRouter();
 
 const Schema = yup.object({
     name: yup.string().max(50).required(),
-    ownedIngredients: yup.array().required(),
-    instructions: yup.array().required(),
+    ownedIngredients:
+        yup.array()
+            .of(
+                yup.object().shape({
+                    ingredient: yup.object().shape({
+                        id: yup.number().required(),
+                    }),
+                    measure: yup.object().shape({
+                        id: yup.number().required()
+                    }),
+                    quantity: yup.number().required()
+                })
+            ),
+    instructions:
+        yup.array()
+            .of(
+                yup.object().shape({
+                    name: yup.string().required()
+                })
+            ).required(),
     category: yup.string().max(25).required(),
     image: yup.string().max(25).required(),
-    servings: yup.number().required(),
+    serving: yup.number().required(),
     totalTime: yup.number().required()
 });
 
@@ -76,12 +98,14 @@ const ownedIngredients = reactive([]);
 const ingredients = reactive([]);
 const measures = reactive([]);
 
+const username = ref('');
+
 const name = ref('')
 const instructions = reactive([])
 const category = ref('appetizer')
 const publisher = ref('')
 const image = ref('')
-const servings = ref(1)
+const serving = ref(1)
 const totalTime = ref(0)
 
 const measuresLoaded = ref(false);
@@ -92,7 +116,7 @@ const recipeLoaded = ref(false)
 const getAllIngredient = async function () {
     const resp = await axios.get("api/ingredients");
     for (const ingredient of resp.data.data) {
-        ingredients.push( ingredient );
+        ingredients.push(ingredient);
     }
     ingredientsLoaded.value = true;
 }
@@ -105,13 +129,13 @@ const getAllMeasure = async function () {
     measuresLoaded.value = true;
 }
 
-const getRecipe = async function (){
-    const resp = (await axios.get("api/recipes/" + route.params["id"] )).data.data;
+const getRecipe = async function () {
+    const resp = (await axios.get("api/recipes/" + route.params["id"])).data.data;
     name.value = resp.name;
-    for (const instruction of resp.method){
-        instructions.push( { name: instruction} );
+    for (const instruction of resp.method) {
+        instructions.push({name: instruction});
     }
-    switch (resp.category){
+    switch (resp.category) {
         case "Appetizer":
             category.value = "appetizer";
             break;
@@ -125,11 +149,10 @@ const getRecipe = async function (){
             category.value = "dessert";
     }
     category.value = resp.category;
-    publisher.value = resp.publisher;
     image.value = resp.image;
     totalTime.value = resp.total_time;
-    servings.value = resp.serving;
-    for (const recipeIngredient of resp.ingredients){
+    serving.value = resp.serving;
+    for (const recipeIngredient of resp.ingredients) {
         const ingredient = await getIngredient(recipeIngredient["ingredient_id"])
         const measure = await getMeasure(recipeIngredient["measure_id"])
         const quantity = recipeIngredient["quantity"]
@@ -142,45 +165,55 @@ const getRecipe = async function (){
     recipeLoaded.value = true;
 }
 
-const getIngredient = async function(id){
+const getIngredient = async function (id) {
     const resp = (await axios.get('api/ingredients/' + id)).data.data;
     return resp;
 }
 
-const getMeasure = async function(id){
+const getMeasure = async function (id) {
     const resp = (await axios.get('api/measures/' + id)).data.data;
     return resp;
 }
 
 
 const addIngredient = function (selectedIngredient, selectedMeasure, quantity) {
-    if(!validateData(selectedIngredient, selectedMeasure, quantity)){
+    if (!validateData(selectedIngredient, selectedMeasure, quantity)) {
         return;
     }
     const ingredient = {
-        ingredient: selectedIngredient,
-        measure: selectedMeasure,
+        ingredient: {
+            id: selectedIngredient.id,
+            name: selectedIngredient.name,
+            category: selectedIngredient.category,
+            validMeasures: selectedIngredient.validMeasures
+        },
+        measure: {
+            id: selectedMeasure.id,
+            name: selectedMeasure.name,
+            standard_measure_id: selectedMeasure.standard_measure_id,
+            conversion_rate: selectedMeasure.conversion_rate
+        },
         quantity: quantity
     };
     let exists = false;
-    for(const index in ownedIngredients){
-        if(ownedIngredients[index].ingredient["id"] === selectedIngredient["id"]){
+    for (const index in ownedIngredients) {
+        if (ownedIngredients[index].ingredient["id"] === selectedIngredient["id"]) {
             ownedIngredients[index] = ingredient;
             exists = true;
             break;
         }
     }
-    if(!exists){
+    if (!exists) {
         ownedIngredients.push(ingredient);
     }
 }
 
-const validateData = function (selectedIngredient, selectedMeasure, quantity){
-    if(selectedIngredient == null || selectedIngredient == undefined){
+const validateData = function (selectedIngredient, selectedMeasure, quantity) {
+    if (selectedIngredient == null || selectedIngredient == undefined) {
         window.alert("Ingredient has not been set!")
         return false;
     }
-    if(selectedMeasure == null || selectedMeasure == undefined){
+    if (selectedMeasure == null || selectedMeasure == undefined) {
         window.alert("Measure has not been set!")
         return false;
     }
@@ -191,24 +224,52 @@ const validateData = function (selectedIngredient, selectedMeasure, quantity){
     return true;
 }
 
-const deleteIngredient = function (ingredientId){
+const deleteIngredient = function (ingredientId) {
     const index = ownedIngredients.findIndex(item => item["ingredient"]["id"] === ingredientId)
     ownedIngredients.splice(index, 1)
 }
 
-const addStep = function (){
-    instructions.push( { name: ''} )
+const addStep = function () {
+    instructions.push({name: ''})
 }
 
-const deleteStep = function (index){
+const deleteStep = function (index) {
     instructions.splice(index, 1)
 }
 
-const createRecipe = async function (){
+async function getUsername() {
+    const userdata = (await http.get("profile", {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})).data
+    username.value = userdata["username"];
+}
 
+const createRecipe = async function (recipe) {
+    console.log(recipe)
+    const recipeData = {
+        name: recipe.name,
+        method: [],
+        category: recipe.category,
+        publisher: username.value,
+        image: recipe.image,
+        total_time: recipe.totalTime,
+        serving: recipe.serving,
+        ingredients: []
+    }
+    for (const instruction of instructions){
+        recipeData.method.push(instruction.name);
+    }
+    for (const ingredient of recipe.ingredients) {
+        recipeData.ingredients.push({
+            ingredient_id: ingredient.ingredient.id,
+            measure_id: ingredient.measure.id,
+            quantity: ingredient.quantity
+        })
+    }
+    await axios.put("/api/recipes/" + route.params["id"], recipeData);
+    await router.push({name: "profile"})
 }
 
 onMounted(() => {
+    getUsername();
     getAllMeasure();
     getAllIngredient();
     getRecipe();

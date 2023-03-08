@@ -1,43 +1,64 @@
 <template>
     <div class="d-flex flex-column justify-content-around m-3">
         <div class="step-container">
-            <div v-for="(step, k) in steps" :key="k" class="step">
-                <input :placeholder="'Step ' + k + 1" class="form-control" type="text" :id="'step-' + k + 1" v-model="step.name">
-                <font-awesome-icon class="icon-btn" @click="deleteStep(k)" icon="fa-solid fa-x"/>
+            <div v-for="(step, k) in value" :key="k" class="step">
+                <input
+                    @blur="handleBlur"
+                       :placeholder="'Step ' + k + 1" class="form-control" type="text" :id="'step-' + k + 1"
+                       v-model="step.name">
+                <font-awesome-icon class="icon-btn" @click="$emit('deleteStep', k)" icon="fa-solid fa-x"/>
             </div>
         </div>
-        <button class="btn" @click="addStep">Add step</button>
+        <button class="btn" @click="$emit('addStep')">Add step</button>
     </div>
 </template>
 
-<script>
-export default {
-    name: "StepBox",
-    props:{
-        steps: Array
-    },
-    methods:{
-        addStep(){
-            this.steps.push({ name: ''})
+<script setup>
+import { toRef } from "vue";
+import { useField } from "vee-validate";
+
+const props = defineProps(
+    {
+        value: {
+            type: Array,
+            default: [ { name: ''} ]
         },
-        deleteStep(index){
-            this.steps.splice(index, 1)
+        name: {
+            type: String,
+            required: true
         }
-    },
-    emits:[
-        'addStep',
-        'deleteStep'
-    ]
+    }
+)
+
+const name = toRef(props, 'name');
+
+const {
+    value: inputValue,
+    errorMessage,
+    handleBlur,
+    handleChange,
+    meta,
+} = useField(name, undefined, {
+    initialValue: props.value
+})
+
+const addStep = function(){
+    value.push({name: ''})
 }
+
+defineEmits([
+    'addStep',
+    'deleteStep'
+])
 </script>
 
 <style scoped>
 
-.step-container{
+.step-container {
     width: 100%;
 }
 
-.step{
+.step {
     width: 100%;
     display: flex;
     align-items: center;
@@ -46,14 +67,14 @@ export default {
     margin-bottom: 10px;
 }
 
-.fa-x{
+.fa-x {
     padding-left: 10px;
     padding-right: 10px;
     margin-left: 10px;
     margin-right: 10px;
 }
 
-input{
+input {
     width: 100%;
     margin-right: 10px;
     padding: 5px;
