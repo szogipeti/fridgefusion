@@ -1,23 +1,21 @@
 <template>
-    <div class="clip-container main" v-if="!ingredientsLoaded || !measuresLoaded">
+    <div class="clip-container main " v-if="!ingredientsLoaded || !measuresLoaded">
         <clip-loader :size="'100px'" :color="'#117972'"/>
     </div>
     <div v-else class="container-fluid">
         <Form @submit="createRecipe" :validation-schema="Schema">
             <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" name="name" v-model="name" class="form-control width-100"/>
+                <input type="text" placeholder="Name" name="name" v-model="name" class="form-control my-2"/>
                 <error-message name="name"></error-message>
             </div>
             <div class="form-group">
-                <label for="ingredients">Ingredients:</label>
                 <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :owned-ingredients="ownedIngredients"
                                 :ingredients="ingredients" :measures="measures"/>
                 <error-message name="ingredient"></error-message>
             </div>
             <div class="form-group">
-                <label for="instructions">Instructions:</label>
-                <textarea name="instructions" v-model="instructions" class="form-control"></textarea>
+                <label>Please use ";" between every step and do not use number for the Steps. the applictaion will auotomaticly put the instructions into a ordered list</label>
+                <textarea name="instructions" placeholder="Instructions" v-model="instructions" class="form-control"></textarea>
                 <error-message name="instructions"></error-message>
             </div>
             <div class="form-group">
@@ -31,8 +29,7 @@
                 <error-message name="category"></error-message>
             </div>
             <div class="form-group">
-                <label for="image">Image URL:</label>
-                <input type="text" name="image" v-model="image" class="form-control"/>
+                <input type="text" placeholder="Image URL:" name="image" v-model="image" class="form-control"/>
                 <error-message name="image"></error-message>
             </div>
             <div class="form-group">
