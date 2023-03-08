@@ -16,7 +16,7 @@ class RecipeController extends Controller
             'name' => $resourceRecipe['name'],
             'method' => Arr::join($resourceRecipe['method'], ';'),
             'category' => $resourceRecipe['category'],
-            'publisher' =>  $resourceRecipe['publisher'],
+            'publisher_id' =>  $resourceRecipe['publisher_id'],
             'image' =>  $resourceRecipe['image'],
             'total_time' =>  $resourceRecipe['total_time'],
             'serving' =>  $resourceRecipe['serving']
