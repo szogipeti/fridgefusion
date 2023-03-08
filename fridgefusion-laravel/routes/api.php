@@ -6,6 +6,7 @@ use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\MeasureController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ Route::controller(RecipeController::class)->group(function (){
     Route::get('/recipes/{id}', 'show')->whereNumber('id')->name('recipes.show');
     Route::middleware(["auth:sanctum"])->post('/recipes', 'store')->name('recipes.store');
     Route::middleware(["auth:sanctum"])->put('/recipes/{id}', 'update')->whereNumber('id')->name('recipes.update');
-    Route::delete('/recipes/{id}', 'destroy')->whereNumber('id')->name('recipes.destroy');
+    Route::middleware(["auth:sanctum"])->delete('/recipes/{id}', 'destroy')->whereNumber('id')->name('recipes.destroy');
 });
 
 Route::controller(IngredientController::class)->group(function (){
@@ -52,3 +53,5 @@ Route::controller(AuthController::class)->group(function (){
     Route::middleware(["auth:sanctum"])->get('/profile', 'users')->name('auth.users');
     Route::middleware(["auth:sanctum"])->post('/logout','logout')->name('auth.logout');
 });
+
+Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
