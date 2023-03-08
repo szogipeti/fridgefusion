@@ -20,6 +20,7 @@
             </div>
             <input type="submit" value="Register" class="mt-3">
         </Form>
+        <h5>Already have an account? <router-link to="/login"><label id="labellog">Login here!</label></router-link></h5>
     </div>
 </template>
 <script setup>
@@ -76,7 +77,7 @@ input{
 #regdiv{
     margin-top: 30px;
     margin-bottom: 40px;
-    background-color: whitesmoke;
+    background-color: white;
     border: 2px solid black;
     box-shadow:10px 10px #18afa5;
 }
@@ -86,19 +87,27 @@ h3{
 input{
     padding-top: 10px;
     padding-bottom: 10px;
-    border: 2px solid black;
+    border: 2px solid #18afa5;
 }
 input:focus{
-    background-color: lightblue;
-    border: 3px solid black;
+    background-color: #18afa5;
+    border: 3px solid #18afa5;
 }
 input[type=submit]{
     width: 70%;
     margin-left: 15%;
+    border: 3px solid #18afa5;
+}
+input[type=submit]:hover{
+    background-color: #18afa5;
 }
 .errdiv {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+
+}
+#labellog{
+    cursor: pointer;
 }
 </style>
