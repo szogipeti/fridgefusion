@@ -6,33 +6,11 @@
         <div v-else class="row">
             <div class="col-12 col-lg-5 ingredient-container">
                 <h4>Your ingredients so far</h4>
-                <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :owned-ingredients="ownedIngredients"
+                <ingredient-box @addIngredient="addIngredient" @deleteIngredient="deleteIngredient" :value="ownedIngredients"
                                 :ingredients="ingredients" :measures="measures"/>
             </div>
             <div class="col-12 col-lg-7">
-                <div class="recipe-container">
-                    <div class="row mb-3">
-                        <div class="col">
-                            <h1>Recipes for you</h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <recipe-card
-                            v-for="recipe in orderRecipes.slice((currentPage - 1) * recipePerPage, currentPage * recipePerPage)"
-                            :key="recipe.id" :name="recipe.name"
-                            :image="recipe.image" :publisher="recipe.publisher" :id="recipe.id"/>
-                    </div>
-                </div>
-                <paginate
-                    :page-count="pageCount"
-                    :prev-text="'Prev'"
-                    :next-text="'Next'"
-                    :container-class="'paginate'"
-                    :page-class="'page-item'"
-                    :prev-class="'prev'"
-                    :next-class="'next'"
-                    :click-handler="navigateToPage"
-                />
+                <recipe-container :recipes="orderRecipes" />
             </div>
         </div>
     </div>
@@ -43,9 +21,9 @@ import axios from "axios";
 import {onMounted, reactive, ref, computed} from "vue";
 import {useRoute} from 'vue-router';
 import IngredientBox from "../components/IngredientBox.vue";
-import RecipeCard from "../components/RecipeCard.vue";
-import Paginate from "vuejs-paginate-next";
+
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
+import RecipeContainer from "../components/RecipeContainer.vue";
 
 const route = useRoute();
 
@@ -72,11 +50,7 @@ const ownedIngredients = reactive([]);
 const ingredients = reactive([]);
 const measures = reactive([]);
 
-const recipePerPage = ref(12);
-const pageCount = computed(() => {
-    return Math.ceil(filterRecipes.value.length / recipePerPage.value)
-});
-const currentPage = ref(1);
+
 
 const recipesLoaded = ref(false);
 const ingredientsLoaded = ref(false);
@@ -133,8 +107,18 @@ function addIngredient(selectedIngredient, selectedMeasure, quantity) {
         return;
     }
     const ingredient = {
-        ingredient: selectedIngredient,
-        measure: selectedMeasure,
+        ingredient: {
+            id: selectedIngredient.id,
+            name: selectedIngredient.name,
+            category: selectedIngredient.category,
+            validMeasures: selectedIngredient.validMeasures
+        },
+        measure:{
+            id: selectedMeasure.id,
+            name: selectedMeasure.name,
+            standard_measure_id: selectedMeasure.standard_measure_id,
+            conversion_rate: selectedMeasure.conversion_rate
+        },
         quantity: quantity
     };
     let exists = false;
@@ -243,10 +227,7 @@ function containsIngredient(recipeIngredients, ownedIngredient) {
     return false;
 }
 
-function navigateToPage(pageNumber) {
-    currentPage.value = pageNumber
-    window.scrollTo(0, 0)
-}
+
 
 onMounted(() => {
     getAllRecipe()

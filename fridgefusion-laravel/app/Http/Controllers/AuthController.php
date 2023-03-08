@@ -17,10 +17,12 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $data = $request->only('email','password');
-        if (Auth::attempt($data)){
-          return  response()->json(new AuthResource(Auth::user(),200));
+        $data = $request->only('email', 'password');
+        if (Auth::attempt($data)) {
+
+            return response()->json(new AuthResource(Auth::user(), 200));
         }
+        return response()->json(["data" => ["message" => "Unsuccessful login"]],401);
     }
 
 

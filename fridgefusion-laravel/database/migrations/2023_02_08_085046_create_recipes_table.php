@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 50);
             $table->text('method');
             $table->string('category', 25);
-            $table->string('publisher', 50);
+            $table->foreignId('publisher_id')->constrained('users');
             $table->string('image', 25);
             $table->integer('total_time')->nullable();
             $table->integer('serving')->nullable();

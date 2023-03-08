@@ -32,7 +32,7 @@
             </div>
             <div class="publisher align-self-end mt-5">
                 <p>Publisher:</p>
-                <p>{{recipe.publisher}}</p>
+                <p>{{user.username}}</p>
             </div>
         </div>
         <div class="col-12 col-lg-6 my-3">
@@ -72,17 +72,21 @@ const ingredients = reactive([])
 const recipeLoaded = ref(false);
 const ingredientsLoaded = ref(false);
 
+const user = reactive({});
+
 const getRecipe = async function(){
     const resp = (await http.get('/recipes/' +  route.params['id'])).data.data;
     recipe.id = resp["id"];
     recipe.name = resp["name"];
     recipe.method = resp["method"];
     recipe.category = resp["category"];
-    recipe.publisher = resp["publisher"];
+    recipe.publisher_id = resp["publisher_id"];
     recipe.image = resp["image"];
     recipe.imageUrl = `img/${recipe["image"]}`
     recipe.total_time = resp["total_time"];
     recipe.serving = resp["serving"];
+
+    await getUserData();
 
     recipeLoaded.value = true;
 
@@ -114,6 +118,13 @@ const createIngredientText = function(ingredient){
         return `${ingredient["ingredient"]["name"]} ${ingredient["measure"]["name"]}`
     }
     return `${ingredient["quantity"]} ${ingredient["measure"]["name"]}(s) of ${ingredient["ingredient"]["name"]}`
+}
+
+async function getUserData() {
+    const userdata = await http.get("users/" + recipe.publisher_id)
+    for (const key in userdata.data.data) {
+        user[key] = userdata.data.data[key]
+    }
 }
 
 onMounted(() => {

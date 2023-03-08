@@ -27,7 +27,7 @@ class RecipeRequest extends FormRequest
             'name' => 'required|max:50',
             'method' => 'required|array',
             'category' => 'required|max:25',
-            'publisher' => 'required|max:50',
+            'publisher_id' => 'required|integer',
             'image' => 'required|max:25',
             'total_time' => 'integer',
             'serving' => 'integer',
