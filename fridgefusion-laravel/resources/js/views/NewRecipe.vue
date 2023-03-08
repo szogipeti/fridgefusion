@@ -99,7 +99,7 @@ const measures = reactive([]);
 
 const instructions = reactive([]);
 
-const username = ref('');
+const user = reactive({});
 
 const measuresLoaded = ref(false);
 const ingredientsLoaded = ref(false);
@@ -182,9 +182,11 @@ const deleteStep = function (index) {
     instructions.splice(index, 1)
 }
 
-async function getUsername() {
-    const userdata = (await http.get("profile", {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})).data
-    username.value = userdata["username"];
+async function getUserData() {
+    const userdata = await http.get("profile",{headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
+    for (const key in userdata.data) {
+        user[key] = userdata.data[key]
+    }
 }
 
 const createRecipe = async function (recipe) {
@@ -193,7 +195,7 @@ const createRecipe = async function (recipe) {
         name: recipe.name,
         method: [],
         category: recipe.category,
-        publisher: username.value,
+        publisher_id: user.id,
         image: recipe.image,
         total_time: recipe.totalTime,
         serving: recipe.serving,
@@ -216,7 +218,7 @@ const createRecipe = async function (recipe) {
 }
 console.log(createRecipe());
 onMounted(() => {
-    getUsername();
+    getUserData();
     getAllMeasure();
     getAllIngredient();
 })
