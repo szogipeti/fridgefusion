@@ -1,24 +1,21 @@
 <template>
     <div id="regdiv" class="bg-opacity-50 mx-auto p-3 rounded">
+        <h3>Create your Fridge Fusion account</h3>
         <Form @submit="register" :validation-schema="Schema">
             <div class="form-group">
-                <label for="username">Username:</label>
-                <Field type="string" name="username" class="form-control"/>
+                <Field type="string" placeholder="Username" name="username" class="form-control"/>
                 <error-message name="username"></error-message>
             </div>
-            <div class="form-group">
-                <label for="email">E-mail:</label>
-                <Field type="email" name="email" class="form-control"/>
+            <div class="form-group mt-3">
+                <Field type="email" placeholder="E-mail" name="email" class="form-control"/>
                 <error-message name="email"></error-message>
             </div>
-            <div class="form-group mt-2">
-                <label for="password">Password:</label>
-                <Field type="password" name="password" class="form-control"/>
+            <div class="form-group mt-3">
+                <Field type="password" placeholder="Password" name="password" class="form-control"/>
                 <error-message name="password"></error-message>
             </div>
-            <div class="form-group mt-2">
-                <label for="password_confirmation">Confirm Password:</label>
-                <Field type="password" name="password_confirmation" class="form-control"/>
+            <div class="form-group mt-3">
+                <Field type="password" placeholder="Confirm Password" name="password_confirmation" class="form-control"/>
                 <error-message name="password"></error-message>
             </div>
             <input type="submit" value="Register" class="btn btn-primary mt-3">
@@ -68,5 +65,9 @@ async function register(userData){
     margin-top: 30px;
     margin-bottom: 40px;
     background-color: #18afa5;
+    border: 2px solid black;
+}
+h3{
+    text-align: center;
 }
 </style>
