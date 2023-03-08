@@ -5,6 +5,8 @@ import Login from "../views/Login.vue";
 import Profile from "../views/Profile.vue";
 import RecipeView from "../views/RecipeView.vue";
 import NewRecipe from "../views/NewRecipe.vue";
+import EditView from "../views/EditView.vue";
+
 import {authGuard} from "./guards/AuthGuard.js";
 
 const routes = [
@@ -52,6 +54,14 @@ const routes = [
         path: '/newrecipe',
         name: 'newrecipe',
         component: NewRecipe,
+        meta: {
+            requiresAuth: true
+        }
+    },
+    {
+        path: '/edit/:id',
+        name: 'edit',
+        component: EditView,
         meta: {
             requiresAuth: true
         }
