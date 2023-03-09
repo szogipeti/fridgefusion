@@ -19,7 +19,7 @@
                 <div class="errdiv"><error-message name="password"></error-message></div>
             </div>
             <input v-if="!isloading" type="submit" value="Register" class="mt-3">
-            <font-awesome-icon v-else class="fa-spin" icon="fa-solid fa-burger" />
+            <font-awesome-icon v-else class="fa-spin fa-2xl" icon="fa-solid fa-burger" />
         </Form>
         <h5>Already have an account? <router-link to="/login"><label id="labellog">Login here!</label></router-link></h5>
     </div>
@@ -119,5 +119,6 @@ input[type=submit]:hover{
 }
 .fa-spin{
     margin-left: 50%;
+    margin-top: 10px;
 }
 </style>
