@@ -27,7 +27,7 @@ namespace FridgeFusionSeleniumTests
             chromeDriver.Quit();
         }
         [TestMethod]
-        public void TestLogin() 
+        public void TestLoginwWithRealUser() 
         {
             IWebElement emailInput = chromeDriver.FindElement(By.Name("email"));
             emailInput.SendKeys("alma@alma.hu");
@@ -38,12 +38,35 @@ namespace FridgeFusionSeleniumTests
             IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn-login"));
             loginButton.Click();
 
- 
-            WebDriverWait wait = new WebDriverWait(chromeDriver, TimeSpan.FromSeconds(10));
-            wait.Until(ExpectedConditions.UrlContains("/dashboard"));
-
-
             Assert.AreEqual("\"http://localhost:8881/", chromeDriver.Url);
+        }
+        [TestMethod]
+        public void TestLoginwWithFakeUsername()
+        {
+            IWebElement emailInput = chromeDriver.FindElement(By.Name("email"));
+            emailInput.SendKeys("apple@alma.hu");
+
+            IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
+            passwordInput.SendKeys("Alma12345");
+
+            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn-login"));
+            loginButton.Click();
+
+            Assert.AreEqual("\"http://localhost:8881/login", chromeDriver.Url);
+        }
+        [TestMethod]
+        public void TestLoginwWithFakePassword()
+        {
+            IWebElement emailInput = chromeDriver.FindElement(By.Name("email"));
+            emailInput.SendKeys("apple@alma.hu");
+
+            IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
+            passwordInput.SendKeys("Alma12345");
+
+            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn-login"));
+            loginButton.Click();
+
+            Assert.AreEqual("\"http://localhost:8881/login", chromeDriver.Url);
         }
     }
 }

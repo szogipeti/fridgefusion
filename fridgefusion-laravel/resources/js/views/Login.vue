@@ -11,10 +11,10 @@
                 <Field type="password" name="password" class="form-control"/>
                 <error-message name="password"></error-message>
             </div>
-            <input type="submit" value="Login" class="btn btn-primary mt-3">
+            <button type="submit" class="btn btn-primary mt-3">Login</button>
+            <div class="alert alert-danger" v-if="error"> {{ error }}</div>
             <label id="label-text">Don't have an account yet?</label>
             <router-link to="/register"><label id="label-reg">Register here</label></router-link>
-
         </Form>
     </div>
 </template>
@@ -33,7 +33,6 @@ const Schema = yup.object({
 });
 
 const error = ref(null);
-const e = "";
 async function login(userData) {
     try {
         const response = await http.post('login', userData);
@@ -46,8 +45,7 @@ async function login(userData) {
             });
         }
     } catch (e) {
-        console.log(e.response.data.data.message);
+        error.value = e.response.data.data.message;
     }
 }
-
 </script>
