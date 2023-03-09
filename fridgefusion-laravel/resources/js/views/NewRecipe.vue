@@ -212,8 +212,6 @@ const createRecipe = function (recipe) {
             quantity: ingredient.quantity
         })
     }
-    axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
-
     http.post("/recipes", recipeData, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token')}});
     router.push({name: "profile"})
 }

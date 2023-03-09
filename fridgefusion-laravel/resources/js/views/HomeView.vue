@@ -18,10 +18,10 @@
 </template>
 
 <script setup>
-import axios from "axios";
 import {onMounted, reactive, ref, computed} from "vue";
 import {useRoute} from 'vue-router';
 import IngredientBox from "../components/IngredientBox.vue";
+import {http} from "../utils/http";
 
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import RecipeContainer from "../components/RecipeContainer.vue";
@@ -80,7 +80,7 @@ function sortByMatchingIngredients(recipeA, recipeB){
 }
 
 async function getAllRecipe() {
-    const resp = await axios.get('api/recipes');
+    const resp = await http.get('recipes');
     for (const recipe of resp.data.data) {
         recipes.push(recipe);
     }
@@ -88,7 +88,7 @@ async function getAllRecipe() {
 }
 
 async function getAllIngredient() {
-    const resp = await axios.get("api/ingredients");
+    const resp = await http.get("ingredients");
     for (const ingredient of resp.data.data) {
         ingredients.push(ingredient);
     }
@@ -96,7 +96,7 @@ async function getAllIngredient() {
 }
 
 async function getAllMeasure() {
-    const resp = await axios.get("api/measures");
+    const resp = await http.get("measures");
     for (const measure of resp.data.data) {
         measures.push(measure);
     }

@@ -25,7 +25,7 @@
     </div>
 </template>
 <script setup>
-import {reactive,ref} from 'vue';
+import {ref} from 'vue';
 import {http} from '../utils/http'
 import {useRouter} from "vue-router";
 import {Form,Field,ErrorMessage} from 'vee-validate';

@@ -53,9 +53,8 @@
 </template>
 
 <script setup>
-import {createApp, onMounted, reactive, ref} from 'vue';
+import {onMounted, reactive, ref} from 'vue';
 import IngredientBox from "../components/IngredientBox.vue";
-import axios from "axios";
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import {Form, Field, ErrorMessage} from 'vee-validate';
 import * as yup from "yup";
@@ -166,12 +165,12 @@ const getRecipe = async function () {
 }
 
 const getIngredient = async function (id) {
-    const resp = (await axios.get('api/ingredients/' + id)).data.data;
+    const resp = (await http.get('ingredients/' + id)).data.data;
     return resp;
 }
 
 const getMeasure = async function (id) {
-    const resp = (await axios.get('api/measures/' + id)).data.data;
+    const resp = (await http.get('measures/' + id)).data.data;
     return resp;
 }
 
@@ -265,7 +264,7 @@ const createRecipe = function (recipe) {
             quantity: ingredient.quantity
         })
     }
-    axios.put("/api/recipes/" + route.params["id"], recipeData, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
+    http.put("/recipes/" + route.params["id"], recipeData, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
     router.push({name: "profile"})
 }
 

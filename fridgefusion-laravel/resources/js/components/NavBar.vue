@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import {useLoggedInStore} from "../store/isLoggedIn.js";
+import {useLoggedInStore} from "../stores/isLoggedIn.js";
 const isLoggedInStore = useLoggedInStore();
 </script>
 
