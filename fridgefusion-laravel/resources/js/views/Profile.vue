@@ -10,15 +10,15 @@
                     <h1>Profile</h1>
                     <p>Username: {{ user.username }}</p>
                     <p>Email: {{ user.email }}</p>
-                    <router-link to="/newrecipe">
-                        <button>Make new recipe</button>
+                    <router-link id="newrecipe" to="/newrecipe">
+                        Make new recipe
                     </router-link>
-                    <button @click="logout">Logout</button>
+                    <button @click="logout" id="logout">Logout</button>
                 </Form>
             </div>
             <div class="col-8">
                 <h2 class="my-3">Your recipes</h2>
-                <recipe-container :recipes="recipes" :can-be-edited="true" />
+                <recipe-container :recipes="recipes.sort(sortByName)" :can-be-edited="true" />
             </div>
         </div>
     </div>
@@ -62,6 +62,16 @@ const getUserRecipes = async function (){
         }
     }
     recipesLoaded.value = true;
+}
+
+const sortByName = function (a, b){
+    if(a.name < b.name){
+        return -1;
+    }
+    if(a.name > b.name){
+        return 1;
+    }
+    return 0;
 }
 
 onMounted(() => {
