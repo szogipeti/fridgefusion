@@ -1,5 +1,9 @@
 # Fridge Fusion - Test Documentation
 
+This is the Testing Documentation of Fridge Fusion. The documentation contains unit tests for the API, selenium tests
+for the features and displays, and manual tests for every other case. The unit tests were made with Laravel's built-in
+testing. The selenium tests were done in c# with .Net Core 7.
+
 ## API Tests
 
 ### Recipe API
@@ -13,6 +17,7 @@
 | test_delete_recipe  | Send Delete Request to API and delete selected Recipe | Database and API is running on Docker;<br/> Database migrated and seeded | 1. Gets Access token of `gastroworkshop` user <br/> 2. Finds selected Recipe <br/>3. Sends DELETE Request to `http://localhost:8881/api/recipes/1` and bearer access token in header                 | Response status is 200; <br/> First Recipe is missing from Database                                     |  &check;  | Szögi Péter | 2023. 03. 02. |
 
 #### RECIPE1
+
 ```php
 "name" => "Alma",
 "method" => [
@@ -163,7 +168,7 @@
 | RECIPE1 | Baked Brie | gastroworkshop | Array with a length of 3          | Appetizer | 5.jpg     | 8        | 15         |
 | RECIPE2 | Apple      | *automatic*    | Array with one item: `First step` | Appetizer | 9.jpg     | 1        | 10         |
 | RECIPE2 | Pear       | *automatic*    | Array with one item: `First step` | Appetizer | 9.jpg     | 1        | 10         |
- 
+
 #### Ingredients
 
 | Key         | Recipe  | Ingredient        | Measure    | Quantity |
