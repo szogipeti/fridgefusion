@@ -19,10 +19,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::controller(RecipeController::class)->group(function (){
     Route::get('/recipes', 'index')->name('recipes.index');
     Route::get('/recipes/{id}', 'show')->whereNumber('id')->name('recipes.show');
@@ -34,17 +30,11 @@ Route::controller(RecipeController::class)->group(function (){
 Route::controller(IngredientController::class)->group(function (){
     Route::get('/ingredients', 'index')->name('ingredients.index');
     Route::get('/ingredients/{id}', 'show')->whereNumber('id')->name('ingredients.show');
-    Route::post('/ingredients', 'store')->name('ingredients.store');
-    Route::put('/ingredients/{id}', 'update')->whereNumber('id')->name('ingredients.update');
-    Route::delete('/ingredients/{id}', 'destroy')->whereNumber('id')->name('ingredients.destroy');
 });
 
 Route::controller(MeasureController::class)->group(function (){
     Route::get('/measures', 'index')->name('measures.index');
     Route::get('/measures/{id}', 'show')->whereNumber('id')->name('measures.show');
-    Route::post('/measures', 'store')->name('measures.store');
-    Route::put('/measures/{id}', 'update')->whereNumber('id')->name('measures.update');
-    Route::delete('/measures/{id}', 'destroy')->whereNumber('id')->name('measures.destroy');
 });
 
 Route::controller(AuthController::class)->group(function (){

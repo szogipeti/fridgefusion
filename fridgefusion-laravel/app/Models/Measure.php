@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Measure extends Model
 {
-    protected $fillable = ['name', 'standard_measure', 'conversion_rate'];
+
 }

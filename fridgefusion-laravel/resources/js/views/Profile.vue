@@ -26,13 +26,13 @@
 <script setup>
 import {onMounted, reactive, ref} from 'vue';
 import {useRouter} from 'vue-router';
-import {Form, Field} from 'vee-validate';
+import {Form} from 'vee-validate';
 import {http} from "../utils/http";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import axios from "axios";
 import RecipeContainer from "../components/RecipeContainer.vue";
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
-import {useLoggedInStore} from "../store/isLoggedIn.js";
+import {useLoggedInStore} from "../stores/isLoggedIn.js";
 
 const isLoggedInStore = useLoggedInStore();
 

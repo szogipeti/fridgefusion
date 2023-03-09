@@ -61,9 +61,6 @@ a:link, a:visited, a:hover, a:active {
     color: white;
 }
 
-.quick-links-container{
-    border-bottom: 1px solid white;
-}
 @media only screen and (max-width: 768px){
     .social-media a{
         font-size: 1rem;

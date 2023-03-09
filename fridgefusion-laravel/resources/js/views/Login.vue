@@ -18,12 +18,12 @@
 </template>
 
 <script setup>
-import {reactive, ref} from 'vue';
-import {http} from '@/utils/http'
+import {ref} from 'vue';
+import {http} from '../utils/http'
 import {useRouter} from "vue-router";
 import {Form, Field, ErrorMessage} from 'vee-validate';
 import * as yup from "yup"
-import {useLoggedInStore} from "../store/isLoggedIn.js";
+import {useLoggedInStore} from "../stores/isLoggedIn.js";
 
 const isLoggedInStore = useLoggedInStore();
 
