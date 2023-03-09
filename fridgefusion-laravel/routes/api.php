@@ -22,7 +22,7 @@ use App\Http\Controllers\UserController;
 Route::controller(RecipeController::class)->group(function (){
     Route::get('/recipes', 'index')->name('recipes.index');
     Route::get('/recipes/{id}', 'show')->whereNumber('id')->name('recipes.show');
-    Route::middleware(["auth:sanctum"])->post('/recipes', 'stores')->name('recipes.stores');
+    Route::middleware(["auth:sanctum"])->post('/recipes', 'store')->name('recipes.store');
     Route::middleware(["auth:sanctum"])->put('/recipes/{id}', 'update')->whereNumber('id')->name('recipes.update');
     Route::middleware(["auth:sanctum"])->delete('/recipes/{id}', 'destroy')->whereNumber('id')->name('recipes.destroy');
 });
