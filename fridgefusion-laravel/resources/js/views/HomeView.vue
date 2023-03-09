@@ -136,11 +136,11 @@ function addIngredient(selectedIngredient, selectedMeasure, quantity) {
 }
 
 function validateData(selectedIngredient, selectedMeasure, quantity){
-    if(selectedIngredient == null || selectedIngredient == undefined){
+    if(selectedIngredient.name === undefined){
         window.alert("Ingredient has not been set!")
         return false;
     }
-    if(selectedMeasure == null || selectedMeasure == undefined){
+    if(selectedMeasure.name === undefined){
         window.alert("Measure has not been set!")
         return false;
     }

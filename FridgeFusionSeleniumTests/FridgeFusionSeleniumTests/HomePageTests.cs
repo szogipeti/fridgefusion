@@ -19,8 +19,8 @@ public class HomePageTests
     [TestMethod]
     public void TestHomePageLoad()
     {
-        Assert.AreEqual("Recipes for you", chromeDriver.FindElement(By.CssSelector("h1:first-child")).Text);
-        Assert.AreEqual("Your ingredients so far", chromeDriver.FindElement(By.CssSelector("h4:first-child")).Text);
+        Assert.AreEqual("Recipes for you", chromeDriver.FindElement(By.CssSelector("h1")).Text);
+        Assert.AreEqual("Your ingredients so far", chromeDriver.FindElement(By.CssSelector("h4")).Text);
     }
     
     [TestMethod]
@@ -111,7 +111,7 @@ public class HomePageTests
         SelectToTasteMeasure();
         chromeDriver.FindElement(By.CssSelector(".ingredient-box .btn")).Click();
         Assert.AreEqual("Beef Stroganoff",
-        chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .card-title")).Text);
+        chromeDriver.FindElement(By.CssSelector(".recipe-container .row:first-child .card-title")).Text);
     }
 
     [TestMethod]
@@ -132,9 +132,9 @@ public class HomePageTests
         chromeDriver.FindElement(By.CssSelector(".ingredient-box .btn")).Click();
         
         Assert.AreEqual("Beef Stroganoff",
-            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .card-title")).Text);
+            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:first-child .card-title")).Text);
         Assert.AreEqual("Stuffed Mushrooms",
-            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .col-12:nth-child(2) .card-title")).Text);
+            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:first-child .col-12:nth-child(2) .card-title")).Text);
     }
 
     private void SelectGramMeasure()
@@ -164,9 +164,9 @@ public class HomePageTests
         chromeDriver.FindElement(By.CssSelector(".ingredient-box .btn")).Click();
         
         Assert.AreEqual("Beef Stew",
-            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .card-title")).Text);
+            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:first-child .card-title")).Text);
         Assert.AreEqual("Beef Stir Fry",
-            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) div:nth-child(3) .card-title")).Text);
+            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:first-child div:nth-child(3) .card-title")).Text);
     }
 
     [TestMethod]
@@ -174,10 +174,10 @@ public class HomePageTests
     {
         AddIngredientToTaste();
         Assert.AreEqual("Banana Bread",
-            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .card-title")).Text);
+            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:first-child .card-title")).Text);
         chromeDriver.FindElement(By.CssSelector(".fa-x")).Click();
         Assert.AreEqual("Apple Pie",
-            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .card-title")).Text);
+            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:first-child .card-title")).Text);
     }
 
     [TestMethod]
@@ -193,9 +193,9 @@ public class HomePageTests
         chromeDriver.FindElement(By.CssSelector(".ingredient-box .btn")).Click();
         
         Assert.AreEqual("Blueberry Pie",
-            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .card-title")).Text);
+            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:first-child .card-title")).Text);
         Assert.AreEqual("Blueberry Pie",
-            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:nth-child(2) div:nth-child(2) .card-title")).Text);
+            chromeDriver.FindElement(By.CssSelector(".recipe-container .row:first-child div:nth-child(2) .card-title")).Text);
     }
     
     [TestCleanup]

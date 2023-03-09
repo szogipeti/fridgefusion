@@ -31,3 +31,4 @@ Homestead.json
 bin/
 obj/
 .vs/
+*.sln.DotSettings.user

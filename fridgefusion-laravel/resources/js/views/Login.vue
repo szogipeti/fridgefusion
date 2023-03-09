@@ -12,7 +12,7 @@
                 <error-message name="password"></error-message>
             </div>
             <button type="submit" class="btn btn-primary mt-3">Login</button>
-            <div class="alert alert-danger" v-if="error"> {{ error }}</div>
+            <div id="error" class="alert alert-danger" v-if="error"> {{ error }}</div>
             <label id="label-text">Don't have an account yet?</label>
             <router-link to="/register"><label id="label-reg">Register here</label></router-link>
         </Form>
