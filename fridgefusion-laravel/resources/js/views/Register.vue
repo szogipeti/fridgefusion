@@ -42,10 +42,10 @@ const Schema = yup.object({
 
 const error = ref(null);
 async function register(userData) {
+    isloading.value = true;
     try
     {
         const response = await http.post('register', userData);
-        isloading.value = true;;
         router.push({name: 'login'});
     } catch(e){
         error.value = e.response.data.message;
