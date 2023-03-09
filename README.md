@@ -1,3 +1,7 @@
+```{=tex}
+\chapter{ECMAScript}
+```
+
 # Fridge Fusion
 
 Why choose us?
@@ -129,6 +133,10 @@ Each time you add an ingredient the displayed recipes can change in order, depen
 recipe contains. Moreover, the amount of the given ingredients can also change the order of recipes. This way you can "
 get rid of" any ingredient you have too much at home. If you change your mind you can also delete any ingredient and the
 recipes will refresh.
+
+```{=tex}
+\pagebreak
+```
 
 ### Creating, editing and deleting your recipes
 

@@ -1,3 +1,7 @@
+```{=tex}
+\chapter{ECMAScript}
+```
+
 # Fridge Fusion - Developer Documentation
 
 Fridge Fusion is a website for helping people make recipes from their owned ingredients.
@@ -19,6 +23,10 @@ Our team consists of three ambitious student: Dénes Donát, Szögi Péter and V
 
 For the design we have decided to keep everything simple. We chose two main colors: a greenish blue, and slightly dim
 red. These colors make the website look modern and straightforward.
+
+```{=tex}
+\pagebreak
+```
 
 ## Database
 
@@ -44,6 +52,10 @@ Schema::create('users', function (Blueprint $table) {
     $table->rememberToken();
     $table->timestamps();
 });
+```
+
+```{=tex}
+\pagebreak
 ```
 
 #### recipes
@@ -77,6 +89,10 @@ Schema::create('recipes', function (Blueprint $table) {
 });
 ```
 
+```{=tex}
+\pagebreak
+```
+
 #### categories
 
 | Key     | Name          | Data Type       | Description                | Restrictions   |
@@ -94,6 +110,10 @@ Schema::create('categories', function (Blueprint $table) {
 	$table->string('name', 50);
 	$table->timestamps();
 });
+```
+
+```{=tex}
+\pagebreak
 ```
 
 #### ingredients
@@ -117,6 +137,10 @@ Schema::create('ingredients', function (Blueprint $table) {
 });
 ``` 
 
+```{=tex}
+\pagebreak
+```
+
 #### measures
 
 | Key     | Name                | Data Type       | Description                                          | Restrictions   |
@@ -138,6 +162,10 @@ Schema::create('measures', function (Blueprint $table) {
 	$table->double('conversion_rate');
 	$table->timestamps();
 });
+```
+
+```{=tex}
+\pagebreak
 ```
 
 #### made_from
@@ -163,6 +191,10 @@ Schema::create('made_from', function (Blueprint $table) {
 });
 ```
 
+```{=tex}
+\pagebreak
+```
+
 #### valid_measures
 
 | Key                     | Name          | Data Type       | Description                | Restrictions |
@@ -182,7 +214,9 @@ Schema::create('valid_measures', function (Blueprint $table) {
 });
 ```
 
+```{=tex}
 \pagebreak
+```
 
 ## Rest API
 
@@ -215,6 +249,10 @@ Schema::create('valid_measures', function (Blueprint $table) {
     - ingredient_id
     - measure_id
     - quantity
+
+```{=tex}
+\pagebreak
+```
 
 ### Ingredient
 
@@ -249,6 +287,10 @@ Schema::create('valid_measures', function (Blueprint $table) {
 - name
 - standard_measure_id
 - conversion_rate
+
+```{=tex}
+\pagebreak
+```
 
 ### User
 
