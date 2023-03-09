@@ -144,3 +144,43 @@
 | ADDED_INGREDIENT2 | INGREDIENT2 | MEASURE2 | 0        |
 | ADDED_INGREDIENT3 | INGREDIENT3 | MEASURE2 | 0        |
 | ADDED_INGREDIENT4 | INGREDIENT4 | MEASURE2 | 0        |
+
+## Manual Tests
+
+| Name              | Description                                         | Prerequisites                                                                                                                                                                               | Steps                                                                                                                                                                              | Expected Result                                                  | Success | Author      | Date          |
+|-------------------|-----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|---------|-------------|---------------|
+| RecipeDetailsTest | Display details of Recipe when clicking Recipe card | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> Home page loaded                                                            | 1. Click first Recipe in Recipe container (named `Baked Brie`)                                                                                                                     | All information regarding `RECIPE1` is displayed                 | &check; | Szögi Péter | 2023. 03. 02. |
+| RecipeCreateTest  | Create new Recipe                                   | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> User logged in                                                              | 1. Navigate to the Profile page<br/> 2. Click `Make new recipe` button <br/> 3. Fill in form with `RECIPE2`<br/> 4. Click the `Create Recipe` button                               | `RECIPE2` is displayed on the profile and home page              | &check; | Szögi Péter | 2023. 03. 09. |
+| RecipeEditTest    | Edit existing Recipe                                | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> User logged in <br/> User has at least one Recipe (for instance: `RECIPE2`) | 1. Navigate to the Profile page <br/> 2. Click the edit button under `RECIPE2` card (pen and paper icon)<br/>3. Fill in form with `RECIPE3`<br/> 4. Click the `Edit Recipe` button | `RECIPE2` is now displayed as `RECIPE3` at profile and home page | &check; | Szögi Péter | 2023. 03. 09. |
+| RecipeDeleteTest  | Delete existing Recipe                              | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> User logged in <br/> User has at least one Recipe (for instance: `RECIPE3`) | 1. Navigate to the Profile page <br/> 2. Click the delete button under `RECIPE3` card (trashcan)                                                                                   | `RECIPE3` is now missing from profile and home page              | &check; | Szögi Péter | 2023. 03. 09. |
+
+### Used Data
+
+#### Recipes
+
+| Key     | Name       | Publisher      | Steps                             | Category  | Image URL | Servings | Total Time |
+|---------|------------|----------------|-----------------------------------|-----------|-----------|----------|------------|
+| RECIPE1 | Baked Brie | gastroworkshop | Array with a length of 3          | Appetizer | 5.jpg     | 8        | 15         |
+| RECIPE2 | Apple      | *automatic*    | Array with one item: `First step` | Appetizer | 9.jpg     | 1        | 10         |
+| RECIPE2 | Pear       | *automatic*    | Array with one item: `First step` | Appetizer | 9.jpg     | 1        | 10         |
+ 
+#### Ingredients
+
+| Key         | Recipe  | Ingredient        | Measure    | Quantity |
+|-------------|---------|-------------------|------------|----------|
+| INGREDIENT1 | RECIPE1 | Brie              | gram       | 370      |
+| INGREDIENT2 | RECIPE1 | Thyme leaf        | teaspoon   | 0.5      |
+| INGREDIENT3 | RECIPE1 | Rosemary leaf     | teaspoon   | 0.5      |
+| INGREDIENT4 | RECIPE1 | Honey             | tablespoon | 2        |
+| INGREDIENT5 | RECIPE1 | Salt              | to taste   |          |
+| INGREDIENT6 | RECIPE2 | All-purpose flour | to taste   |          |
+
+#### Steps
+
+### Displaying Recipe Information
+
+### Recipe Creating
+
+### Recipe Editing
+
+### Recipe Deleting
