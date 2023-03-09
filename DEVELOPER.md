@@ -1,5 +1,25 @@
 # Fridge Fusion - Developer Documentation
 
+Fridge Fusion is a website for helping people make recipes from their owned ingredients.
+
+The backend containing the API
+was done with Laravel. The API controllers, request and resources are found in the Http folder, and the models in the
+Models folder, both of these in the app folder. The API routes are in the `api.php` file located in the routes folder.
+Everything connecting to the database is in the database folder. It
+includes the migrations in the migration folder, and the seeders in the seeder folder. The images are stored
+in `storage/app/img` from where it is linked to the public folder. The unit tests are found in the tests folder. Every
+configuration file can be found in the config folder.
+
+The fronted was done with Vue.js. All the files are located inside the resources folder. Inside the css folder we have
+the global styles in `app.scss`. In the views folder we have our only page, `welcome.blade.php` which inherits
+the `main.blade.php` file in the layouts folder. All Vue.js files are located inside the js folder. These include the
+components, router, stores, utils and views, all of it in its respective folder.
+
+Our team consists of three ambitious student: Dénes Donát, Szögi Péter and Vastag Krisztián
+
+For the design we have decided to keep everything simple. We chose two main colors: a greenish blue, and slightly dim
+red. These colors make the website look modern and straightforward.
+
 ## Database
 
 ### Tables
