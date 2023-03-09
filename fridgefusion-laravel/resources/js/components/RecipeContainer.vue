@@ -1,27 +1,28 @@
 <template>
     <div class="recipe-container">
-        <div class="row mb-3">
-            <div class="col">
-                <h1>Recipes for you</h1>
-            </div>
-        </div>
-        <div class="row">
-            <recipe-card
+        <div class="row recipe-box">
+            <h3 v-if="recipes.length === 0" class="text-center m-auto">Seems like there are no recipes here.</h3>
+            <recipe-card v-else
                 v-for="recipe in recipes.slice((currentPage - 1) * recipePerPage, currentPage * recipePerPage)"
                 :key="recipe.id" :name="recipe.name"
-                :image="recipe.image" :publisher="recipe.publisher" :id="recipe.id"/>
+                :image="recipe.image" :publisher-id="recipe.publisher_id" :id="recipe.id" :can-be-edited="canBeEdited"/>
+        </div>
+        <div class="row">
+            <div class="col">
+                <paginate
+                    :page-count="pageCount"
+                    :prev-text="'Prev'"
+                    :next-text="'Next'"
+                    :container-class="'paginate'"
+                    :page-class="'page-item'"
+                    :prev-class="'prev'"
+                    :next-class="'next'"
+                    :click-handler="navigateToPage"
+                />
+            </div>
         </div>
     </div>
-    <paginate
-        :page-count="pageCount"
-        :prev-text="'Prev'"
-        :next-text="'Next'"
-        :container-class="'paginate'"
-        :page-class="'page-item'"
-        :prev-class="'prev'"
-        :next-class="'next'"
-        :click-handler="navigateToPage"
-    />
+
 </template>
 
 <script setup>
@@ -36,7 +37,11 @@ const pageCount = computed(() => {
 const currentPage = ref(1);
 
 const props = defineProps({
-    recipes: []
+    recipes: [],
+    canBeEdited: {
+        type: Boolean,
+        default: false
+    }
 })
 
 function navigateToPage(pageNumber) {
@@ -47,5 +52,7 @@ function navigateToPage(pageNumber) {
 </script>
 
 <style scoped>
-
+.recipe-box{
+    min-height: 300px;
+}
 </style>

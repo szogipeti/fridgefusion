@@ -1,36 +1,63 @@
 <template>
     <div class="col-12 col-md-6">
-        <router-link :to="{ name: 'recipe', params: { id: this.id }}">
             <div class="card">
-                <img v-bind:src="this.imgSrc" alt="...">
-                <div class="card-body">
-                    <h6 class="card-subtitle">{{publisher}}</h6>
-                    <h5 class="card-title">{{name}}</h5>
+                <router-link :to="{ name: 'recipe', params: { id: props.id }}">
+                    <img v-bind:src="imgSrc" alt="...">
+                    <div class="card-body">
+                        <h6 class="card-subtitle">{{publisher.username}}</h6>
+                        <h5 class="card-title">{{props.name}}</h5>
+                    </div>
+                </router-link>
+                <div v-if="canBeEdited" class="d-flex align-items-center justify-content-between mt-2">
+                    <router-link :to="{ name: 'edit', params: { id: props.id } }">
+                        <font-awesome-icon icon="fa-regular fa-pen-to-square" />
+                    </router-link>
+                    <font-awesome-icon @click="deleteRecipe" icon="fa-solid fa-trash" />
                 </div>
             </div>
-        </router-link>
     </div>
 </template>
 
-<script>
+<script setup>
 import {RouterLink} from 'vue-router'
-export default {
-    name: "RecipeCard",
-    components:{
-        RouterLink
-    },
-    props:{
-        id: Number,
-        name: String,
-        image: String,
-        publisher: String
-    },
-    computed:{
-        imgSrc(){
-            return `/img/${this.image}`
-        },
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {http} from "../utils/http";
+import {useRouter} from 'vue-router';
+import {computed, onMounted, reactive} from "vue";
+
+const router = useRouter();
+
+const publisher = reactive({});
+
+const props = defineProps({
+    id: Number,
+    name: String,
+    image: String,
+    publisherId: Number,
+    canBeEdited: {
+        type: Boolean,
+        default: false
     }
+})
+
+const imgSrc = computed(() =>{
+    return `/img/${props.image}`
+})
+
+const getPublisher = async function (){
+    const resp = (await http.get('users/' + props.publisherId)).data.data
+    publisher.id = resp.id;
+    publisher.username = resp.username;
 }
+
+const deleteRecipe = function(){
+    http.delete('recipes/' + props.id, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } })
+    router.go();
+}
+
+onMounted(() => {
+    getPublisher();
+})
 </script>
 
 <style scoped>
@@ -51,7 +78,7 @@ a:hover .card-title{
 
 .card{
     height: 250px;
-    margin: 20px 10px;
+    margin: 20px 10px 50px 10px;
     display: flex;
     justify-content: space-around;
     border: none;
@@ -67,6 +94,11 @@ img{
     object-fit: cover;
     object-position: center;
     border-radius: 0;
+    width: 100%;
+}
+
+.fa-trash{
+    cursor: pointer;
 }
 
 </style>

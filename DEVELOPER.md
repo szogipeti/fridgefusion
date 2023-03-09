@@ -4,20 +4,42 @@
 
 ### Tables
 
+#### users
+
+| Key     | Name              | Data Type       | Description                     | Restrictions |
+|---------|-------------------|-----------------|---------------------------------|--------------|
+| primary | id                | Unsigned Bigint | Unique Key                      | Unique       |
+|         | username          | String          | Username of User                | Unique       |
+|         | email             | String          | Email of User                   | Unique       |
+|         | email_verified_at | Timestamp       | Verification timestamp of email | Nullable     |
+|         | password          | String          | Hashed code of password         |              |
+
+```php
+Schema::create('users', function (Blueprint $table) {
+    $table->id();
+    $table->string('username')->unique();
+    $table->string('email')->unique();
+    $table->timestamp('email_verified_at')->nullable();
+    $table->string('password');
+    $table->rememberToken();
+    $table->timestamps();
+});
+```
+
 #### recipes
 
-| Key     | Name       | Data Type       | Description                                       | Restrictions   |
-|---------|------------|-----------------|---------------------------------------------------|----------------|
-| primary | id         | Unsigned Bigint | Unique Key                                        | Unique         |
-|         | name       | String          | Name of Recipe                                    | Max-length: 50 |
-|         | method     | Text            | Steps of making Recipe, separated with `;`        |                |
-|         | category   | String          | Category of Recipe                                | Max-length: 25 |
-|         | publisher  | String          | Publisher of Recipe                               | Max-length: 50 |
-|         | image      | String          | Name of the image used in the Recipe              | Max-length: 25 |
-|         | total_time | Integer         | The making of the Recipe in minutes               | Nullable       |
-|         | serving    | Integer         | The number of dishes that can be made with Recipe | Nullable       |
-|         | created_at | Timestamp       | Timestamp of creation                             | Nullable       |
-|         | updated_at | Timestamp       | Timestamp of latest update                        | Nullable       |
+| Key               | Name         | Data Type       | Description                                       | Restrictions   |
+|-------------------|--------------|-----------------|---------------------------------------------------|----------------|
+| primary           | id           | Unsigned Bigint | Unique Key                                        | Unique         |
+|                   | name         | String          | Name of Recipe                                    | Max-length: 50 |
+|                   | method       | Text            | Steps of making Recipe, separated with `;`        |                |
+|                   | category     | String          | Category of Recipe                                | Max-length: 25 |
+| foreign(users-id) | publisher_id | Unsigned Bigint | Id of the Recipe publisher                        |                |
+|                   | image        | String          | Name of the image used in the Recipe              | Max-length: 25 |
+|                   | total_time   | Integer         | The making of the Recipe in minutes               | Nullable       |
+|                   | serving      | Integer         | The number of dishes that can be made with Recipe | Nullable       |
+|                   | created_at   | Timestamp       | Timestamp of creation                             | Nullable       |
+|                   | updated_at   | Timestamp       | Timestamp of latest update                        | Nullable       |
 
 ##### Code snippet
 
@@ -27,7 +49,7 @@ Schema::create('recipes', function (Blueprint $table) {
 	$table->string('name', 50);
 	$table->text('method');
 	$table->string('category', 25);
-	$table->string('publisher', 50);
+    $table->foreignId('publisher_id')->constrained('users');
 	$table->string('image', 25);
 	$table->integer('total_time')->nullable();
 	$table->integer('serving')->nullable();
@@ -151,12 +173,91 @@ Schema::create('valid_measures', function (Blueprint $table) {
 **URL for model: `/recipes`**
 **Controller: RecipeController**
 
-| Name            | HTTP method | Parameter of URL | Action  | Description        |
-|-----------------|-------------|------------------|---------|--------------------|
-| recipes.index   | GET         |                  | index   | Gets all recipes   |
-| recipes.show    | GET         | /{id} - number   | show    | Gets one recipe    |
-| recipes.store   | POST        |                  | store   | Creates new recipe |
-| recipes.update  | PUT         | /{id} - number   | update  | Updates one recipe |
-| recipes.destroy | DELETE      | /{id} - number   | destroy | Deletes one recipe |
+| Name            | HTTP method | Parameter of URL | Action  | Description        | Requirements  |
+|-----------------|-------------|------------------|---------|--------------------|---------------|
+| recipes.index   | GET         |                  | index   | Gets all recipes   |               |
+| recipes.show    | GET         | `/{id}` - number | show    | Gets one recipe    |               |
+| recipes.store   | POST        |                  | store   | Creates new recipe | Authenticated |
+| recipes.update  | PUT         | `/{id}` - number | update  | Updates one recipe | Authenticated |
+| recipes.destroy | DELETE      | `/{id}` - number | destroy | Deletes one recipe | Authenticated |
+
+#### RecipeResource
+
+- id
+- name
+- method (Array)
+- category
+- publisher_id
+- image
+- total_time
+- serving
+- ingredients (Array):
+    - ingredient_id
+    - measure_id
+    - quantity
+
+### Ingredient
+
+**URL for model: `/ingredients`**
+**Controller: IngredientController**
+
+| Name              | HTTP method | Parameter of URL | Action | Description          |
+|-------------------|-------------|------------------|--------|----------------------|
+| ingredients.index | GET         |                  | index  | Gets all ingredients |
+| ingredients.show  | GET         | `/{id}` - number | show   | Gets one ingredient  |
+
+#### IngredientResource
+
+- id
+- name
+- category
+- validMeasures (Array)
+
+### Measure
+
+**URL for model: `/measures`**
+**Controller: MeasureController**
+
+| Name           | HTTP method | Parameter of URL | Action | Description       |
+|----------------|-------------|------------------|--------|-------------------|
+| measures.index | GET         |                  | index  | Gets all measures |
+| measures.show  | GET         | `/{id}` - number | show   | Gets one measure  |
+
+#### MeasureResource
+
+- id
+- name
+- standard_measure_id
+- conversion_rate
+
+### User
+
+**URL for model: `/useres`**
+**Controller: UserController**
+
+| Name       | HTTP method | Parameter of URL | Action | Description   |
+|------------|-------------|------------------|--------|---------------|
+| users.show | GET         | `/{id}` - number | show   | Gets one user |
+
+#### UserResource
+
+- id
+- username
+
+### Auth
+
+**Controller: AuthController**
+
+| Name          | HTTP method | URL         | Action | Description                       | Requirements  |
+|---------------|-------------|-------------|--------|-----------------------------------|---------------|
+| auth.login    | POST        | `/login`    | index  | Sends login request               |               |
+| auth.register | POST        | `/register` | show   | Sends register request            |               | 
+| auth.profile  | GET         | `/profile`  | show   | Gets details of logged in profile | Authenticated |
+| auth.logout   | POST        | `/logout`   | show   | Sends logout request              | Authenticated |
+
+#### AuthResource
+
+- username
+- token
 
 [^1]: port can differ if it has been changed in the `.env` file

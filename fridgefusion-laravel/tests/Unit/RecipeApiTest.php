@@ -20,7 +20,8 @@ class RecipeApiTest extends TestCase
 
     use RefreshDatabase;
 
-    public function setUp():void{
+    public function setUp(): void
+    {
         parent::setUp();
         Artisan::call('migrate');
         Artisan::call('db:seed');
@@ -33,38 +34,36 @@ class RecipeApiTest extends TestCase
         $recipe = $recipes->collection->first();
         $response = $this->getJson('api/recipes');
         $response
-            ->assertJson(fn (AssertableJson $json) =>
-                $json
-                    ->has('data', $recipes->count())
-                    ->has('data.0', fn(AssertableJson $json) =>
-                        $json
-                            ->where('id', 1)
-                            ->where('name', $recipe['name'])
-                            ->whereType('method', 'array')
-                            ->where('category', $recipe['category'])
-                            ->where('publisher', $recipe['publisher'])
-                            ->where('image', $recipe['image'])
-                            ->where('total_time', $recipe['total_time'])
-                            ->where('serving', $recipe['serving'])
-                            ->whereType('ingredients', 'array')
-                            ->etc()
-                    )
-            );
-
-    }
-    public function test_get_recipe(){
-        $recipe = new RecipeResource(Recipe::findOrFail(1));
-        $response = $this->getJson('api/recipes/1');
-        $response
-            ->assertJson(fn (AssertableJson $json) =>
-            $json
-                ->has('data', fn(AssertableJson $json) =>
-                $json
+            ->assertJson(fn(AssertableJson $json) => $json
+                ->has('data', $recipes->count())
+                ->has('data.0', fn(AssertableJson $json) => $json
                     ->where('id', 1)
                     ->where('name', $recipe['name'])
                     ->whereType('method', 'array')
                     ->where('category', $recipe['category'])
-                    ->where('publisher', $recipe['publisher'])
+                    ->where('publisher_id', $recipe['publisher_id'])
+                    ->where('image', $recipe['image'])
+                    ->where('total_time', $recipe['total_time'])
+                    ->where('serving', $recipe['serving'])
+                    ->whereType('ingredients', 'array')
+                    ->etc()
+                )
+            );
+
+    }
+
+    public function test_get_recipe()
+    {
+        $recipe = new RecipeResource(Recipe::findOrFail(1));
+        $response = $this->getJson('api/recipes/1');
+        $response
+            ->assertJson(fn(AssertableJson $json) => $json
+                ->has('data', fn(AssertableJson $json) => $json
+                    ->where('id', 1)
+                    ->where('name', $recipe['name'])
+                    ->whereType('method', 'array')
+                    ->where('category', $recipe['category'])
+                    ->where('publisher_id', $recipe['publisher_id'])
                     ->where('image', $recipe['image'])
                     ->where('total_time', $recipe['total_time'])
                     ->where('serving', $recipe['serving'])
@@ -73,7 +72,8 @@ class RecipeApiTest extends TestCase
             );
     }
 
-    private function createRecipeBody(){
+    private function createRecipeBody()
+    {
         return [
             "name" => "Alma",
             "method" => [
@@ -85,7 +85,7 @@ class RecipeApiTest extends TestCase
                 "6. Serve warm."
             ],
             "category" => "Appetizer",
-            "publisher" => "Gastroworkshop",
+            "publisher_id" => 1,
             "image" => "1.jpg",
             "total_time" => 35,
             "serving" => 4,
@@ -99,9 +99,20 @@ class RecipeApiTest extends TestCase
         ];
     }
 
-    public function test_create_recipe(){
-        $response = $this->postJson('/api/recipes', $this->createRecipeBody());
+    private function get_access_token()
+    {
+        $userdata = [
+            "email" => "gastroworkshop@gmail.com",
+            "password" => "1nimda"
+        ];
+        $response = $this->postJson('/api/login', $userdata);
+        return json_decode($response->content())->token;
+    }
 
+    public function test_create_recipe()
+    {
+        $headers = ['Authentication' => 'Bearer ' . $this->get_access_token()];
+        $response = $this->postJson('/api/recipes', $this->createRecipeBody(), $headers);
         $response
             ->assertStatus(201)
             ->assertJsonPath('data.name', 'Alma');
@@ -109,8 +120,10 @@ class RecipeApiTest extends TestCase
         $this->assertModelExists($recipes->firstWhere('name', 'Alma'));
     }
 
-    public function test_update_recipe(){
-        $response = $this->putJson('/api/recipes/1', $this->createRecipeBody());
+    public function test_update_recipe()
+    {
+        $headers = ['Authentication' => 'Bearer ' . $this->get_access_token()];
+        $response = $this->putJson('/api/recipes/1', $this->createRecipeBody(), $headers);
 
         $response
             ->assertStatus(200)
@@ -120,9 +133,11 @@ class RecipeApiTest extends TestCase
         $this->assertEquals('Alma', $firstRecipe['name']);
     }
 
-    public function test_delete_recipe(){
+    public function test_delete_recipe()
+    {
+        $headers = ['Authentication' => 'Bearer ' . $this->get_access_token()];
         $recipe = Recipe::findOrFail(1);
-        $response = $this->delete('api/recipes/1');
+        $response = $this->delete('api/recipes/1', [] , $headers);
         $response->assertStatus(200);
         $this->assertModelMissing($recipe);
     }

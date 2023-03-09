@@ -10,6 +10,7 @@
                                 :ingredients="ingredients" :measures="measures"/>
             </div>
             <div class="col-12 col-lg-7">
+                <h1 class="my-3">Recipes for you</h1>
                 <recipe-container :recipes="orderRecipes" />
             </div>
         </div>
@@ -135,11 +136,11 @@ function addIngredient(selectedIngredient, selectedMeasure, quantity) {
 }
 
 function validateData(selectedIngredient, selectedMeasure, quantity){
-    if(selectedIngredient == null || selectedIngredient == undefined){
+    if(selectedIngredient.name === undefined){
         window.alert("Ingredient has not been set!")
         return false;
     }
-    if(selectedMeasure == null || selectedMeasure == undefined){
+    if(selectedMeasure.name === undefined){
         window.alert("Measure has not been set!")
         return false;
     }
