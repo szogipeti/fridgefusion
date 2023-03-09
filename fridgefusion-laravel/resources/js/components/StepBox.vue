@@ -4,7 +4,7 @@
             <div v-for="(step, k) in value" :key="k" class="step">
                 <input
                     @blur="handleBlur"
-                       :placeholder="'Step ' + k + 1" class="form-control" type="text" :id="'step-' + k + 1"
+                       :placeholder="'Step ' + (parseInt(k) + 1)" class="form-control" type="text" :id="'step-' + k + 1"
                        v-model="step.name">
                 <font-awesome-icon class="icon-btn" @click="$emit('deleteStep', k)" icon="fa-solid fa-x"/>
             </div>
