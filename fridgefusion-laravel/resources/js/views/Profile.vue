@@ -110,7 +110,7 @@ onMounted(() => {
 #email{
     width: 100%;
     text-align: center;
-    font-size: 150%;
+    font-size: 100%;
     background-color: white;
     border: 2px solid #18afa5;
     margin-bottom: 20px;
@@ -129,5 +129,6 @@ onMounted(() => {
     margin-bottom: 30px;
     box-shadow:10px 10px 10px darkgrey;
     left: 15%;
+    height: 450px;
 }
 </style>
