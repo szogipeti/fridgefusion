@@ -1,7 +1,8 @@
 <template>
     <div class="recipe-container">
-        <div class="row">
-            <recipe-card
+        <div class="row recipe-box">
+            <h3 v-if="recipes.length === 0" class="text-center m-auto">Seems like there are no recipes here.</h3>
+            <recipe-card v-else
                 v-for="recipe in recipes.slice((currentPage - 1) * recipePerPage, currentPage * recipePerPage)"
                 :key="recipe.id" :name="recipe.name"
                 :image="recipe.image" :publisher-id="recipe.publisher_id" :id="recipe.id" :can-be-edited="canBeEdited"/>
@@ -51,5 +52,7 @@ function navigateToPage(pageNumber) {
 </script>
 
 <style scoped>
-
+.recipe-box{
+    min-height: 300px;
+}
 </style>
