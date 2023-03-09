@@ -21,7 +21,7 @@ public class NavbarTests
         chromeDriver.FindElement(By.CssSelector(".dropdown-menu li:first-child")).Click();
         Assert.AreEqual("Baked Brie",
             chromeDriver
-                .FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .col-12:first-child .card-title"))
+                .FindElement(By.CssSelector(".recipe-container .row:first-child .col-12:first-child .card-title"))
                 .Text);
     }
 
@@ -33,7 +33,7 @@ public class NavbarTests
         chromeDriver.FindElement(By.CssSelector(".navbar-brand")).Click();
         Assert.AreEqual("Apple Pie",
             chromeDriver
-                .FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .col-12:first-child .card-title"))
+                .FindElement(By.CssSelector(".recipe-container .row:first-child .col-12:first-child .card-title"))
                 .Text);
     }
 
@@ -56,7 +56,7 @@ public class NavbarTests
         
         Assert.AreEqual("Stuffed Mushrooms",
             chromeDriver
-                .FindElement(By.CssSelector(".recipe-container .row:nth-child(2) .col-12:first-child .card-title"))
+                .FindElement(By.CssSelector(".recipe-container .row:first-child .col-12:first-child .card-title"))
                 .Text);
     }
 

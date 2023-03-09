@@ -69,6 +69,7 @@ const Schema = yup.object({
     name: yup.string().max(50).required(),
     ownedIngredients:
         yup.array()
+            .min(1)
             .of(
                 yup.object().shape({
                     ingredient: yup.object().shape({
@@ -82,6 +83,7 @@ const Schema = yup.object({
             ),
     instructions:
         yup.array()
+            .min(1)
             .of(
                 yup.object().shape({
                     name: yup.string().required()

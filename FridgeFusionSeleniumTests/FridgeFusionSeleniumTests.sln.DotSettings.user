@@ -15,5 +15,6 @@
     &lt;TestId&gt;MSTest::CDA13D15-7246-4280-92CE-3F92BD858E32::net7.0::FridgeFusionSeleniumTests.NavbarTests.TestFilterResetOnHomepage&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::CDA13D15-7246-4280-92CE-3F92BD858E32::net7.0::FridgeFusionSeleniumTests.NavbarTests.TestFilterWithOwnedIngredients&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::CDA13D15-7246-4280-92CE-3F92BD858E32::net7.0::FridgeFusionSeleniumTests.HomePageTests.TestOrderWithMatchingIngredients&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::CDA13D15-7246-4280-92CE-3F92BD858E32::net7.0::FridgeFusionSeleniumTests.HomePageTests.TestHomePageLoad&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
