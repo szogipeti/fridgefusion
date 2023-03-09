@@ -1,5 +1,13 @@
 # Fridge Fusion
 
+Why choose us?
+
+Fridge Fusion helps users find delicious recipes by using ingredients they already have at home. With our website you
+can note down your ingredients you have too much of, or just want to cook with and get the recipes you like. This makes
+cooking easy and convenient, and helps reduce food waste, by using up ingredients before they expire. FridgeFusion is
+the perfect solution for people who want to cook healthy and tasty meals without having to run to the store
+every time they need a new ingredient.
+
 ## Project Setup
 
 - Clone the repository `git clone https://github.com/szogipeti/fridgefusion.git`
