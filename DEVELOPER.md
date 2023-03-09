@@ -1,7 +1,3 @@
-```{=tex}
-\chapter{ECMAScript}
-```
-
 # Fridge Fusion - Developer Documentation
 
 Fridge Fusion is a website for helping people make recipes from their owned ingredients.
@@ -52,10 +48,6 @@ Schema::create('users', function (Blueprint $table) {
     $table->rememberToken();
     $table->timestamps();
 });
-```
-
-```{=tex}
-\pagebreak
 ```
 
 #### recipes
@@ -112,10 +104,6 @@ Schema::create('categories', function (Blueprint $table) {
 });
 ```
 
-```{=tex}
-\pagebreak
-```
-
 #### ingredients
 
 | Key                    | Name        | Data Type       | Description                | Restrictions   |
@@ -135,10 +123,6 @@ Schema::create('ingredients', function (Blueprint $table) {
 	$table->foreignId('category_id')->constrained('categories');
 	$table->timestamps();
 });
-``` 
-
-```{=tex}
-\pagebreak
 ```
 
 #### measures
@@ -189,10 +173,6 @@ Schema::create('made_from', function (Blueprint $table) {
 	$table->double('quantity')->nullable();
 	$table->timestamps();
 });
-```
-
-```{=tex}
-\pagebreak
 ```
 
 #### valid_measures
@@ -250,10 +230,6 @@ Schema::create('valid_measures', function (Blueprint $table) {
     - measure_id
     - quantity
 
-```{=tex}
-\pagebreak
-```
-
 ### Ingredient
 
 **URL for model: `/ingredients`**
@@ -271,6 +247,10 @@ Schema::create('valid_measures', function (Blueprint $table) {
 - category
 - validMeasures (Array)
 
+```{=tex}
+\pagebreak
+```
+
 ### Measure
 
 **URL for model: `/measures`**
@@ -287,10 +267,6 @@ Schema::create('valid_measures', function (Blueprint $table) {
 - name
 - standard_measure_id
 - conversion_rate
-
-```{=tex}
-\pagebreak
-```
 
 ### User
 

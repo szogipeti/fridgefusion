@@ -1,7 +1,3 @@
-```{=tex}
-\chapter{ECMAScript}
-```
-
 # Fridge Fusion
 
 Why choose us?
@@ -108,6 +104,10 @@ npm run dev
 	composer install
 	```
 
+```{=tex}
+\pagebreak
+```
+
 ## Features
 
 ### Showing Recipes
@@ -134,10 +134,6 @@ recipe contains. Moreover, the amount of the given ingredients can also change t
 get rid of" any ingredient you have too much at home. If you change your mind you can also delete any ingredient and the
 recipes will refresh.
 
-```{=tex}
-\pagebreak
-```
-
 ### Creating, editing and deleting your recipes
 
 If you feel like you have an incredible recipe in mind, you can share it with others. If you create an account you can
@@ -147,4 +143,4 @@ Recipe" button. On the profile page you can see all of your recipes. If you want
 icon and fill make the changes you want. If you want to delete one of your recipe just click on the trashcan icon. All
 changes made are going to affect the recipes in your profile and on the home page.
 
-If you want to check out our social media pages, you can find it in the footer. <br>Have fun cooking with us.
+If you want to check out our social media pages, you can find it in the footer. Have fun cooking with us.

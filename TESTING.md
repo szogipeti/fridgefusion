@@ -1,7 +1,3 @@
-```{=tex}
-\chapter{ECMAScript}
-```
-
 # Fridge Fusion - Test Documentation
 
 This is the Testing Documentation of Fridge Fusion. The documentation contains unit tests for the API, selenium tests
@@ -53,10 +49,6 @@ testing. The selenium tests were done in c# with .Net Core 7.
 | test_get<br/>_all_ingredient | Send GET Request to API and receive all Ingredient   | Database and API is running on Docker;<br/> Database migrated and seeded | 1. Sends GET Request to `http://localhost:8881/api/ingredients`   | Length is equal to the length of Ingredients from Database; <br/>Received Ingredient is the first of the Database |  &check;  | Szögi Péter | 2023. 03. 09. |
 | test_get<br/>_ingredient     | Send GET Request to API and receive first Ingredient | Database and API is running on Docker;<br/> Database migrated and seeded | 1. Sends GET Request to `http://localhost:8881/api/ingredients/1` | Received Ingredient is the first of the Database                                                                  |  &check;  | Szögi Péter | 2023. 03. 09. |
 
-```{=tex}
-\pagebreak
-```
-
 ### Measure API
 
 | Name                 | Description                                       | Prerequisites                                                            | Steps                                                          | Expected Result                                                                                             |  Success  | Author      | Date          |
@@ -69,10 +61,6 @@ testing. The selenium tests were done in c# with .Net Core 7.
 | Name          | Description                                    | Prerequisites                                                            | Steps                                                       | Expected Result                            |  Success  | Author      | Date          |
 |---------------|------------------------------------------------|--------------------------------------------------------------------------|-------------------------------------------------------------|--------------------------------------------|:---------:|-------------|---------------|
 | test_get_user | Send GET Request to API and receive first User | Database and API is running on Docker;<br/> Database migrated and seeded | 1. Sends GET Request to `http://localhost:8881/api/users/1` | Received User is the first of the Database |  &check;  | Szögi Péter | 2023. 03. 09. |
-
-```{=tex}
-\pagebreak
-```
 
 ### Auth API
 
@@ -104,10 +92,6 @@ testing. The selenium tests were done in c# with .Net Core 7.
 | REGISTERDATA3 | asdf123@gmail.com        | gastroworkshop | asdf123  | asdf123               |
 | REGISTERDATA4 | asdf123@gmail.com        | asdf123        | asdf123  | asdf1234              |
 
-```{=tex}
-\pagebreak
-```
-
 ## Selenium Tests
 
 ### Search Select Tests
@@ -118,15 +102,11 @@ testing. The selenium tests were done in c# with .Net Core 7.
 | TestSearchSelect<br/>Search                 | Test Search function of Search Select                 | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running | 1. Maximizes window <br/>2. Goes to `http://localhost:8881` and wait's for loading <br/>3. Clicks the first Search Select and waits for dropdown <br/>4. Sends `z` key to Search box <br/>5. Clicks the first element                                                             | The selected text of Search Select is `Frozen peas`       |  &check;  | Szögi Péter | 2023. 03. 06. |
 | TestEmptySearchAfter<br/>SelectSearchClosed | Test resetting Search Box after closing Search Select | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running | 1. Maximizes window <br/>2. Goes to `http://localhost:8881` and wait's for loading <br/>3. Clicks the first Search Select and waits for dropdown <br/>4. Sends `z` key to Search box <br/>5. Clicks the Search Select<br/>6. Clicks the Search Select again and wait for dropdown | The text of Search Box is empty                           |  &check;  | Szögi Péter | 2023. 03. 06. |
 
-```{=tex}
-\pagebreak
-```
-
 ### Home Page Tests
 
 | Name                                       | Description                                                   | Prerequisites                                                                                                                                                   | Steps                                                                                                                                                                                                         | Expected Result                                                                                                                                                          |  Success  | Author      | Date          |
 |--------------------------------------------|---------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------:|-------------|---------------|
-| TestHomePage<br/>Load                      | Test home page loading                                        | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running                                                      | 1. Maximizes window <br/>2. Goes to `http://localhost:8881` and wait's for loading <br/>                                                                                                                      | The title is `Recipes for you`;<br/>The ingredient-box title is `Your ingredients so far`                                                                                |  &check;  | Szögi Péter | 2023. 03. 06. |
+| TestHomePage<br/>Load                      | Test home page loading                                        | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running                                                      | 1. Maximizes window <br/>2. Goes to `http://localhost:8881` and wait's for loading                                                                                                                            | The title is `Recipes for you`;<br/>The ingredient-box title is `Your ingredients so far`                                                                                |  &check;  | Szögi Péter | 2023. 03. 06. |
 | TestAddIngredient<br/>EmptyIngredient      | Test adding ingredient without selecting ingredient           | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> Home page loaded                                | 1. Click the `Add ingredient` button                                                                                                                                                                          | Alert window message: `Ingredient has not been set!`                                                                                                                     |  &check;  | Szögi Péter | 2023. 03. 06. |
 | TestAddIngredient<br/>EmptyMeasure         | Test adding ingredient without selecting measure              | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> Home page loaded                                | 1. Click the Ingredient Search Select<br/>2. Select `INGREDIENT1`<br/>3. Click the `Add ingredient` button                                                                                                    | Alert window message: `Measure has not been set!`                                                                                                                        |  &check;  | Szögi Péter | 2023. 03. 06. |
 | TestAddIngredient<br/>InvalidMeasure       | Test adding ingredient with invalid measure                   | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> Home page loaded                                | 1. Click the Ingredient Search Select<br/>2. Select `INGREDIENT1`<br/>3. Click the Measure Search Select<br/>4. Select `MEASURE1`<br/>5. Click the `Add ingredient` button                                    | Alert window message: `0 gram is not a valid measure!`                                                                                                                   |  &check;  | Szögi Péter | 2023. 03. 06. |
@@ -136,11 +116,7 @@ testing. The selenium tests were done in c# with .Net Core 7.
 | TestOrderRecipes<br/>OneElement            | Test ordering recipes when adding one ingredient              | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> Home page loaded                                | 1. Add `ADDED_INGREDIENT2`                                                                                                                                                                                    | The first recipe's name in the Recipe Container is `Beef Stroganoff`                                                                                                     |  &check;  | Szögi Péter | 2023. 03. 06. |
 | TestOrderRecipes<br/>MultipleElements      | Test ordering recipes when adding two ingredients             | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> Home page loaded                                | 1. Add `ADDED_INGREDIENT2`<br/>2. Add `ADDED_INGREDIENT3`                                                                                                                                                     | The first recipe's name in the Recipe Container is `Beef Stroganoff`;<br/>The second recipe's name in the Recipe Container is `Stuffed Mushrooms`                        |  &check;  | Szögi Péter | 2023. 03. 06. |
 | TestReorder<br/>AfterDelete                | Test ordering recipes when deleting ingredient                | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> Home page loaded <br/>Added `ADDED_INGREDIENT1` | 1. Delete `ADDED_INGREDIENT1`                                                                                                                                                                                 | The first recipe's name in the Recipe Container before the delete is `Banana Bread`;<br/>The first recipe's name in the Recipe Container after the delete is `Apple Pie` |  &check;  | Szögi Péter | 2023. 03. 06. |
-| TestOrderWith<br/>Matching<br/>Ingredients | Test ordering recipes based on number of matching ingredients | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> Home page loaded                                | 1. Add `ADDED_INGREDIENT1` <br/> 2. Add `ADDED_INGREDIENT4`<br/>                                                                                                                                              | The first recipe's name in the Recipe Container is `Blueberry Pie`;<br/>The second recipe's name in the Recipe Container  is `Banana Bread`                              |  &check;  | Szögi Péter | 2023. 03. 07. |
-
-```{=tex}
-\pagebreak
-```
+| TestOrderWith<br/>Matching<br/>Ingredients | Test ordering recipes based on number of matching ingredients | Database and API is running on Docker;<br/> Database migrated and seeded;<br/> Vite live server is running<br/> Home page loaded                                | 1. Add `ADDED_INGREDIENT1` <br/> 2. Add `ADDED_INGREDIENT4`                                                                                                                                                   | The first recipe's name in the Recipe Container is `Blueberry Pie`;<br/>The second recipe's name in the Recipe Container  is `Banana Bread`                              |  &check;  | Szögi Péter | 2023. 03. 07. |
 
 ### Navbar Tests
 
@@ -171,10 +147,6 @@ testing. The selenium tests were done in c# with .Net Core 7.
 | ADDED_INGREDIENT2 | INGREDIENT2 | MEASURE2 | 0        |
 | ADDED_INGREDIENT3 | INGREDIENT3 | MEASURE2 | 0        |
 | ADDED_INGREDIENT4 | INGREDIENT4 | MEASURE2 | 0        |
-
-```{=tex}
-\pagebreak
-```
 
 ## Manual Tests
 
