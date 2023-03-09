@@ -1,16 +1,26 @@
 <template>
-    <div>
-        <Form>
-            <font-awesome-icon icon="fa-solid fa-circle-user" />
-            <h1>Profile</h1>
-            <p>Username: {{ user.username }}</p>
-            <p>Email: {{ user.email }}</p>
-            <router-link to="/newrecipe">
-                <button>Make new recipe</button>
-            </router-link>
-            <button @click="logout">Logout</button>
-        </Form>
-        <recipe-container :recipes="recipes" />
+    <div class="clip-container main" v-if="!recipesLoaded">
+        <clip-loader :size="'100px'" :color="'#117972'"/>
+    </div>
+    <div v-else class="container">
+        <div class="row">
+            <div class="col-4">
+                <Form>
+                    <font-awesome-icon icon="fa-solid fa-circle-user" />
+                    <h1>Profile</h1>
+                    <p>Username: {{ user.username }}</p>
+                    <p>Email: {{ user.email }}</p>
+                    <router-link to="/newrecipe">
+                        <button>Make new recipe</button>
+                    </router-link>
+                    <button @click="logout">Logout</button>
+                </Form>
+            </div>
+            <div class="col-8">
+                <h2 class="my-3">Your recipes</h2>
+                <recipe-container :recipes="recipes" />
+            </div>
+        </div>
     </div>
 </template>
 
@@ -22,6 +32,7 @@ import {http} from "../utils/http";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import axios from "axios";
 import RecipeContainer from "../components/RecipeContainer.vue";
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 
 const router = useRouter();
 const user = reactive({});
@@ -47,8 +58,8 @@ const getUserRecipes = async function (){
     const resp = await axios.get('api/recipes');
     console.log(resp)
     for (const recipe of resp.data.data) {
-        console.log(recipe.publisher)
-        if(recipe.publisher === user["username"] ){
+        console.log(recipe.publisher_id)
+        if(recipe.publisher_id === user["id"] ){
             recipes.push(recipe);
         }
     }
@@ -56,8 +67,7 @@ const getUserRecipes = async function (){
 }
 
 onMounted(() => {
-    getUserData();
-    getUserRecipes();
+    getUserData().then(() => getUserRecipes());
 })
 </script>
 

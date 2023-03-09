@@ -10,6 +10,7 @@
                                 :ingredients="ingredients" :measures="measures"/>
             </div>
             <div class="col-12 col-lg-7">
+                <h1 class="my-3">Recipes for you</h1>
                 <recipe-container :recipes="orderRecipes" />
             </div>
         </div>
