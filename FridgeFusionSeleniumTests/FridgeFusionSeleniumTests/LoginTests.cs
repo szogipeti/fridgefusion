@@ -37,11 +37,11 @@ namespace FridgeFusionSeleniumTests
           
             IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn-login"));
             loginButton.Click();
-
+            Thread.Sleep(10000);
             Assert.AreEqual("\"http://localhost:8881/", chromeDriver.Url);
         }
         [TestMethod]
-        public void TestLoginwWithFakeUsername()
+        public void TestLoginwWithwrongUsername()
         {
             IWebElement emailInput = chromeDriver.FindElement(By.Name("email"));
             emailInput.SendKeys("apple@alma.hu");
@@ -51,11 +51,11 @@ namespace FridgeFusionSeleniumTests
 
             IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn-login"));
             loginButton.Click();
-
-            Assert.AreEqual("\"http://localhost:8881/login", chromeDriver.Url);
+            Thread.Sleep(10000);
+            Assert.AreEqual("Unsuccessful login", chromeDriver.FindElement(By.Id("error")));
         }
         [TestMethod]
-        public void TestLoginwWithFakePassword()
+        public void TestLoginwWithwrongPassword()
         {
             IWebElement emailInput = chromeDriver.FindElement(By.Name("email"));
             emailInput.SendKeys("apple@alma.hu");
@@ -65,8 +65,8 @@ namespace FridgeFusionSeleniumTests
 
             IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn-login"));
             loginButton.Click();
-
-            Assert.AreEqual("\"http://localhost:8881/login", chromeDriver.Url);
+            Thread.Sleep(10000);
+            Assert.AreEqual("Unsuccessful login", chromeDriver.FindElement(By.Id("error")));
         }
     }
 }

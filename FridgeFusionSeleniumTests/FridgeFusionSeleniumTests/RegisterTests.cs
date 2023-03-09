@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace FridgeFusionSeleniumTests
 {
     [TestClass]
@@ -44,7 +45,9 @@ namespace FridgeFusionSeleniumTests
             IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
             registerButton.Click();
 
-            Assert.AreEqual("\"http://localhost:8881/", chromeDriver.Url);
+            Thread.Sleep(10000);
+
+            Assert.AreEqual("\"http://localhost:8881/login", chromeDriver.Url);
         }
         [TestMethod]
         public void TestRegisterWithBadUsername ()
@@ -64,7 +67,9 @@ namespace FridgeFusionSeleniumTests
             IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
             registerButton.Click();
 
-            Assert.AreEqual("\"http://localhost:8881/", chromeDriver.Url);
+            Thread.Sleep(10000);
+
+            Assert.AreEqual("username must be at least 6 characters", chromeDriver.FindElement(By.Id("error-username")));
         }
         [TestMethod]
         public void TestRegisterWithBadEmail()
@@ -84,7 +89,9 @@ namespace FridgeFusionSeleniumTests
             IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
             registerButton.Click();
 
-            Assert.AreEqual("\"http://localhost:8881/", chromeDriver.Url);
+            Thread.Sleep(10000);
+
+            Assert.AreEqual("email must be at least 6 characters", chromeDriver.FindElement(By.Id("error-email")));
         }
         [TestMethod]
         public void TestRegisterWithBadPassword()
@@ -104,7 +111,9 @@ namespace FridgeFusionSeleniumTests
             IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
             registerButton.Click();
 
-            Assert.AreEqual("\"http://localhost:8881/", chromeDriver.Url);
+            Thread.Sleep(10000);
+
+            Assert.AreEqual("password must be at least 6 characters", chromeDriver.FindElement(By.Id("error-password")));
         }
     }
 }

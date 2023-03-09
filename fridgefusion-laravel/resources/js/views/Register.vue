@@ -4,15 +4,15 @@
         <Form @submit="register" :validation-schema="Schema">
             <div class="form-group">
                 <Field type="string" placeholder=" Username" name="username"/>
-                <div class="errdiv"><error-message name="username"></error-message></div>
+                <div id="error-username" class="errdiv"><error-message name="username"></error-message></div>
             </div>
             <div class="form-group mt-3">
                 <Field type="email" placeholder=" E-mail" name="email"/>
-                <div class="errdiv"><error-message name="email"></error-message></div>
+                <div id="error-email" class="errdiv"><error-message name="email"></error-message></div>
             </div>
             <div class="form-group mt-3">
                 <Field type="password" placeholder=" Password" name="password"/>
-                <div class="errdiv"><error-message name="password"></error-message></div>
+                <div id="error-password" class="errdiv"><error-message name="password"></error-message></div>
             </div>
             <div class="form-group mt-3">
                 <Field type="password" placeholder=" Confirm Password" name="password_confirmation"/>
