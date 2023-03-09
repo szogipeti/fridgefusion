@@ -4,7 +4,7 @@
             <recipe-card
                 v-for="recipe in recipes.slice((currentPage - 1) * recipePerPage, currentPage * recipePerPage)"
                 :key="recipe.id" :name="recipe.name"
-                :image="recipe.image" :publisher="recipe.publisher" :id="recipe.id"/>
+                :image="recipe.image" :publisher-id="recipe.publisher_id" :id="recipe.id" :can-be-edited="canBeEdited"/>
         </div>
         <div class="row">
             <div class="col">
@@ -36,7 +36,11 @@ const pageCount = computed(() => {
 const currentPage = ref(1);
 
 const props = defineProps({
-    recipes: []
+    recipes: [],
+    canBeEdited: {
+        type: Boolean,
+        default: false
+    }
 })
 
 function navigateToPage(pageNumber) {

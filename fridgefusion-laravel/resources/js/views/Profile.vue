@@ -18,7 +18,7 @@
             </div>
             <div class="col-8">
                 <h2 class="my-3">Your recipes</h2>
-                <recipe-container :recipes="recipes" />
+                <recipe-container :recipes="recipes" :can-be-edited="true" />
             </div>
         </div>
     </div>
@@ -56,9 +56,7 @@ async function getUserData() {
 
 const getUserRecipes = async function (){
     const resp = await axios.get('api/recipes');
-    console.log(resp)
     for (const recipe of resp.data.data) {
-        console.log(recipe.publisher_id)
         if(recipe.publisher_id === user["id"] ){
             recipes.push(recipe);
         }
