@@ -102,7 +102,7 @@ onMounted(() => {
     text-align: center;
     color: white;
     border-radius: 10px;
-
+    text-decoration: none;
 }
 .recipe{
     width: 100%;

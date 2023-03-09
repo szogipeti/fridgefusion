@@ -10,13 +10,13 @@
             <div class="row social-media my-3">
                 <div class="col">
                     <ul class="d-flex justify-content-between align-items-center mx-auto">
-                        <li><a href="https://www.facebook.com/FridgeFusion-114343821600287">
+                        <li><a target="_blank" href="https://www.facebook.com/FridgeFusion-114343821600287">
                             <font-awesome-icon class="fa-inverse" icon="fa-brands fa-facebook-f"/>
                         </a></li>
-                        <li><a href="https://www.tiktok.com/@fridgefusion?lang=en">
+                        <li><a target="_blank" href="https://www.tiktok.com/@fridgefusion?lang=en">
                             <font-awesome-icon icon="fa-brands fa-tiktok" />
                         </a></li>
-                        <li><a href="https://www.linkedin.com/in/fridge-fusion-76b6a3269/">
+                        <li><a target="_blank" href="https://www.linkedin.com/in/fridge-fusion-76b6a3269/">
                             <font-awesome-icon class="fa-inverse" icon="fa-brands fa-linkedin"/>
                         </a></li>
                         <li><a href="https://www.instagram.com/fridge_fusion/">
