@@ -22,7 +22,7 @@ class AuthController extends Controller
 
             return response()->json(new AuthResource(Auth::user(), 200));
         }
-        return response()->json(["data" => ["message" => "Unsuccessful login"]],401);
+        return response()->json(["data" => ["message" => "Invalid e-mail and/or password"]],401);
     }
 
 

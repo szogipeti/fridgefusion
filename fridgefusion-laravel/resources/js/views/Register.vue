@@ -102,10 +102,10 @@ input:focus{
 input[type=submit]{
     width: 70%;
     margin-left: 15%;
+    border: 3px solid #18afa5;
     background-color: #18afa5;
 }
 input[type=submit]:hover{
-    border: 3px solid #18afa5;
     background-color: white;
 }
 .errdiv {
@@ -113,6 +113,9 @@ input[type=submit]:hover{
     margin-right: auto;
     text-align: center;
 
+}
+h5{
+    margin-top: 10px
 }
 #labellog{
     cursor: pointer;
