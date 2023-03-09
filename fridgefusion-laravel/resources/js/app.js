@@ -13,6 +13,7 @@ const pinia = createPinia()
 
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 import { faTiktok, faFacebookF, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faChevronDown, faChevronUp, faX, faCircleUser, faTrash, faBurger} from "@fortawesome/free-solid-svg-icons";
 import {faPenToSquare} from "@fortawesome/free-regular-svg-icons";

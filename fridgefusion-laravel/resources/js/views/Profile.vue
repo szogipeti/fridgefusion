@@ -10,12 +10,12 @@
                     <h1 class="profile">Profile</h1>
                     <p class="recipe">Username: {{ user.username }}</p>
                     <p class="recipe">Email: {{ user.email }}</p>
-                  <p class="recipe"> <router-link to="/newrecipe">
-                        <button class="width-100%">Make new recipe</button>
+                  <p> <router-link to="/newrecipe">
+                        <button class="buttons" >Make new recipe</button>
                     </router-link>
                   </p>
                     <p>
-                    <button class="recipe" @click="logout">Logout</button>
+                    <button  class="buttons" @click="logout">Logout</button>
                     </p>
                 </Form>
             </div>
@@ -91,12 +91,23 @@ onMounted(() => {
     width: 100px;
     height: 100px;
 }
-.fromdata{
+
+.buttons{
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: #18afa5;
+    padding: 14px 28px;
+    font-size: 150%;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+
 }
 .recipe{
     width: 100%;
     text-align: center;
-    font-size: 200%;
+    font-size: 150%;
     background-color: white;
     border-radius: 10px;
 
@@ -104,12 +115,14 @@ onMounted(() => {
 .profile{
     width: 100%;
     text-align: center;
-    font-size: 200%;
+    font-size: 150%;
 }
 .profdiv{
-    background-color: #18afa5;
-    border: 3px solid #18afa5;
+    background-color: gainsboro;
+    border: 2px solid lightgray;
     border-radius: 10px;
     margin-top: 10px;
+    box-shadow:10px 10px 10px darkgrey;
+    left: 15%;
 }
 </style>
