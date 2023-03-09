@@ -191,8 +191,7 @@ async function getUserData() {
     }
 }
 
-const createRecipe = async function (recipe) {
-    console.log(recipe)
+const createRecipe = function (recipe) {
     const recipeData = {
         name: recipe.name,
         method: [],
@@ -215,10 +214,9 @@ const createRecipe = async function (recipe) {
     }
     axios.defaults.headers.common['Authorization'] = localStorage.getItem('token')
 
-    await http.post("/recipes", recipeData, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token')}});
-    await router.push({name: "profile"})
+    http.post("/recipes", recipeData, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token')}});
+    router.push({name: "profile"})
 }
-console.log(createRecipe());
 onMounted(() => {
     getUserData();
     getAllMeasure();

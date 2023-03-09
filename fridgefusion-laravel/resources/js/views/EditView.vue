@@ -244,8 +244,7 @@ async function getUserData() {
     }
 }
 
-const createRecipe = async function (recipe) {
-    console.log(recipe)
+const createRecipe = function (recipe) {
     const recipeData = {
         name: recipe.name,
         method: [],
@@ -266,8 +265,8 @@ const createRecipe = async function (recipe) {
             quantity: ingredient.quantity
         })
     }
-    await axios.put("/api/recipes/" + route.params["id"], recipeData, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
-    await router.push({name: "profile"})
+    axios.put("/api/recipes/" + route.params["id"], recipeData, {headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')}});
+    router.push({name: "profile"})
 }
 
 onMounted(() => {

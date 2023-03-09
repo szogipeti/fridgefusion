@@ -6,7 +6,6 @@ use App\Http\Resources\RecipeResource;
 use App\Models\Recipe;
 use Tests\TestCase;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -29,7 +28,6 @@ class RecipeApiTest extends TestCase
 
     public function test_get_all_recipe()
     {
-
         $recipes = RecipeResource::collection(Recipe::all());
         $recipe = $recipes->collection->first();
         $response = $this->getJson('api/recipes');
@@ -124,7 +122,6 @@ class RecipeApiTest extends TestCase
     {
         $headers = ['Authentication' => 'Bearer ' . $this->get_access_token()];
         $response = $this->putJson('/api/recipes/1', $this->createRecipeBody(), $headers);
-
         $response
             ->assertStatus(200)
             ->assertJsonPath('data.name', 'Alma');

@@ -7,25 +7,6 @@
                     <p>Welcome to FridgeFusion, the perfect solution for all your meal planning needs! Our team of three has designed a platform that allows you to search for recipes based on the ingredients you have on hand. No more endless scrolling through recipe websites or running to the grocery store for a missing ingredient - FridgeFusion is here to simplify your life..</p>
                 </div>
             </div>
-            <div class="row quick-links-container w-75 mx-auto my-3">
-                <div class="col">
-                    <h5 class="mb-2">Quick links</h5>
-                    <div class="row">
-                        <div class="col">
-                            <ul>
-                                <li><a href="">Lorem ipsum</a></li>
-                                <li><a href="">Nam vehicula</a></li>
-                                <li><a href="">Pellentesque</a></li>
-                            </ul>
-                        </div>
-                        <div class="col">
-                            <li><a href="">Lorem ipsum</a></li>
-                            <li><a href="">Nam vehicula</a></li>
-                            <li><a href="">Pellentesque</a></li>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="row social-media my-3">
                 <div class="col">
                     <ul class="d-flex justify-content-between align-items-center mx-auto">

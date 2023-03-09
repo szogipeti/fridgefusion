@@ -21,7 +21,7 @@
             </div>
             <div class="col-8">
                 <h2 class="my-3">Your recipes</h2>
-                <recipe-container :recipes="recipes" :can-be-edited="true" />
+                <recipe-container :recipes="recipes.sort(sortByName)" :can-be-edited="true" />
             </div>
         </div>
     </div>
@@ -36,6 +36,9 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import axios from "axios";
 import RecipeContainer from "../components/RecipeContainer.vue";
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
+import {useLoggedInStore} from "../store/isLoggedIn.js";
+
+const isLoggedInStore = useLoggedInStore();
 
 const router = useRouter();
 const user = reactive({});
@@ -46,7 +49,8 @@ const recipesLoaded = ref(false);
 
 const logout = () => {
     localStorage.removeItem('token');
-    router.push('/login').then(() => router.go());
+    isLoggedInStore.triggerLoggedIn();
+    router.push('/login');
 }
 defineExpose({logout});
 
@@ -65,6 +69,16 @@ const getUserRecipes = async function (){
         }
     }
     recipesLoaded.value = true;
+}
+
+const sortByName = function (a, b){
+    if(a.name < b.name){
+        return -1;
+    }
+    if(a.name > b.name){
+        return 1;
+    }
+    return 0;
 }
 
 onMounted(() => {

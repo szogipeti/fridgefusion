@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use App\Http\Requests\RegistRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\AuthResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -22,11 +22,11 @@ class AuthController extends Controller
 
             return response()->json(new AuthResource(Auth::user(), 200));
         }
-        return response()->json(["data" => ["message" => "Unsuccessful login"]],401);
+        return response()->json(["data" => ["message" => "Invalid e-mail and/or password"]],401);
     }
 
 
-    public function register(RegistRequest $request):JsonResponse
+    public function register(RegisterRequest $request):JsonResponse
     {
         $data = $request->validated();
         $data["password"] = Hash::make($data["password"]);
