@@ -50,7 +50,7 @@ Route::controller(MeasureController::class)->group(function (){
 Route::controller(AuthController::class)->group(function (){
     Route::post('/login', 'login')->name('auth.login');
     Route::post('/register', 'register')->name('auth.register');
-    Route::middleware(["auth:sanctum"])->get('/profile', 'users')->name('auth.users');
+    Route::middleware(["auth:sanctum"])->get('/profile', 'profile')->name('auth.profile');
     Route::middleware(["auth:sanctum"])->post('/logout','logout')->name('auth.logout');
 });
 
