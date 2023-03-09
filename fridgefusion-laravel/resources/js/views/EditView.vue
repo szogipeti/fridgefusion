@@ -47,7 +47,7 @@
                 <Field class="form-control" type="number" id="totalTime" name="totalTime" v-model="totalTime"/>
                 <error-message name="totalTime"></error-message>
             </div>
-            <input class="btn btn-secondary" type="submit" value="Edit Recipe">
+            <input type="submit" value="Edit Recipe">
         </Form>
     </div>
 </template>
@@ -277,3 +277,28 @@ onMounted(() => {
 })
 
 </script>
+
+<style scoped>
+input{
+    border-radius: 0;
+    border: 2px solid #18afa5;
+}
+input[type=submit]{
+margin-top: 20px;
+margin-bottom: 10px;
+width: 100%;
+padding-top: 5px;
+padding-bottom: 5px;
+color: white;
+background-color: #117972;
+border: 3px solid #117972;
+}
+input[type=submit]:hover{
+background-color: white;
+color: black;
+}
+.form-select{
+    border-radius: 0;
+    border: 2px solid #18afa5;
+}
+</style>
