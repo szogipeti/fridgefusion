@@ -23,6 +23,9 @@ import {http} from '@/utils/http'
 import {useRouter} from "vue-router";
 import {Form, Field, ErrorMessage} from 'vee-validate';
 import * as yup from "yup"
+import {useLoggedInStore} from "../store/isLoggedIn.js";
+
+const isLoggedInStore = useLoggedInStore();
 
 const router = useRouter();
 
@@ -40,10 +43,9 @@ async function login(userData) {
             error.value = response.statusText
         } else {
             localStorage.setItem('token', response.data.token);
-            router.push({name: 'home'}).then(() => {
-                router.go()
-            });
+            router.push({name: 'home'});
         }
+        isLoggedInStore.triggerLoggedIn();
     } catch (e) {
         error.value = e.response.data.data.message;
     }

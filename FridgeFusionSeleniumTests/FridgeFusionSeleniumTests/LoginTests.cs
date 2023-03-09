@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FridgeFusionSeleniumTests
 {
     [TestClass]
-    class LoginTests
+    public class LoginTests
     {
         private ChromeDriver chromeDriver;
 
@@ -18,8 +18,7 @@ namespace FridgeFusionSeleniumTests
         {
             chromeDriver = new ChromeDriver();
             chromeDriver.Manage().Window.Maximize();
-            chromeDriver.Navigate().GoToUrl("http://localhost:8881/login");
-            Thread.Sleep(10000);
+            chromeDriver.Navigate().GoToUrl("http://localhost:8881/#/login");
         }
         [TestCleanup]
         public void TearDown()
@@ -30,15 +29,15 @@ namespace FridgeFusionSeleniumTests
         public void TestLoginwWithRealUser() 
         {
             IWebElement emailInput = chromeDriver.FindElement(By.Name("email"));
-            emailInput.SendKeys("alma@alma.hu");
+            emailInput.SendKeys("gastroworkshop@gmail.com");
 
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
-            passwordInput.SendKeys("Alma123");
+            passwordInput.SendKeys("1nimda");
           
-            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn-login"));
+            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn"));
             loginButton.Click();
-            Thread.Sleep(10000);
-            Assert.AreEqual("\"http://localhost:8881/", chromeDriver.Url);
+            Thread.Sleep(5000);
+            Assert.AreEqual("http://localhost:8881/#/", chromeDriver.Url);
         }
         [TestMethod]
         public void TestLoginwWithwrongUsername()
@@ -49,24 +48,24 @@ namespace FridgeFusionSeleniumTests
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
             passwordInput.SendKeys("Alma12345");
 
-            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn-login"));
+            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn"));
             loginButton.Click();
             Thread.Sleep(10000);
-            Assert.AreEqual("Unsuccessful login", chromeDriver.FindElement(By.Id("error")));
+            Assert.AreEqual("Unsuccessful login", chromeDriver.FindElement(By.Id("error")).Text);
         }
         [TestMethod]
         public void TestLoginwWithwrongPassword()
         {
             IWebElement emailInput = chromeDriver.FindElement(By.Name("email"));
-            emailInput.SendKeys("apple@alma.hu");
+            emailInput.SendKeys("gastroworkshop@gmail.com");
 
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
-            passwordInput.SendKeys("Alma12345");
+            passwordInput.SendKeys("alma123");
 
-            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn-login"));
+            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn"));
             loginButton.Click();
             Thread.Sleep(10000);
-            Assert.AreEqual("Unsuccessful login", chromeDriver.FindElement(By.Id("error")));
+            Assert.AreEqual("Unsuccessful login", chromeDriver.FindElement(By.Id("error")).Text);
         }
     }
 }
