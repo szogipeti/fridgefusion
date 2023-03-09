@@ -6,7 +6,7 @@
         <Form @submit="createRecipe" :validation-schema="Schema">
             <div class="form-group">
                 <label class="form-label" for="name">Name:</label>
-                <Field type="text" name="name" id="name" class="form-control width-100" />
+                <Field type="text" placeholder="e.g. Apple crumble" name="name" id="name" class="form-control width-100" />
                 <error-message name="name"></error-message>
             </div>
             <div class="form-group">
@@ -34,20 +34,20 @@
             </div>
             <div class="form-group">
                 <label class="form-label" for="image">Image URL:</label>
-                <Field class="form-control" type="text" name="image" id="image"/>
+                <Field class="form-control" placeholder="e.g. 5.jpg" type="text" name="image" id="image"/>
                 <error-message name="image"></error-message>
             </div>
             <div class="form-group">
                 <label class="form-label" for="serving">Servings:</label>
-                <Field class="form-control" type="number" id="serving" name="serving"/>
+                <Field class="form-control" placeholder="e.g. 7" type="number" id="serving" name="serving"/>
                 <error-message name="servings"></error-message>
             </div>
             <div class="form-group">
                 <label class="form-label" for="totalTime">Total Time (minutes):</label>
-                <Field class="form-control" type="number" id="totalTime" name="totalTime"/>
+                <Field class="form-control" placeholder="e.g. 40" type="number" id="totalTime" name="totalTime"/>
                 <error-message name="totalTime"></error-message>
             </div>
-            <input class="btn btn-secondary" type="submit" value="Edit Recipe">
+            <input type="submit" value="Create Recipe">
         </Form>
     </div>
 </template>
@@ -225,3 +225,28 @@ onMounted(() => {
 
 
 </script>
+
+<style scoped>
+input{
+    border-radius: 0;
+    border: 2px solid #18afa5;
+}
+input[type=submit]{
+margin-top: 20px;
+margin-bottom: 10px;
+width: 100%;
+padding-top: 5px;
+padding-bottom: 5px;
+color: white;
+background-color: #117972;
+border: 3px solid #117972;
+}
+input[type=submit]:hover{
+background-color: white;
+color: black;
+}
+.form-select{
+    border-radius: 0;
+    border: 2px solid #18afa5;
+}
+</style>
