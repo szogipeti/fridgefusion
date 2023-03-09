@@ -4,22 +4,18 @@
     </div>
     <div v-else class="container">
         <div class="row">
-            <div class="col-4 profdiv">
+            <div class="col-md-4 col-sm-12" id="profdiv">
                 <Form class="fromdata">
                     <font-awesome-icon class="profile" icon="fa-solid fa-circle-user" />
-                    <h1 class="profile">Profile</h1>
-                    <p class="recipe">Username: {{ user.username }}</p>
-                    <p class="recipe">Email: {{ user.email }}</p>
-                  <p> <router-link to="/newrecipe">
-                        <button class="buttons" >Make new recipe</button>
+                    <h1 class="profile">{{ user.username }}</h1>
+                    <p id="email">Email: {{ user.email }}</p>
+                    <router-link class="buttons" to="/newrecipe">
+                            Make new recipe
                     </router-link>
-                  </p>
-                    <p>
-                    <button  class="buttons" @click="logout">Logout</button>
-                    </p>
+                    <button id="btnlogout" class="buttons" @click="logout">Logout</button>
                 </Form>
             </div>
-            <div class="col-8">
+            <div class="col-md-8 col-sm-12">
                 <h2 class="my-3">Your recipes</h2>
                 <recipe-container :recipes="recipes.sort(sortByName)" :can-be-edited="true" />
             </div>
@@ -95,33 +91,42 @@ onMounted(() => {
 .buttons{
     display: block;
     width: 100%;
-    border: none;
+    border: 2px solid #18afa5;
     background-color: #18afa5;
     padding: 14px 28px;
     font-size: 150%;
     text-align: center;
-    color: white;
-    border-radius: 10px;
+    color: black;
     text-decoration: none;
 }
-.recipe{
+#btnlogout{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#email{
     width: 100%;
     text-align: center;
     font-size: 150%;
     background-color: white;
-    border-radius: 10px;
+    border: 2px solid #18afa5;
+    margin-bottom: 20px;
 
 }
 .profile{
     width: 100%;
     text-align: center;
     font-size: 150%;
+    margin-top: 10px;
 }
-.profdiv{
+#profdiv{
     background-color: gainsboro;
     border: 2px solid lightgray;
-    border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     box-shadow:10px 10px 10px darkgrey;
     left: 15%;
 }
