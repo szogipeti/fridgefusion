@@ -18,7 +18,8 @@
                 <Field type="password" placeholder=" Confirm Password" name="password_confirmation"/>
                 <div class="errdiv"><error-message name="password"></error-message></div>
             </div>
-            <input type="submit" value="Register" class="mt-3">
+            <input v-if="!isloading" type="submit" value="Register" class="mt-3">
+            <font-awesome-icon v-else class="fa-spin" icon="fa-solid fa-burger" />
         </Form>
         <h5>Already have an account? <router-link to="/login"><label id="labellog">Login here!</label></router-link></h5>
     </div>
@@ -42,13 +43,17 @@ const Schema = yup.object({
 const error = ref(null);
 
 async function register(userData){
+    isloading.value = true;
     const response = await http.post('register', userData);
     if(response.status !== 201){
         error.value = response.statusText
     }else{
         router.push({name: 'login'});
     }
+    isloading.value = false;
 }
+const isloading = ref(false);
+
 </script>
 
 <style scoped>
@@ -78,8 +83,8 @@ input{
     margin-top: 30px;
     margin-bottom: 40px;
     background-color: white;
-    border: 2px solid black;
-    box-shadow:10px 10px #18afa5;
+    border: 2px solid lightgray;
+    box-shadow:10px 10px 10px darkgrey;
 }
 h3{
     text-align: center;
@@ -87,6 +92,7 @@ h3{
 input{
     padding-top: 10px;
     padding-bottom: 10px;
+    padding-left: 5px;
     border: 2px solid #18afa5;
 }
 input:focus{
@@ -96,10 +102,11 @@ input:focus{
 input[type=submit]{
     width: 70%;
     margin-left: 15%;
-    border: 3px solid #18afa5;
+    background-color: #18afa5;
 }
 input[type=submit]:hover{
-    background-color: #18afa5;
+    border: 3px solid #18afa5;
+    background-color: white;
 }
 .errdiv {
     margin-left: auto;
@@ -109,5 +116,8 @@ input[type=submit]:hover{
 }
 #labellog{
     cursor: pointer;
+}
+.fa-spin{
+    margin-left: 50%;
 }
 </style>
