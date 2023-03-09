@@ -33,6 +33,9 @@ import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import axios from "axios";
 import RecipeContainer from "../components/RecipeContainer.vue";
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
+import {useLoggedInStore} from "../store/isLoggedIn.js";
+
+const isLoggedInStore = useLoggedInStore();
 
 const router = useRouter();
 const user = reactive({});
@@ -43,7 +46,8 @@ const recipesLoaded = ref(false);
 
 const logout = () => {
     localStorage.removeItem('token');
-    router.push('/login').then(() => router.go());
+    isLoggedInStore.triggerLoggedIn();
+    router.push('/login');
 }
 defineExpose({logout});
 
