@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace FridgeFusionSeleniumTests
 {
     [TestClass]
-    class RegisterTests
+    public class RegisterTests
     {
         private ChromeDriver chromeDriver;
 
@@ -19,8 +19,7 @@ namespace FridgeFusionSeleniumTests
         {
             chromeDriver = new ChromeDriver();
             chromeDriver.Manage().Window.Maximize();
-            chromeDriver.Navigate().GoToUrl("http://localhost:8881/register");
-            Thread.Sleep(10000);
+            chromeDriver.Navigate().GoToUrl("http://localhost:8881/#/register");
         }
         [TestCleanup]
         public void TearDown()
@@ -28,7 +27,7 @@ namespace FridgeFusionSeleniumTests
             chromeDriver.Quit();
         }
         [TestMethod]
-        public void Registuser()
+        public void RegisterUser()
         {
             IWebElement usernameInput = chromeDriver.FindElement(By.Name("username"));
             usernameInput.SendKeys("Aplle12");
@@ -39,15 +38,15 @@ namespace FridgeFusionSeleniumTests
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
             passwordInput.SendKeys("Alma123");
 
-            IWebElement passwordconfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
-            passwordconfInput.SendKeys("Alma123");
+            IWebElement passwordConfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
+            passwordConfInput.SendKeys("Alma123");
 
-            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
+            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector("input[type=submit]"));
             registerButton.Click();
 
-            Thread.Sleep(10000);
+            Thread.Sleep(6000);
 
-            Assert.AreEqual("\"http://localhost:8881/login", chromeDriver.Url);
+            Assert.AreEqual("http://localhost:8881/#/login", chromeDriver.Url);
         }
         [TestMethod]
         public void TestRegisterWithBadUsername ()
@@ -61,15 +60,13 @@ namespace FridgeFusionSeleniumTests
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
             passwordInput.SendKeys("Alma123");
 
-            IWebElement passwordconfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
-            passwordconfInput.SendKeys("Alma123");
+            IWebElement passwordConfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
+            passwordConfInput.SendKeys("Alma123");
 
-            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
+            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector("input[type=submit]"));
             registerButton.Click();
-
-            Thread.Sleep(10000);
-
-            Assert.AreEqual("username must be at least 6 characters", chromeDriver.FindElement(By.Id("error-username")));
+            
+            Assert.AreEqual("username must be at least 6 characters", chromeDriver.FindElement(By.Id("error-username")).Text);
         }
         [TestMethod]
         public void TestRegisterWithBadEmail()
@@ -83,15 +80,13 @@ namespace FridgeFusionSeleniumTests
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
             passwordInput.SendKeys("Alma123");
 
-            IWebElement passwordconfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
-            passwordconfInput.SendKeys("Alma123");
+            IWebElement passwordConfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
+            passwordConfInput.SendKeys("Alma123");
 
-            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
+            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector("input[type=submit]"));
             registerButton.Click();
-
-            Thread.Sleep(10000);
-
-            Assert.AreEqual("email must be at least 6 characters", chromeDriver.FindElement(By.Id("error-email")));
+            
+            Assert.AreEqual("email must be a valid email", chromeDriver.FindElement(By.Id("error-email")).Text);
         }
         [TestMethod]
         public void TestRegisterWithBadPassword()
@@ -105,15 +100,13 @@ namespace FridgeFusionSeleniumTests
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
             passwordInput.SendKeys("alma123");
 
-            IWebElement passwordconfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
-            passwordconfInput.SendKeys("alma123");
+            IWebElement passwordConfInput = chromeDriver.FindElement(By.Name("password_confirmation"));
+            passwordConfInput.SendKeys("alma123");
 
-            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector(".btn-regist"));
+            IWebElement registerButton = chromeDriver.FindElement(By.CssSelector("input[type=submit]"));
             registerButton.Click();
-
-            Thread.Sleep(10000);
-
-            Assert.AreEqual("password must be at least 6 characters", chromeDriver.FindElement(By.Id("error-password")));
+            
+            Assert.AreEqual("password must be at least 6 characters", chromeDriver.FindElement(By.Id("error-password")).Text);
         }
     }
 }
