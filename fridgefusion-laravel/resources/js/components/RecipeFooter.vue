@@ -19,7 +19,7 @@
                         <li><a target="_blank" href="https://www.linkedin.com/in/fridge-fusion-76b6a3269/">
                             <font-awesome-icon class="fa-inverse" icon="fa-brands fa-linkedin"/>
                         </a></li>
-                        <li><a target="_blank" href="https://www.instagram.com/fridgefusion10/">
+                        <li><a href="https://www.instagram.com/fridge_fusion/">
                             <font-awesome-icon class="fa-inverse" icon="fa-brands fa-instagram"/>
                         </a></li>
                     </ul>
