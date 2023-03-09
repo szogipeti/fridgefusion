@@ -12,11 +12,11 @@ const app = createApp(App);
 
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faTwitter, faFacebookF, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+import { faTiktok, faFacebookF, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faChevronDown, faChevronUp, faX, faCircleUser, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {faPenToSquare} from "@fortawesome/free-regular-svg-icons";
 
-library.add(faTwitter, faFacebookF, faInstagram, faLinkedin, faChevronDown, faChevronUp, faX, faCircleUser, faTrash, faPenToSquare)
+library.add(faTiktok, faFacebookF, faInstagram, faLinkedin, faChevronDown, faChevronUp, faX, faCircleUser, faTrash, faPenToSquare)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(router)
 app.use(vueClickOutsideElement)

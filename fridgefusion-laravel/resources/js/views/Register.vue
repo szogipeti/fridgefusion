@@ -19,6 +19,7 @@
                 <div class="errdiv"><error-message name="password"></error-message></div>
             </div>
             <input type="submit" value="Register" class="mt-3">
+            <div id="error" class="alert alert-danger" v-if="error">{{error}}</div>
         </Form>
         <h5>Already have an account? <router-link to="/login"><label id="labellog">Login here!</label></router-link></h5>
     </div>
@@ -36,19 +37,20 @@ const Schema = yup.object({
     username: yup.string().min(6).max(100).required(),
     email : yup.string().email().min(6).max(100).required(),
     password : yup.string().min(6).max(100).required(),
-    password_confirmation : yup.string().min(6).max(100).required()
+    password_confirmation : yup.string().required().oneOf([yup.ref('password')])
 });
 
 const error = ref(null);
-
-async function register(userData){
-    const response = await http.post('register', userData);
-    if(response.status !== 201){
-        error.value = response.statusText
-    }else{
+async function register(userData) {
+    try
+    {
+        const response = await http.post('register', userData);
         router.push({name: 'login'});
+    } catch(e){
+        error.value = e.response.data.message;
     }
 }
+
 </script>
 
 <style scoped>

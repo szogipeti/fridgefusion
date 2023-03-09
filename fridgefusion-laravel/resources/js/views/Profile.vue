@@ -4,16 +4,19 @@
     </div>
     <div v-else class="container">
         <div class="row">
-            <div class="col-4">
-                <Form>
-                    <font-awesome-icon icon="fa-solid fa-circle-user" />
-                    <h1>Profile</h1>
-                    <p>Username: {{ user.username }}</p>
-                    <p>Email: {{ user.email }}</p>
-                    <router-link to="/newrecipe">
-                        <button>Make new recipe</button>
+            <div class="col-4 profdiv">
+                <Form class="fromdata">
+                    <font-awesome-icon class="profile" icon="fa-solid fa-circle-user" />
+                    <h1 class="profile">Profile</h1>
+                    <p class="recipe">Username: {{ user.username }}</p>
+                    <p class="recipe">Email: {{ user.email }}</p>
+                  <p class="recipe"> <router-link to="/newrecipe">
+                        <button class="width-100%">Make new recipe</button>
                     </router-link>
-                    <button @click="logout">Logout</button>
+                  </p>
+                    <p>
+                    <button class="recipe" @click="logout">Logout</button>
+                    </p>
                 </Form>
             </div>
             <div class="col-8">
@@ -73,5 +76,26 @@ onMounted(() => {
 .fa-circle-user{
     width: 100px;
     height: 100px;
+}
+.fromdata{
+}
+.recipe{
+    width: 100%;
+    text-align: center;
+    font-size: 200%;
+    background-color: white;
+    border-radius: 10px;
+
+}
+.profile{
+    width: 100%;
+    text-align: center;
+    font-size: 200%;
+}
+.profdiv{
+    background-color: #18afa5;
+    border: 3px solid #18afa5;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 </style>

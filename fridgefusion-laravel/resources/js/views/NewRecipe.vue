@@ -225,4 +225,5 @@ onMounted(() => {
     getAllIngredient();
 })
 
+
 </script>
