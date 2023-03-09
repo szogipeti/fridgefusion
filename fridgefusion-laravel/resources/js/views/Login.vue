@@ -82,7 +82,7 @@ input{
 
 #login{
     margin-top: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     background-color: white;
     border: 2px solid lightgray;
     box-shadow:10px 10px 10px darkgrey;
