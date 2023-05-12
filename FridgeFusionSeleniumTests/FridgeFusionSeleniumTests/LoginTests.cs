@@ -33,10 +33,10 @@ namespace FridgeFusionSeleniumTests
 
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
             passwordInput.SendKeys("1nimda");
-          
-            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn"));
-            loginButton.Click();
-            Thread.Sleep(5000);
+
+            IWebElement LoginButton = chromeDriver.FindElement(By.CssSelector("button[type=submit]"));
+            LoginButton.Click();
+            Thread.Sleep(10000);
             Assert.AreEqual("http://localhost:8881/#/", chromeDriver.Url);
         }
         [TestMethod]
@@ -48,10 +48,10 @@ namespace FridgeFusionSeleniumTests
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
             passwordInput.SendKeys("Alma12345");
 
-            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn"));
-            loginButton.Click();
+            IWebElement LoginButton = chromeDriver.FindElement(By.CssSelector("button[type=submit]"));
+            LoginButton.Click();
             Thread.Sleep(10000);
-            Assert.AreEqual("Unsuccessful login", chromeDriver.FindElement(By.Id("error")).Text);
+            Assert.AreEqual("Invalid e-mail and/or password", chromeDriver.FindElement(By.Id("error")).Text);
         }
         [TestMethod]
         public void TestLoginwWithwrongPassword()
@@ -62,10 +62,10 @@ namespace FridgeFusionSeleniumTests
             IWebElement passwordInput = chromeDriver.FindElement(By.Name("password"));
             passwordInput.SendKeys("alma123");
 
-            IWebElement loginButton = chromeDriver.FindElement(By.CssSelector(".btn"));
-            loginButton.Click();
+            IWebElement LoginButton = chromeDriver.FindElement(By.CssSelector("button[type=submit]"));
+            LoginButton.Click();
             Thread.Sleep(10000);
-            Assert.AreEqual("Unsuccessful login", chromeDriver.FindElement(By.Id("error")).Text);
+            Assert.AreEqual("Invalid e-mail and/or password", chromeDriver.FindElement(By.Id("error")).Text);
         }
     }
 }
